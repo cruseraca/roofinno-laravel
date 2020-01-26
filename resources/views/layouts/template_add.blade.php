@@ -14,15 +14,15 @@
                     <b class="logo-icon">
                         <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
                         <!-- Dark Logo icon -->
-                        <img src="{{url('/')}}assets/images/logodoang_soerja.png" alt="homepage" class="dark-logo" width="50"/>
+                        <img src="{{asset('/images/logodoang_soerja.png')}}" alt="homepage" class="dark-logo" width="50"/>
                         <!-- Light Logo Icon -->
-                        <img src="{{url('/')}}assets/images/logodoang_soerja.png" alt="homepage" class="light-logo" width="50" />
+                        <img src="{{asset('/images/logodoang_soerja.png')}}" alt="homepage" class="light-logo" width="50" />
                     </b>
                     <span class="logo-text">
                         <!-- Dark Logo icon -->
-                        <img src="{{url('/')}}assets/images/textdoang_soerja.png" alt="homepage" class="dark-logo" width="150"/>
+                        <img src="{{asset('/images/textdoang_soerja.png')}}" alt="homepage" class="dark-logo" width="150"/>
                         <!-- Light Logo Icon -->
-                        <img src="{{url('/')}}assets/images/textdoang_soerja.png" alt="homepage" class="light-logo" width="150"/>
+                        <img src="{{asset('/images/textdoang_soerja.png')}}" alt="homepage" class="light-logo" width="150"/>
                     </span>
                     <!--End Logo icon -->
                     <!-- Logo text -->
@@ -115,7 +115,7 @@
                         <div class="dropdown-menu dropdown-menu-right user-dd animated flipInY">
                             <span class="with-arrow"><span class="bg-primary"></span></span>
                             <div class="d-flex no-block align-items-center p-15 bg-primary text-white mb-2">
-                                <div class=""><img src="{{url('/')}}assets/image/users/1.jpg" alt="user" class="img-circle" width="60"></div>
+                                <div class=""><img src="{{asset('/image/users/1.jpg')}}" alt="user" class="img-circle" width="60"></div>
                                 <div class="ml-2">
                                     <h4 class="mb-0">Habib</h4>
                                     <p class=" mb-0">habib@soerja.com</p>
