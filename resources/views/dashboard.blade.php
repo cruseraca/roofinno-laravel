@@ -83,43 +83,42 @@
                               </div> <br>
                       </div>
                       <div class="row">
-                          <!-- column -->
-                          <div class="col-lg-12"  id="aa">
-                            <div id="rickshawGraph" data-color1="#2d3bed" data-color2="#ffa500"></div>
-                          </div>
-                          <table width="100%" style="font-size:smaller;">
-                            <tr>
-                              <td>00:00</td>
-                              <td>01:00</td>
-                              <td>02:00</td>
-                              <td>03:00</td>
-                              <td>04:00</td>
-                              <td>05:00</td>
-                              <td>06:00</td>
-                              <td>07:00</td>
-                              <td>08:00</td>
-                              <td>09:00</td>
-                              <td>10:00</td>
-                              <td>11:00</td>
-                              <td>12:00</td>
-                              <td>13:00</td>
-                              <td>14:00</td>
-                              <td>15:00</td>
-                              <td>16:00</td>
-                              <td>17:00</td>
-                              <td>18:00</td>
-                              <td>19:00</td>
-                              <td>20:00</td>
-                              <td>21:00</td>
-                              <td>22:00</td>
-                              <td>23:00</td>
-                            </tr>
-                          </table>
-                          <!-- <div class="col-lg-12">
-                              <div class="grafik ct-charts"></div>
-                          </div> -->
-                          <!-- column -->
-
+                        <!-- column -->
+                        <div class="col-lg-12"  id="aa">
+                          <div id="rickshawGraph" data-color1="#2d3bed" data-color2="#ffa500"></div>
+                        </div>
+                        <table width="100%" style="font-size:smaller;">
+                          <tr>
+                            <td>00:00</td>
+                            <td>01:00</td>
+                            <td>02:00</td>
+                            <td>03:00</td>
+                            <td>04:00</td>
+                            <td>05:00</td>
+                            <td>06:00</td>
+                            <td>07:00</td>
+                            <td>08:00</td>
+                            <td>09:00</td>
+                            <td>10:00</td>
+                            <td>11:00</td>
+                            <td>12:00</td>
+                            <td>13:00</td>
+                            <td>14:00</td>
+                            <td>15:00</td>
+                            <td>16:00</td>
+                            <td>17:00</td>
+                            <td>18:00</td>
+                            <td>19:00</td>
+                            <td>20:00</td>
+                            <td>21:00</td>
+                            <td>22:00</td>
+                            <td>23:00</td>
+                          </tr>
+                        </table> 
+                        <div class="col-lg-12">
+                            <div class="grafik ct-charts"></div>
+                        </div> 
+                        <!-- column -->
                       </div>
                       <hr style="margin-top: unset;">
                       <div class="ml-auto d-flex no-block align-items-center">
@@ -198,38 +197,38 @@
         </div>
 
   </div>
-
-
-  
-  <script type="text/javascript">
-    $(document).ready(function(){
-      setTimeout(function () {
-        grafik();
-        $( window ).resize(function() {
-            graphData.configure({
-              height: $('#rickshawGraph').height(),
-              width: $('#rickshawGraph').closest('#aa').width()
-            });
-            callGraph();
-        });
-      }, 1000);
-    });
-  </script>
-
-  <script type="text/javascript">
-    $(function() {
-      grafikData();
-      setInterval(function () {
-        // grafikData();
-
-      }, 1000);
-    })
-
-    function realtime_konsProd() {
-      $.get("/User/realtime_konsProd", function(data, status){
-
-        alert("Data: " + data + "\nStatus: " + status);
+<script type="text/javascript">
+  $(document).ready(function(){
+    setTimeout(function () {
+      grafik();
+      $( window ).resize(function() {
+          graphData.configure({
+            height: $('#rickshawGraph').height(),
+            width: $('#rickshawGraph').closest('#aa').width()
+          });
+          callGraph();
       });
-    }
+    }, 1000);
+  });
+  </script>
+  
+  @include('layouts.chartjs1')
+
+  <script type="text/javascript">
+  $(function() {
+    grafikData();
+    setInterval(function () {
+      // grafikData();
+  
+    }, 1000);
+  })
+  
+  function realtime_konsProd() {
+    $.get("{{url('/dashboard')}}/realtime_konsProd", function(data, status){
+  
+       alert("Data: " + data + "\nStatus: " + status);
+     });
+  }
   </script>
 @endsection
+

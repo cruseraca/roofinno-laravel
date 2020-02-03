@@ -16,3 +16,7 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard','DashboardController@index');
+Route::get('/dashboard/realtime_grafik','DashboardController@realtime_grafik');
+Route::get('/dashboard/realtime_konsProd','DashboardController@realtime_konsprod');
+
+Route::get('/get-post-chart-data','ChartDataController@getMonthlyPostData');

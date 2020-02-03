@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="{{asset('/images/logodoang_soerja.png')}}">
     <title>ROOF-INNO</title>
@@ -99,9 +100,11 @@
     <!-- All Jquery -->
     <!-- ============================================================== -->
     <!-- Bootstrap tether Core JavaScript -->
+    @yield('script')
     <script src="{{asset('/libs/popper.js/dist/umd/popper.min.js')}}"></script>
     <script src="{{asset('/libs/bootstrap/dist/js/bootstrap.min.js')}}"></script>
     <!-- apps -->
+    <script src="{{asset('/js/app.js')}}"></script>
     <script src="{{asset('/dist/js/app.min.js')}}"></script>
     <script src="{{asset('/dist/js/app.init.js')}}"></script>
     <script src="{{asset('/dist/js/app-style-switcher.js')}}"></script>
