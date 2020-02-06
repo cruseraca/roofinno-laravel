@@ -197,22 +197,24 @@
         </div>
 
   </div>
-<script type="text/javascript">
-  $(document).ready(function(){
-    setTimeout(function () {
-      grafik();
-      $( window ).resize(function() {
-          graphData.configure({
-            height: $('#rickshawGraph').height(),
-            width: $('#rickshawGraph').closest('#aa').width()
-          });
-          callGraph();
-      });
-    }, 1000);
-  });
+
+  @include('layouts.chartjs1')
+
+  <script type="text/javascript">
+    $(document).ready(function(){
+      setTimeout(function () {
+        grafik();
+        $( window ).resize(function() {
+            graphData.configure({
+              height: $('#rickshawGraph').height(),
+              width: $('#rickshawGraph').closest('#aa').width()
+            });
+            callGraph();
+        });
+      }, 1000);
+    });
   </script>
   
-  @include('layouts.chartjs1')
 
   <script type="text/javascript">
   $(function() {

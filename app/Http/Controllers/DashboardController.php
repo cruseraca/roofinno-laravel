@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Data;
 
 class DashboardController extends Controller
 {
@@ -29,17 +31,19 @@ class DashboardController extends Controller
         $tgl_awal = $dateNow." ".date("H:i:s", $awal);
         $tgl_akhir =$dateNow." ".date("H:i:s", $akhir);
 
-        $jumlah1 = $this->db->select_sum('POWER')->where('FLAG','pln')->where('ONINSERT >=',$tgl_awal)->where('ONINSERT <=',$tgl_akhir)->get('data_inout')->row();
-        $banyak1 = $this->db->where('FLAG','pln')->where('ONINSERT >=',$tgl_awal)->where('ONINSERT <=',$tgl_akhir)->get('data_inout')->num_rows();
+        //Get data from database with query builder laravel
+        $jumlah1 = Data::where('ONINSERT','<=',$tgl_akhir)->where('ONINSERT', '>=',$tgl_awal)->where('FLAG','pln')->sum('POWER');
+        $banyak1 = Data::where('ONINSERT','<=',$tgl_akhir)->where('ONINSERT', '>=',$tgl_awal)->where('FLAG','pln')->count();
+        
+        $jumlah2 = Data::where('ONINSERT','<=',$tgl_akhir)->where('ONINSERT', '>=',$tgl_awal)->where('FLAG','ps')->sum('POWER');
+        $banyak2 = Data::where('ONINSERT','<=',$tgl_akhir)->where('ONINSERT', '>=',$tgl_awal)->where('FLAG','ps')->count();
+        
+        $jumlah3 = Data::where('ONINSERT','<=',$tgl_akhir)->where('ONINSERT', '>=',$tgl_awal)->where('IDSENSOR','3')->sum('POWER');
+        $banyak3 = Data::where('ONINSERT','<=',$tgl_akhir)->where('ONINSERT', '>=',$tgl_awal)->where('IDSENSOR','3')->count();
+        
+        $jumlah4 = Data::where('ONINSERT','<=',$tgl_akhir)->where('ONINSERT', '>=',$tgl_awal)->where('IDSENSOR','4')->sum('POWER');
+        $banyak4 = Data::where('ONINSERT','<=',$tgl_akhir)->where('ONINSERT', '>=',$tgl_awal)->where('IDSENSOR','4')->count();
 
-        $jumlah2 = $this->db->select_sum('POWER')->where('FLAG','pv')->where('ONINSERT >=',$tgl_awal)->where('ONINSERT <=',$tgl_akhir)->get('data_inout')->row();
-        $banyak2 = $this->db->where('FLAG','pv')->where('ONINSERT >=',$tgl_awal)->where('ONINSERT <=',$tgl_akhir)->get('data_inout')->num_rows();
-
-        $jumlah3 = $this->db->select_sum('POWER')->where('IDSENSOR','3')->where('ONINSERT >=',$tgl_awal)->where('ONINSERT <=',$tgl_akhir)->get('data_inout')->row();
-        $banyak3 = $this->db->where('IDSENSOR','3')->where('ONINSERT >=',$tgl_awal)->where('ONINSERT <=',$tgl_akhir)->get('data_inout')->num_rows();
-
-        $jumlah4 = $this->db->select_sum('POWER')->where('IDSENSOR','4')->where('ONINSERT >=',$tgl_awal)->where('ONINSERT <=',$tgl_akhir)->get('data_inout')->row();
-        $banyak4 = $this->db->where('IDSENSOR','4')->where('ONINSERT >=',$tgl_awal)->where('ONINSERT <=',$tgl_akhir)->get('data_inout')->num_rows();
 
         if ($banyak1=='0' ) {
             $rata1=0;
