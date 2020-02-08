@@ -12,7 +12,8 @@ $(function() {
     [0, 0, 0, 0, 110, 160, 200, 290,305,320,310,122,20],
     [0,0,80,105,180,75,100,8,20,25,80,90,95],
     [195,215,150,20,0,0,0,115,90,170,120,110,185]
-  ]
+  ],
+ 
 }, 
 
     {
@@ -24,7 +25,7 @@ $(function() {
             scaleMinSpace: 40,
             offset: 60,
             labelInterpolationFnc: function(value) {
-                return (value / 1) + 'KWh';
+                return (value / 1) + 'KW';
             }
         },
   
@@ -33,8 +34,14 @@ $(function() {
   ],
   chartPadding: {
     right: 40
-  }
+  },
+
+  lineSmooth: Chartist.Interpolation.simple(),
+  showPoint: true,
+  
 });
+
+
     // ============================================================== 
     // Konsumsi Harian
     // ============================================================== 
@@ -103,6 +110,7 @@ new Chartist.Line('.ct-area-ln-chart', {
                 // Vertical axis
                 yAxis: [{
                     type: 'value',
+                    name: 'KWh'
                 }],
 
                 // Add series
@@ -169,14 +177,24 @@ new Chartist.Line('.ct-area-ln-chart', {
 
 
                 // Horizontal axis
+                // xAxis: [{
+                //     type: 'category',
+                //     data: ['Minggu 1', 'Minggu 2', 'Minggu 3', 'Minggu 4']
+                // }],
+
                 xAxis: [{
                     type: 'category',
-                    data: ['Minggu 1', 'Minggu 2', 'Minggu 3', 'Minggu 4']
+                    data: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11',
+                    '12', '13', '14', '15', '16','17','19','20','21','22',
+                    '23','24','25','26','27','28','29','30']
                 }],
+
+
 
                 // Vertical axis
                 yAxis: [{
                     type: 'value',
+                    name: 'KWh'
                 }],
 
                 // Add series
@@ -185,27 +203,27 @@ new Chartist.Line('.ct-area-ln-chart', {
                     {
                         name:'Produksi Panel Surya',
                         type:'bar',
-                        barWidth: 20,
-                        data:[350, 460, 300, 510],
+                        barWidth: 15,
+                        data:[350, 460, 300, 510,350, 460, 300, 510,350, 460, 300, 510,350, 460, 300, 510,350, 460, 300, 510,350, 460, 300, 510,350, 460, 300, 510,350],
                     },
                     {
                         name:'Beban A',
                         type:'bar',
-                        barWidth : 20,
+                        barWidth : 15,
                         stack: 'Produksi Panel Surya',
-                        data:[100, 100, 50, 50]
+                        data:[100, 100, 50, 50, 100, 50, 50, 100, 50, 50, 100, 50, 50, 100, 50, 50, 100, 50, 50, 100, 50, 50, 100, 50, 50, 100, 50, 100, 75]
                     },
                     {
                         name:'Beban B',
                         type:'bar',
                         stack: 'Produksi Panel Surya',
-                        data:[110, 110, 200, 200]
+                        data:[110, 110, 200, 200, 110, 200, 200, 110, 200, 200, 110, 200, 200, 110, 200, 200, 110, 200, 200, 110, 200, 200, 110, 200, 200, 110, 200, 200, 100]
                     },
                     {
                         name:'Beban C',
                         type:'bar',
                         stack: 'Produksi Panel Surya',
-                        data:[80, 170, 120, 150]
+                        data:[80, 170, 120, 150, 170, 120, 150, 170, 120, 150, 170, 120, 150, 170, 120, 150, 170, 120, 150, 170, 120, 150, 170, 120, 150, 170, 120, 150, 160]
                     }
                 ]
                 // Add series
@@ -249,6 +267,7 @@ new Chartist.Line('.ct-area-ln-chart', {
                 // Vertical axis
                 yAxis: [{
                     type: 'value',
+                    name: 'KWh'
                 }],
 
                 // Add series
@@ -305,3 +324,5 @@ new Chartist.Line('.ct-area-ln-chart', {
         }
     });
 });
+
+
