@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Data;
+use App\Sensor;
 
 class DashboardController extends Controller
 {
@@ -12,6 +13,18 @@ class DashboardController extends Controller
     public function index()
     {
         return view('dashboard');
+    }
+
+    //penjadwalan
+    public function penjadwalan()
+    {
+        // $data = Sensor::where('ISACTIVE', 0)->get();
+        // dump($data);
+        $data = Sensor::all();
+        return view('penjadwalan',compact('data'));
+        // $where = array('ISACTIVE' =>'1','FLAG' =>'tools' );
+        // $data = array('data' => $this->All_model->ambil('sensor',$where),'js'=>'' );
+        // $this->template->user('user/penjadwalan/index',$data);
     }
 
     public function realtime_grafik()
