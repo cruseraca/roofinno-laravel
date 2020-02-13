@@ -154,8 +154,8 @@
     <script src="{{asset('/dist/js/pages/dashboards/dashboard1bulanan.js')}}"></script>
 
 
-    <script src="{{asset('/dist/js/pages/dashboards/dashboardkonsumsimonitor.js')}}"></script>
-    <script src="{{asset('/dist/js/pages/dashboards/dashboardkonsumsi.js')}}"></script>
+    {{-- <script src="{{asset('/dist/js/pages/dashboards/dashboardkonsumsimonitor.js')}}"></script>
+    <script src="{{asset('/dist/js/pages/dashboards/dashboardkonsumsi.js')}}"></script> --}}
     <!-- DATE PICKER -->
     <script src="{{asset('/libs/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js')}}"></script>
     <script>
