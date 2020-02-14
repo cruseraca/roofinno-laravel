@@ -93,15 +93,10 @@ function find_kode_tools($id='')
 
 function get_last_daya_oneday_tools($id='')
 {
-//   $ci =& get_instance();
-//   $ci->load->database();
   $dateNow = date('Y-m-d');
   $hourNow = date('H');
-//   $dateNow = "2019-10-17";
-  $result = Data::where('IDSENSOR',$id)->where('ONINSERT','like','%'.$dateNow.'%')->sum('POWER');
-//   if(count($result)!=0){
 
-//   }
-//   $result =$ci->db->select_sum('POWER')->like('ONINSERT',$dateNow)->where('IDSENSOR',$id)->get('data_inout')->row();
-  return $result/$hourNow;
+  $result = Data::where('IDSENSOR',$id)->where('ONINSERT','like','%'.$dateNow.'%')->sum('POWER');
+
+  return $hourNow == 0 ? 0 : $result/$hourNow;
 }

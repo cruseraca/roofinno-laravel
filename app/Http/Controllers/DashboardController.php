@@ -18,13 +18,15 @@ class DashboardController extends Controller
     //penjadwalan
     public function penjadwalan()
     {
-        // $data = Sensor::where('ISACTIVE', 0)->get();
-        // dump($data);
+        
         $data = Sensor::all();
         return view('penjadwalan',compact('data'));
-        // $where = array('ISACTIVE' =>'1','FLAG' =>'tools' );
-        // $data = array('data' => $this->All_model->ambil('sensor',$where),'js'=>'' );
-        // $this->template->user('user/penjadwalan/index',$data);
+    }
+
+    //performa
+    public function performa(){
+        $data = array('js' =>'' );
+        return view('performa',$data);
     }
 
     public function realtime_grafik()
