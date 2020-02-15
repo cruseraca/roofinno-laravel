@@ -219,5 +219,5 @@
         <!-- End CARD total tagihan, total penghematan -->
         <!-- ============================================================== -->
     </div>
-</div>
+
 @endsection
