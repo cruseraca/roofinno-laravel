@@ -15,6 +15,21 @@ class DashboardController extends Controller
         return view('dashboard');
     }
 
+    public function penghematan()
+    {
+        return view('penghematan');
+    }
+
+    public function konsumsi()
+    {
+        return view('konsumsi');
+    }
+
+    public function laporan()
+    {
+        return view('laporan');
+    }
+
     //penjadwalan
     public function penjadwalan()
     {
