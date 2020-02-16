@@ -6,7 +6,7 @@
             <nav class="sidebar-nav">
             <ul id="sidebarnav">
                 <!-- Menu -->
-                <li class="sidebar-item active"> <a class="sidebar-link waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="fas fa-th-large"></i><span class="hide-menu">Dashboard </span></a>
+                <li class="sidebar-item active"> <a class="sidebar-link waves-effect waves-dark" href="{{url('/dashboard')}}" aria-expanded="false"><i class="fas fa-th-large"></i><span class="hide-menu">Dashboard </span></a>
                     <!-- <ul aria-expanded="false" class="collapse  first-level">
                         <li class="sidebar-item"><a href="{{url('/dashboard')}}" class="sidebar-link"><i class="mdi mdi-adjust"></i><span class="hide-menu"> Dashboard Saya </span></a></li>
                     </ul> -->
