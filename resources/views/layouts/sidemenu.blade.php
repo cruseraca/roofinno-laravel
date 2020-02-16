@@ -41,7 +41,7 @@
                         <li class="sidebar-item"><a href="{{url('/dashboard')}}/laporan" class="sidebar-link"><i class="mdi mdi-adjust"></i><span class="hide-menu"> Dashboard Laporan </span></a></li>
                     </ul> -->
                 </li>
-                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="far fa-clock"></i><span class="hide-menu">Penjadwalan </span></a>
+                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{url('/dashboard')}}/penjadwalan" aria-expanded="false"><i class="far fa-clock"></i><span class="hide-menu">Penjadwalan </span></a>
                     <!-- <ul aria-expanded="false" class="collapse  first-level">
                         <li class="sidebar-item"><a href="{{url('/dashboard')}}/penjadwalan" class="sidebar-link"><i class="mdi mdi-adjust"></i><span class="hide-menu"> Dashboard Penjadwalan </span></a></li>
                     </ul> -->
