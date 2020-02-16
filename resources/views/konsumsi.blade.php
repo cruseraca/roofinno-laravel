@@ -19,7 +19,7 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-1">
-                            <img src="{{asset('assets/images/konsumsi.png')}}" alt="Produksi" height="65" width="65">
+                            <img src="{{asset('/images/konsumsi.png')}}" alt="Produksi" height="65" width="65">
                         </div>
                         <div class="col-4">
                             <br>

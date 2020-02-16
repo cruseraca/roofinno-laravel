@@ -203,13 +203,13 @@ new Chartist.Line('.ct-area-ln-chart', {
                     {
                         name:'Produksi Panel Surya',
                         type:'bar',
-                        barWidth: 15,
+                        barWidth: 10,
                         data:[350, 460, 300, 510,350, 460, 300, 510,350, 460, 300, 510,350, 460, 300, 510,350, 460, 300, 510,350, 460, 300, 510,350, 460, 300, 510,350],
                     },
                     {
                         name:'Beban A',
                         type:'bar',
-                        barWidth : 15,
+                        barWidth : 10,
                         stack: 'Produksi Panel Surya',
                         data:[100, 100, 50, 50, 100, 50, 50, 100, 50, 50, 100, 50, 50, 100, 50, 50, 100, 50, 50, 100, 50, 50, 100, 50, 50, 100, 50, 100, 75]
                     },
