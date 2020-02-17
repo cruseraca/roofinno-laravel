@@ -29,6 +29,12 @@ class DashboardController extends Controller
         return view('performa',$data);
     }
 
+    //produksi
+    public function produksi(){
+        $data = array('js' =>'produksi' );
+        return view('produksi',$data);
+    }
+
     public function realtime_grafik()
     {
         $Now = date("Y-m-d H:i:s");

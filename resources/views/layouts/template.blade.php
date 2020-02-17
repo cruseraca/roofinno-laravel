@@ -41,7 +41,8 @@
     <style media="screen">
       .ct-point{stroke-width: 5px;}
     </style>
-
+    <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
+    <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -144,11 +145,12 @@
 
     <script src="{{asset('/libs/echarts/dist/echarts-en.min.js')}}"></script>
 
-    <script src="{{asset('/dist/js/pages/dashboards/dashboard1monitor.js')}}"></script>
+    {{-- <script src="{{asset('/dist/js/pages/dashboards/dashboard1monitor.js')}}"></script> --}}
     <script src="{{asset('/dist/js/pages/dashboards/dashboard1mingguan.js')}}"></script>
     <script src="{{asset('/dist/js/pages/dashboards/dashboardpenghematan.js')}}"></script>
     <script src="{{asset('/dist/js/pages/dashboards/dashboardpenjadwalan.js')}}"></script>
     <script src="{{asset('/dist/js/pages/dashboards/dashboardperforma.js')}}"></script>
+    <script src="{{asset('/dist/js/pages/dashboards/dashboardproduksi.js')}}"></script>
 
     <script src="{{asset('/dist/js/pages/dashboards/dashboard1bulanan.js')}}"></script>
 
