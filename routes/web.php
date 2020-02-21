@@ -27,7 +27,4 @@ Route::get('/dashboard/realtime_konsProd','DashboardController@realtime_konsprod
     Route::get('/dashboard/performa', 'DashboardController@performa');
     //Dashboard
     Route::get('/dashboard/produksi', 'DashboardController@produksi');
-    //Dashboard
-    Route::get('/dashboard/monitoring', 'DashboardController@produksi');
-
 Route::get('/get-post-chart-data','ChartDataController@getMonthlyPostData');
