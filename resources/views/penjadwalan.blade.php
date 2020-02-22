@@ -86,7 +86,7 @@
                                 <thead>
                                     <tr class="border-0">
                                         <th class="border-0"><Strong>No</Strong></th>
-                                        <th class="border-0"><Strong>Kode</Strong></th>
+                                        {{-- <th class="border-0"><Strong>Kode</Strong></th> --}}
                                         <th class="border-0"><Strong>Nama Peralatan</Strong></th>
                                         <th class="border-0"><Strong>Daya</Strong></th>
                                         <th class="border-0"><Strong>Konsumsi Hari Ini</Strong></th>
@@ -102,7 +102,7 @@
                                                     <h5 class="mb-0 font-16 font-medium">{{$loop->iteration}}</h5>
                                             </div>
                                         </td>
-                                        <td>{{$d->KODE}}</td>
+                                        {{-- <td>{{$d->KODE}}</td> --}}
                                         <td>{{$d->NAME}}</td>
                                         <td>{{$d->DAYA}} Kw</td>
                                         <td>{{get_last_daya_oneday_tools($d->IDSENSOR)}} Kwh </td>

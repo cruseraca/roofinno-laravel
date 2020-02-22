@@ -151,6 +151,7 @@
     <script src="{{asset('/dist/js/pages/dashboards/dashboardpenjadwalan.js')}}"></script>
     <script src="{{asset('/dist/js/pages/dashboards/dashboardperforma.js')}}"></script>
     <script src="{{asset('/dist/js/pages/dashboards/dashboardproduksi.js')}}"></script>
+    <script src="{{asset('/dist/js/pages/dashboards/dashboard1.js')}}"></script>
 
     <script src="{{asset('/dist/js/pages/dashboards/dashboard1bulanan.js')}}"></script>
 

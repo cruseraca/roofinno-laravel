@@ -58,7 +58,7 @@ function find_max_daya_tools()
 //   $ci->load->database();
 //   $result = $ci->db->order_by('DAYA','DESC')->limit(1)->get('sensor');
   $result = Sensor::orderBy('DAYA','desc')->first();
-  return array($result->KODE,$result->DAYA);
+  return array($result->NAME,$result->DAYA);
 }
 
 function find_max_harian()
@@ -88,7 +88,7 @@ function find_kode_tools($id='')
     // $result = $ci->db->where('IDSENSOR',$id)->order_by('IDSENSOR','DESC')->get('sensor');
     $result = Sensor::orderBy('IDSENSOR','desc')->where('IDSENSOR',$id)->first();
     
-    return $result->KODE;
+    return $result->NAME;
 }
 
 function get_last_daya_oneday_tools($id='')

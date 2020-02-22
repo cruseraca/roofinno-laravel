@@ -1,20 +1,68 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Data;
 use App\Sensor;
+use Carbon\Carbon;
 
 class DashboardController extends Controller
 {
     //fungsi index
     public function index()
     {
-        return view('dashboard');
+        $datetime = Carbon::create(2019,10,17,11,55,0,'Asia/Jakarta');
+        $datetime->minute = 0;
+        $datetime->second = 0;
+        return view('dashboard',['time' => $datetime->format('H:i')]);
     }
 
+    //Realtime Grafik
+    public function getRealtimeData()
+    {
+        $data_x = array();
+        $data_y = array();
+        $kons = array();
+        $datetime = Carbon::create(2019,10,17,10,55,0,'Asia/Jakarta'); //ganti menjadi carbon now
+        $datetime = $datetime->startOfDay();
+        
+        for($i=0;$i <= 288;$i++){
+            $data = Data::where('ONINSERT','>=',$datetime->format('Y-m-d H:i:s'))->where('ONINSERT','<=',$datetime->addMinutes(5)->format('Y-m-d H:i:s'))->sum('POWER');
+            $datetime->subMinutes(5);
+            if($data == 0)
+            {
+                array_push($data_x,$datetime->format('H:i'));
+                array_push($data_y,0);
+                $datetime->addMinutes(5);
+            } else 
+            {
+                array_push($data_x,$datetime->format('H:i'));
+                $count = Data::where('ONINSERT','>=',$datetime->format('Y-m-d H:i:s'))->where('ONINSERT','<=',$datetime->addMinutes(5)->format('Y-m-d H:i:s'))->where('POWER','<>',0)->count();
+                array_push($data_y,$data/$count);
+            }
+            
+        }
+        $max_data = max($data_y);
+        $max = round(($max_data + 50/2)/50)*50;
+        
+        //konsumsi & produksi
+        $kons_time = Carbon::create(2019,10,17,11,55,0,'Asia/Jakarta'); //ganti menjadi carbon now
+        // $kons_time = Carbon::now('Asia/Jakarta');
+        $kons_time->minute = 0;
+        $kons_time->second = 0;
+        $kons_data = Data::where('ONINSERT','>=',$kons_time->format('Y-m-d H:i:s'))->where('ONINSERT','<=',$kons_time->addHour()->format('Y-m-d H:i:s'))->sum('POWER');
+        $kons_count = Data::where('ONINSERT','>=',$kons_time->subHour()->format('Y-m-d H:i:s'))->where('ONINSERT','<=',$kons_time->addHour()->format('Y-m-d H:i:s'))->where('POWER','<>',0)->count();
+        array_push($kons,round($kons_data/$kons_count,2));
+        array_push($kons,$kons_time->subHour()->format('Y-m-d H:i:s'));
+        $data_all = array(
+            'time' => $data_x,
+            'kwh' => $data_y, 
+            'max' => $max,
+            'kons' => $kons,
+        );
+        return $data_all;
+    }
     //penjadwalan
     public function penjadwalan()
     {

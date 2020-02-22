@@ -9,7 +9,20 @@ $(function() {
     // ============================================================== 
     // Newsletter
     // ============================================================== 
+    let ctx1 = document.getElementById("myOwnChart");
 
+    let myChart = new Chart(ctx1, {
+        type: 'bar',
+        data: {
+            labels: ['Online'],
+            datasets: [{
+                label: '# of Users',
+                data: [3],
+                borderWidth: 1
+            }]
+        }
+    });
+    
     var chart = new Chartist.Line('.grafikkonsumsiproduksi', {
         labels: ["0am", "2am", "4am", "6am", "8am", "10am", "12am", "2pm", "4pm", "6pm", "8pm", "10pm", "12pm"],
         series: [
