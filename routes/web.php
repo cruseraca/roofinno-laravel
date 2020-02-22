@@ -28,5 +28,4 @@ Route::get('/test', 'DashboardController@getRealtimeData');
     Route::get('/dashboard/performa', 'DashboardController@performa');
     //Dashboard
     Route::get('/dashboard/produksi', 'DashboardController@produksi');
-
 Route::get('/get-post-chart-data','ChartDataController@getMonthlyPostData');
