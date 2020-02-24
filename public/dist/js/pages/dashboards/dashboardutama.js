@@ -43,7 +43,7 @@ $(function() {
             scaleMinSpace: 40,
             offset: 60,
             labelInterpolationFnc: function(value) {
-                return (value / 1) + 'KW';
+                return (value / 1) + 'KWh';
             }
         },
 
