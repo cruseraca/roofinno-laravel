@@ -20,7 +20,6 @@ class DashboardController extends Controller
         return view('dashboard',['time' => $datetime->format('H:i'), 'daya_total' => round(($daya_total/720)*288/1000,2)]);
     }
 
-<<<<<<< HEAD
     //Realtime Grafik
     public function getRealtimeData()
     {
@@ -66,7 +65,6 @@ class DashboardController extends Controller
         );
         return $data_all;
     }
-=======
     public function penghematan()
     {
         return view('penghematan');
@@ -82,7 +80,6 @@ class DashboardController extends Controller
         return view('laporan');
     }
 
->>>>>>> cff3cdc08fc25042d6236e2a50b9a39808786a4e
     //penjadwalan
     public function penjadwalan()
     {
