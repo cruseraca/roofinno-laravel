@@ -13,9 +13,11 @@ class DashboardController extends Controller
     public function index()
     {
         $datetime = Carbon::create(2019,10,17,11,55,0,'Asia/Jakarta');
+        $time = Carbon::create(2019,10,17,11,55,0,'Asia/Jakarta'); 
+        $daya_total = Data::where('ONINSERT','>=',$time->startOfDay()->format('Y-m-d H:i:s'))->where('ONINSERT','<=',$time->addDay()->format('Y-m-d H:i:s'))->sum('POWER');
         $datetime->minute = 0;
         $datetime->second = 0;
-        return view('dashboard',['time' => $datetime->format('H:i')]);
+        return view('dashboard',['time' => $datetime->format('H:i'), 'daya_total' => round(($daya_total/720)*288/1000,2)]);
     }
 
     //Realtime Grafik

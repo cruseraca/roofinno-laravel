@@ -32,7 +32,7 @@
                         <i class="fas fa-plug fa-3x" style="color:white"></i>
                     </div>
                     <div>
-                        <h3 class="text-white mb-0" id="sum1"> 600KWh</h3>
+                        <h3 class="text-white mb-0" id="sum1"> {{$daya_total}} KWh</h3>
                         <span style="color:white"> Konsumsi hari ini </span>
                         <h6>    </h6>
                         <button type="button" class="btn waves-effect waves-light btn-warning">Lihat Lebih</button>
