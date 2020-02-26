@@ -43,7 +43,7 @@
                         <div class="row">
                             <div class="col-auto">
                                 <h4 class="card-title" style="color: blue ; margin-left: 15px" ><strong id="realHarian">0KWh</strong></h4>
-                                <h6 class="card-subtitle" style="margin-left: 15px">Pada 12.00 PM</h6>
+                                <h6 class="card-subtitle" style="margin-left: 15px">Pada {{$datetime->format('H')}}.00 WIB</h6>
                             </div>
                             <div class="col-auto" style="text-align: left">
                                 <h4 class="card-title" style="color: blue ; margin-left: 15px"><strong id="TotalHarian">0KWh</strong></h4>

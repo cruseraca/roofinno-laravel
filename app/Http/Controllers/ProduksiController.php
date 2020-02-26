@@ -100,8 +100,6 @@ class ProduksiController extends Controller
         $jumlah = Data::where('ONINSERT','>=',$waktu->format('Y-m-d H:i:s'))->where('ONINSERT','<=',$waktu->endOfYear()->format('Y-m-d H:i:s'))->sum('POWER');
         array_push($power_data['prod'],round($jumlah/1000,2));
 
-
-
         return $power_data;
     }
 

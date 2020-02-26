@@ -19,7 +19,7 @@ class DashboardController extends Controller
         $datetime->second = 0;
         return view('dashboard',['time' => $datetime->format('H:i'), 'daya_total' => round(($daya_total/720)*288/1000,2)]);
     }
-
+    
     //Realtime Grafik
     public function getRealtimeData()
     {
