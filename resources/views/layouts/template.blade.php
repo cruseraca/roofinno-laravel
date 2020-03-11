@@ -132,9 +132,6 @@
     <script src="{{asset('/extra-libs/c3/c3.min.js')}}"></script>
     <script src="{{asset('/libs/chart.js/dist/Chart.min.js')}}"></script>
     <script src="{{asset('/libs/gaugeJS/dist/gauge.min.js')}}"></script>
-    <script src="{{asset('/extra-libs/c3/d3.min.js')}}"></script>
-    <script src="{{asset('/extra-libs/c3/c3.min.js')}}"></script>
-    <script src="{{asset('/libs/chart.js/dist/Chart.min.js')}}"></script>
     <script src="{{asset('/libs/flot/excanvas.min.js')}}"></script>
     <script src="{{asset('/libs/flot/jquery.flot.js')}}"></script>
     <script src="{{asset('/libs/jquery.flot.tooltip/js/jquery.flot.tooltip.min.js')}}"></script>

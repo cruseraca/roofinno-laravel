@@ -144,6 +144,7 @@ $(function () {
           }
         }
     });
+    
 
       // setTimeout(function(){ charts_production.init();}, 5000);
     

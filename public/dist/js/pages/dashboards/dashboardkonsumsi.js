@@ -4,12 +4,12 @@ $(function () {
     var charts_konsumsi = {
         init: async function () {
             let res1 = await this.GraphProdCaller();
-            let res2 = await this.GraphKonsCaller();        
-            this.GraphDrawer(res1, res2);   
+            let res2 = await this.GraphKonsCaller();
+            this.GraphDrawer(res1, res2);
         },
 
         GraphProdCaller: function () {
-            var jqXHRProd = jQuery.ajax({
+            let jqXHRProd = jQuery.ajax({
                 url: "/dashboard/produksi/get-realtime-data",
                 type: 'GET',
                 dataType: "json",
@@ -18,7 +18,7 @@ $(function () {
         },
 
         GraphKonsCaller: function () {
-            var jqXHRKons = jQuery.ajax({
+            let jqXHRKons = jQuery.ajax({
                 url: "/dashboard/konsumsi/get-realtime-data",
                 type: 'GET',
                 dataType: "json",
@@ -26,8 +26,8 @@ $(function () {
             return jqXHRKons;
         },
 
-        GraphDrawer: function(res1, res2){
-            
+        GraphDrawer: function (res1, res2) {
+
             grafik_daily(res1, res2)
             grafik_week(res1, res2)
             grafik_month(res1, res2)
@@ -36,7 +36,7 @@ $(function () {
     };
 
     function grafik_daily(dataProduksi, dataKonsumsi) {
-        var chartSHarian = new Chartist.Line('.grafik-line-harian', {
+        let chartSHarian = new Chartist.Line('.grafik-line-harian', {
             labels: ['0am', '2am', '4am', '6am', '8am', '10am', '12am', '2pm', '4pm', '6pm', '8pm', '10pm', '12pm'],
             series: [
                 [0, 200, 0, 0, 110, 160, 200, 290, 305, 320, 310, 122, 20],
@@ -45,8 +45,8 @@ $(function () {
             ]
         },
 
-            {                         
-                
+            {
+
                 showArea: true,
                 showPoint: true,
                 low: 0,
@@ -73,7 +73,7 @@ $(function () {
             });
     };
 
-    
+
 
     function grafik_week(dataProduksi, dataKonsumsi) {
         //     // ============================================================== 
@@ -82,8 +82,8 @@ $(function () {
         //     // Bar chart Mingguan
 
         // let maxKonsumsi = dataKonsumsi.konsumsi_data[0].konsumsi_week1 + dataKonsumsi.konsumsi_data[0].konsumsi_week2 + dataKonsumsi.konsumsi_data[0].konsumsi_week3
-        var stackedbarcolumnChart = echarts.init(document.getElementById('stacked-column-mingguan'));
-        var option = {
+        let stackedbarcolumnChart = echarts.init(document.getElementById('stacked-column-mingguan'));
+        let option = {
 
 
             // Setup grid
@@ -161,78 +161,136 @@ $(function () {
     //     // Bar chart Bulanan
 
     function grafik_month(dataProduksi, dataKonsumsi) {
-        var stackedbarcolumnChart = echarts.init(document.getElementById('stacked-column-bulanan'));
- 
-        var option = {
+        let ctx1 = document.getElementById("stacked-column-bulanan");
 
-
-
-            // // Setup grid
-            // grid: {
-            //     x: 40,
-            //     x2: 40,
-            //     y: 45,
-            //     y2: 25
-            // },
-
-            // Add tooltip
-            tooltip: {
-                trigger: 'axis',
-                axisPointer: {            // Axis indicator axis trigger effective
-                    type: 'shadow'        // The default is a straight line, optionally: 'line' | 'shadow'
-                }
+        var myChart_mont = new Chart(ctx1, {
+            type: 'bar',
+            data: {
+                labels: dataProduksi.time_day,
+                datasets: [{
+                    data: dataProduksi.power_day,
+                    backgroundColor: "rgba(41, 98, 255,0.3)",
+                    borderColor: "rgba(41, 98, 255, 1)",
+                    borderWidth: 1
+                }]
             },
-
-            // Add custom colors
-            color: ['#ffbf00', '#cc0000', '#00cc00', '#8A2BE2'],
-
-
-            // Horizontal axis
-            xAxis: [{
-                type: 'category',
-                data: dataProduksi.time_day
-            }],
-
-            // Vertical axis
-            yAxis: [{
-                type: 'value',
-                scale: true
-
-            }],
-
-            // Add series
-            series: [
-
-                {
-                    name: 'Produksi Panel Surya',
-                    type: 'bar',
-                    barWidth: 10,
-                    data: dataProduksi.power_day
+            options: {
+                scaleShowVerticalLines: false,
+                scales: {
+                    xAxes: [{
+                        type: 'category',
+                        gridLines: false,
+                        ticks: {
+                            sampleSize: 12,
+                            autoSkip: true,
+                            maxRotation: 0,
+                            padding: 5,
+                            callback: function (value, index, values) {
+                                return value;
+                            }
+                        }
+                    }],
+                    yAxes: [{
+                        ticks: {
+                            // Include a dollar sign in the ticks
+                            max: dataProduksi.max[2],
+                            callback: function (value, index, values) {
+                                return value + " Wh";
+                            }
+                        }
+                    }]
                 },
-                {
-                    name: 'Beban A',
-                    type: 'bar',
-                    barWidth: 10,
-                    stack: 'Produksi Panel Surya',
-                    data: [100, 100, 50, 50]
+                animation: {
+                    duration: 0 // general animation time
                 },
-                {
-                    name: 'Beban B',
-                    type: 'bar',
-                    stack: 'Produksi Panel Surya',
-                    data: [110, 110, 200, 200]
+                hover: {
+                    animationDuration: 0 // duration of animations when hovering an item
                 },
-                {
-                    name: 'Beban C',
-                    type: 'bar',
-                    stack: 'Produksi Panel Surya',
-                    data: [80, 170, 120, 150]
+                responsiveAnimationDuration: 0, // animation duration after a resize
+                elements: {
+                    point: {
+                        radius: 0
+                    }
+                },
+                legend: {
+                    display: false
                 }
-            ]
-            // Add series
+            }
+        });
 
-        };
-        stackedbarcolumnChart.setOption(option);
+        myChart_mont.destroy()
+
+
+        
+        // let stackedbarcolumnChart = echarts.init(document.getElementById('stacked-column-bulanan'));
+
+        // let option = {
+        //     // Setup grid
+        //     grid: {
+        //         x: 40,
+        //         x2: 40,
+        //         y: 45,
+        //         y2: 25
+        //     },
+
+        //     // Add tooltip
+        //     tooltip: {
+        //         trigger: 'axis',
+        //         axisPointer: {            // Axis indicator axis trigger effective
+        //             type: 'shadow'        // The default is a straight line, optionally: 'line' | 'shadow'
+        //         }
+        //     },
+
+        //     // Add custom colors
+        //     color: ['#ffbf00', '#cc0000', '#00cc00', '#8A2BE2'],
+
+
+        //     // Horizontal axis
+        //     xAxis: [{
+        //         type: 'category',
+        //         data: dataProduksi.time_day
+        //     }],
+
+        //     // Vertical axis
+        //     yAxis: [{
+        //         type: 'value',
+        //         scale: true
+
+        //     }],
+
+        //     // Add series
+        //     series: [
+
+        //         {
+        //             name: 'Produksi Panel Surya',
+        //             type: 'bar',
+        //             barWidth: 10,
+        //             data: dataProduksi.power_day
+        //         },
+        //         {
+        //             name: 'Beban A',
+        //             type: 'bar',
+        //             barWidth: 10,
+        //             stack: 'Produksi Panel Surya',
+        //             data: [100, 100, 50, 50]
+        //         },
+        //         {
+        //             name: 'Beban B',
+        //             type: 'bar',
+        //             stack: 'Produksi Panel Surya',
+        //             data: [110, 110, 200, 200]
+        //         },
+        //         {
+        //             name: 'Beban C',
+        //             type: 'bar',
+        //             stack: 'Produksi Panel Surya',
+        //             data: [80, 170, 120, 150]
+        //         }
+        //     ]
+        //     // Add series
+
+        // };
+        // stackedbarcolumnChart.setOption(option);
 
     };
 
@@ -241,8 +299,8 @@ $(function () {
         // Konsumsi Tahunan
         // ============================================================== 
         // Bar chart Tahunan
-        var stackedbarcolumnChart = echarts.init(document.getElementById('stacked-column-tahunan'));
-        var option = {
+        let stackedbarcolumnChart = echarts.init(document.getElementById('stacked-column-tahunan'));
+        let option = {
 
             // Setup grid
             grid: {
@@ -310,21 +368,16 @@ $(function () {
         };
         stackedbarcolumnChart.setOption(option);
 
-        setTimeout(function(){
+        setInterval(function () {
             charts_konsumsi.init()
         }, 5000)
     };
 
-    //    var f = document.getElementById("dashboard_konsumsi");
-    // if ($('#dashboard_konsumsi').length > 0) {
-    //     console.log("testt");
-    //     charts_konsumsi.init();
-    // };
     if (document.getElementById("dashboard_konsumsi")) {
-        console.log("konsumsi js");
+        console.log("konsumsi j s");
         charts_konsumsi.init();
     };
-    
+
 });
 
 

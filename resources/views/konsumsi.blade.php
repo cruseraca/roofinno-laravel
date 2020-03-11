@@ -270,7 +270,7 @@
                         <div class="row">
                             <!-- column -->
                             <div class="col-md-12 col-lg-12">
-                                <div id="stacked-column-bulanan" style="position: relative; height:250px;"></div>
+                                <canvas id="stacked-column-bulanan" style="position: relative; height: 250px;"></canvas>
                                 <div class="row mb-0 mt-3 text-center">
                                 </div>
                             </div>
@@ -355,7 +355,7 @@
                             <li class="list-inline-item"><i class="fas fa-check-square" style="color: #8A2BE2"></i> Beban C</li>
                     </div>
                     <!--==============================================================-->
-                    <!-- END KONSUMSI BULANAN -->
+                    <!-- END KONSUMSI TAHUNAN -->
                     <!-- ============================================================== -->
                 </div>
             </div>
