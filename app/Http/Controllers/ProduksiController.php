@@ -31,17 +31,17 @@ class ProduksiController extends Controller
         $power_data['time'] = array();
         $power_data['time_day'] = array();
         $power_data['max'] = array();
-        $timesample = Carbon::create(2019, 10, 17, 11, 55, 0, 'Asia/Jakarta')->startOfDay()->subHour();
+        $timesample = Carbon::now('Asia/Jakarta')->startOfDay()->subHour();
         // dd($timesample->format('Y-m-d H:i:s'));
-        $daysample = Carbon::create(2019, 10, 17, 11, 55, 0, 'Asia/Jakarta')->startOfDay()->startOfWeek();
-        $monthsample = Carbon::create(2019, 10, 17, 11, 55, 0, 'Asia/Jakarta')->startOfMonth();
-        $monthsample1 = Carbon::create(2019, 10, 17, 11, 55, 0, 'Asia/Jakarta')->startOfMonth()->subDay();
-        $yearsample = Carbon::create(2019, 10, 17, 11, 55, 0, 'Asia/Jakarta')->startOfYear();
+        $daysample = Carbon::now('Asia/Jakarta')->startOfDay()->startOfWeek();
+        $monthsample = Carbon::now('Asia/Jakarta')->startOfMonth();
+        $monthsample1 = Carbon::now('Asia/Jakarta')->startOfMonth()->subDay();
+        $yearsample = Carbon::now('Asia/Jakarta')->startOfYear();
         // dd($monthsample1);
 
         for ($i = 0; $i < $monthsample1->daysInMonth; $i++) {
 
-            $data_month = Data::where('ONINSERT', '>=', $monthsample->format('Y-m-d H:i:s'))->where('ONINSERT', '<=', $monthsample->addDay()->format('Y-m-d H:i:s'))->sum('POWER');
+            $data_month = Data::where('ONINSERT', '>=', $monthsample->format('Y-m-d H:i:s'))->where('ONINSERT', '<=', $monthsample->addDay()->format('Y-m-d H:i:s'))->sum('POWER_LOAD');
             if (!empty($data_month)) {
                 array_push($power_data['power_day'], round($data_month / 1000, 2));
                 array_push($power_data['time_day'], $monthsample1->addDay()->day);
@@ -51,25 +51,25 @@ class ProduksiController extends Controller
             }
 
             if($i<=24){
-                $data_hour = Data::where('ONINSERT', '>=', $timesample->format('Y-m-d H:i:s'))->where('ONINSERT', '<=', $timesample->addHour()->format('Y-m-d H:i:s'))->sum('POWER');
+                $data_hour = Data::where('ONINSERT', '>=', $timesample->format('Y-m-d H:i:s'))->where('ONINSERT', '<=', $timesample->addHour()->format('Y-m-d H:i:s'))->sum('POWER_LOAD');
                 if ($data_hour == 0) {
                     array_push($power_data['power_hour'], 0);
                     array_push($power_data['time'], $timesample->format('H:i'));
                 } else {
-                    // $data_count = Data::where('ONINSERT','>=',$timesample->subHour()->format('Y-m-d H:i:s'))->where('ONINSERT','<=',$timesample->addHour()->format('Y-m-d H:i:s'))->where('POWER','<>',0)->count();
+                    // $data_count = Data::where('ONINSERT','>=',$timesample->subHour()->format('Y-m-d H:i:s'))->where('ONINSERT','<=',$timesample->addHour()->format('Y-m-d H:i:s'))->where('POWER_LOAD','<>',0)->count();
                     array_push($power_data['power_hour'], round($data_hour / 1000, 2));
                     array_push($power_data['time'], $timesample->format('H:i'));
                 }
             }
 
             if ($i < 7) {
-                $data_week = Data::where('ONINSERT', '>=', $daysample->format('Y-m-d H:i:s'))->where('ONINSERT', '<=', $daysample->addDay()->format('Y-m-d H:i:s'))->sum('POWER');
+                $data_week = Data::where('ONINSERT', '>=', $daysample->format('Y-m-d H:i:s'))->where('ONINSERT', '<=', $daysample->addDay()->format('Y-m-d H:i:s'))->sum('POWER_LOAD');
                 if (!empty($data_week)) array_push($power_data['power_week'], round($data_week / 1000, 2));
                 else array_push($power_data['power_week'], 0);
             }
 
             if ($i < 12) {
-                $data = Data::where('ONINSERT', '>=', $yearsample->format('Y-m-d H:i:s'))->where('ONINSERT', '<=', $yearsample->addMonth()->format('Y-m-d H:i:s'))->sum('POWER');
+                $data = Data::where('ONINSERT', '>=', $yearsample->format('Y-m-d H:i:s'))->where('ONINSERT', '<=', $yearsample->addMonth()->format('Y-m-d H:i:s'))->sum('POWER_LOAD');
                 if ($data == 0) {
                     array_push($power_data['power_month'], 0);
                 } else {
@@ -93,22 +93,22 @@ class ProduksiController extends Controller
 
         //sum data
         $power_data['prod'] = array();
-        $waktu = Carbon::create(2019, 10, 17, 11, 55, 0, 'Asia/Jakarta');
+        $waktu = Carbon::now('Asia/Jakarta');
         $waktu->minute = 0;
         $waktu->second = 0;
-        $jumlah = Data::where('ONINSERT', '>=', $waktu->subHour()->format('Y-m-d H:i:s'))->where('ONINSERT', '<=', $waktu->addHour()->format('Y-m-d H:i:s'))->sum('POWER');
+        $jumlah = Data::where('ONINSERT', '>=', $waktu->subHour()->format('Y-m-d H:i:s'))->where('ONINSERT', '<=', $waktu->addHour()->format('Y-m-d H:i:s'))->sum('POWER_LOAD');
         array_push($power_data['prod'], round($jumlah / 1000, 2));
         $waktu->startOfDay();
-        $jumlah = Data::where('ONINSERT', '>=', $waktu->format('Y-m-d H:i:s'))->where('ONINSERT', '<=', $waktu->addDay()->format('Y-m-d H:i:s'))->sum('POWER');
+        $jumlah = Data::where('ONINSERT', '>=', $waktu->format('Y-m-d H:i:s'))->where('ONINSERT', '<=', $waktu->addDay()->format('Y-m-d H:i:s'))->sum('POWER_LOAD');
         array_push($power_data['prod'], round($jumlah / 1000, 2));
         $waktu->subDay()->startOfWeek();
-        $jumlah = Data::where('ONINSERT', '>=', $waktu->format('Y-m-d H:i:s'))->where('ONINSERT', '<=', $waktu->endOfWeek()->format('Y-m-d H:i:s'))->sum('POWER');
+        $jumlah = Data::where('ONINSERT', '>=', $waktu->format('Y-m-d H:i:s'))->where('ONINSERT', '<=', $waktu->endOfWeek()->format('Y-m-d H:i:s'))->sum('POWER_LOAD');
         array_push($power_data['prod'], round($jumlah / 1000, 2));
         $waktu->subWeek()->startOfMonth();
-        $jumlah = Data::where('ONINSERT', '>=', $waktu->format('Y-m-d H:i:s'))->where('ONINSERT', '<=', $waktu->endOfMonth()->format('Y-m-d H:i:s'))->sum('POWER');
+        $jumlah = Data::where('ONINSERT', '>=', $waktu->format('Y-m-d H:i:s'))->where('ONINSERT', '<=', $waktu->endOfMonth()->format('Y-m-d H:i:s'))->sum('POWER_LOAD');
         array_push($power_data['prod'], round($jumlah / 1000, 2));
         $waktu->subMonth()->startOfYear();
-        $jumlah = Data::where('ONINSERT', '>=', $waktu->format('Y-m-d H:i:s'))->where('ONINSERT', '<=', $waktu->endOfYear()->format('Y-m-d H:i:s'))->sum('POWER');
+        $jumlah = Data::where('ONINSERT', '>=', $waktu->format('Y-m-d H:i:s'))->where('ONINSERT', '<=', $waktu->endOfYear()->format('Y-m-d H:i:s'))->sum('POWER_LOAD');
         array_push($power_data['prod'], round($jumlah / 1000, 2));
 
         return $power_data;

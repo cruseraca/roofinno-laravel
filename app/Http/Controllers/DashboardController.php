@@ -12,9 +12,9 @@ class DashboardController extends Controller
     //fungsi index
     public function index()
     {
-        $datetime = Carbon::create(2019,10,17,11,55,0,'Asia/Jakarta');
-        $time = Carbon::create(2019,10,17,11,55,0,'Asia/Jakarta'); 
-        $daya_total = Data::where('ONINSERT','>=',$time->startOfDay()->format('Y-m-d H:i:s'))->where('ONINSERT','<=',$time->addDay()->format('Y-m-d H:i:s'))->sum('POWER');
+        $datetime = Carbon::now('Asia/Jakarta');
+        $time = Carbon::now('Asia/Jakarta'); 
+        $daya_total = Data::where('ONINSERT','>=',$time->startOfDay()->format('Y-m-d H:i:s'))->where('ONINSERT','<=',$time->addDay()->format('Y-m-d H:i:s'))->sum('POWER_LOAD');
         $datetime->minute = 0;
         $datetime->second = 0;
         return view('dashboard',['time' => $datetime->format('H:i'), 'daya_total' => round(($daya_total/720)*288/1000,2)]);
@@ -26,11 +26,11 @@ class DashboardController extends Controller
         $data_x = array();
         $data_y = array();
         $kons = array();
-        $datetime = Carbon::create(2019,10,17,10,55,0,'Asia/Jakarta'); //ganti menjadi carbon now
+        $datetime = Carbon::now('Asia/Jakarta'); //ganti menjadi carbon now
         $datetime = $datetime->startOfDay();
         
         for($i=0;$i <= 288;$i++){
-            $data = Data::where('ONINSERT','>=',$datetime->format('Y-m-d H:i:s'))->where('ONINSERT','<=',$datetime->addMinutes(5)->format('Y-m-d H:i:s'))->sum('POWER');
+            $data = Data::where('ONINSERT','>=',$datetime->format('Y-m-d H:i:s'))->where('ONINSERT','<=',$datetime->addMinutes(5)->format('Y-m-d H:i:s'))->sum('POWER_LOAD');
             $datetime->subMinutes(5);
             if($data == 0)
             {
@@ -40,7 +40,7 @@ class DashboardController extends Controller
             } else 
             {
                 array_push($data_x,$datetime->format('H:i'));
-                $count = Data::where('ONINSERT','>=',$datetime->format('Y-m-d H:i:s'))->where('ONINSERT','<=',$datetime->addMinutes(5)->format('Y-m-d H:i:s'))->where('POWER','<>',0)->count();
+                $count = Data::where('ONINSERT','>=',$datetime->format('Y-m-d H:i:s'))->where('ONINSERT','<=',$datetime->addMinutes(5)->format('Y-m-d H:i:s'))->where('POWER_LOAD','<>',0)->count();
                 array_push($data_y,$data/$count);
             }
             
@@ -49,12 +49,12 @@ class DashboardController extends Controller
         $max = round(($max_data + 50/2)/50)*50;
         
         //konsumsi & produksi
-        $kons_time = Carbon::create(2019,10,17,11,55,0,'Asia/Jakarta'); //ganti menjadi carbon now
+        $kons_time = Carbon::now('Asia/Jakarta'); //ganti menjadi carbon now
         // $kons_time = Carbon::now('Asia/Jakarta');
         $kons_time->minute = 0;
         $kons_time->second = 0;
-        $kons_data = Data::where('ONINSERT','>=',$kons_time->format('Y-m-d H:i:s'))->where('ONINSERT','<=',$kons_time->addHour()->format('Y-m-d H:i:s'))->sum('POWER');
-        $kons_count = Data::where('ONINSERT','>=',$kons_time->subHour()->format('Y-m-d H:i:s'))->where('ONINSERT','<=',$kons_time->addHour()->format('Y-m-d H:i:s'))->where('POWER','<>',0)->count();
+        $kons_data = Data::where('ONINSERT','>=',$kons_time->format('Y-m-d H:i:s'))->where('ONINSERT','<=',$kons_time->addHour()->format('Y-m-d H:i:s'))->sum('POWER_LOAD');
+        $kons_count = Data::where('ONINSERT','>=',$kons_time->subHour()->format('Y-m-d H:i:s'))->where('ONINSERT','<=',$kons_time->addHour()->format('Y-m-d H:i:s'))->where('POWER_LOAD','<>',0)->count();
         array_push($kons,round($kons_data/$kons_count,2));
         array_push($kons,$kons_time->subHour()->format('Y-m-d H:i:s'));
         $data_all = array(
@@ -118,41 +118,41 @@ class DashboardController extends Controller
         $tgl_akhir =$dateNow." ".date("H:i:s", $akhir);
 
         //Get data from database with query builder laravel
-        $jumlah1 = Data::where('ONINSERT','<=',$tgl_akhir)->where('ONINSERT', '>=',$tgl_awal)->where('FLAG','pln')->sum('POWER');
+        $jumlah1 = Data::where('ONINSERT','<=',$tgl_akhir)->where('ONINSERT', '>=',$tgl_awal)->where('FLAG','pln')->sum('POWER_LOAD');
         $banyak1 = Data::where('ONINSERT','<=',$tgl_akhir)->where('ONINSERT', '>=',$tgl_awal)->where('FLAG','pln')->count();
         
-        $jumlah2 = Data::where('ONINSERT','<=',$tgl_akhir)->where('ONINSERT', '>=',$tgl_awal)->where('FLAG','ps')->sum('POWER');
+        $jumlah2 = Data::where('ONINSERT','<=',$tgl_akhir)->where('ONINSERT', '>=',$tgl_awal)->where('FLAG','ps')->sum('POWER_LOAD');
         $banyak2 = Data::where('ONINSERT','<=',$tgl_akhir)->where('ONINSERT', '>=',$tgl_awal)->where('FLAG','ps')->count();
         
-        $jumlah3 = Data::where('ONINSERT','<=',$tgl_akhir)->where('ONINSERT', '>=',$tgl_awal)->where('IDSENSOR','3')->sum('POWER');
+        $jumlah3 = Data::where('ONINSERT','<=',$tgl_akhir)->where('ONINSERT', '>=',$tgl_awal)->where('IDSENSOR','3')->sum('POWER_LOAD');
         $banyak3 = Data::where('ONINSERT','<=',$tgl_akhir)->where('ONINSERT', '>=',$tgl_awal)->where('IDSENSOR','3')->count();
         
-        $jumlah4 = Data::where('ONINSERT','<=',$tgl_akhir)->where('ONINSERT', '>=',$tgl_awal)->where('IDSENSOR','4')->sum('POWER');
+        $jumlah4 = Data::where('ONINSERT','<=',$tgl_akhir)->where('ONINSERT', '>=',$tgl_awal)->where('IDSENSOR','4')->sum('POWER_LOAD');
         $banyak4 = Data::where('ONINSERT','<=',$tgl_akhir)->where('ONINSERT', '>=',$tgl_awal)->where('IDSENSOR','4')->count();
 
 
         if ($banyak1=='0' ) {
             $rata1=0;
         }else {
-            $rata1 = $jumlah1->POWER/$banyak1;
+            $rata1 = $jumlah1->POWER_LOAD/$banyak1;
         }
 
         if ($banyak2=='0' ) {
             $rata2=0;
         }else {
-            $rata2 = $jumlah2->POWER/$banyak2;
+            $rata2 = $jumlah2->POWER_LOAD/$banyak2;
         }
 
         if ($banyak3=='0' ) {
             $rata3=0;
         }else {
-            $rata3 = $jumlah3->POWER/$banyak3;
+            $rata3 = $jumlah3->POWER_LOAD/$banyak3;
         }
 
         if ($banyak4=='0' ) {
             $rata4=0;
         }else {
-            $rata4 = $jumlah4->POWER/$banyak4;
+            $rata4 = $jumlah4->POWER_LOAD/$banyak4;
         }
 
         $awal= $akhir;

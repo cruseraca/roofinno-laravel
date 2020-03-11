@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRoofinnoLaravel extends Migration
+class CreateKonsumsiTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,13 @@ class CreateRoofinnoLaravel extends Migration
      */
     public function up()
     {
-        Schema::create('data_inout', function (Blueprint $table) {
-            $table->increments('IDINOUT');
+        Schema::create('data_konsumsi', function (Blueprint $table) {
+            $table->increments('ID_KONS');
             $table->integer('IDUSER');
-            $table->string('POWER_PS',50);
-            $table->string('POWER_LOAD',50);
+            $table->integer('IDSENSOR');
+            $table->string('POWER',50);
             $table->dateTime('ONINSERT');
         });
-
     }
 
     /**
@@ -30,6 +29,6 @@ class CreateRoofinnoLaravel extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('data_inout');
+        Schema::dropIfExists('data_konsumsi');
     }
 }
