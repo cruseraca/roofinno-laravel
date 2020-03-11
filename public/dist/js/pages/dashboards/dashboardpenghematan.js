@@ -41,7 +41,10 @@ $(function() {
 
                 // Vertical axis
                 yAxis: [{
-                    type: 'value',
+                    
+                    name: 'Rp.',
+                    nameRotate: 0
+
                 }],
 
                 // Add series
@@ -51,10 +54,13 @@ $(function() {
                         name:'Penghematan Mingguan',
                         type:'bar',
                         barWidth: 35,
-                        data:[150, 75, 175, 240, 170, 80, 200],
+                        data:[200, 75, 175, 240, 170, 80, 200],
                     }
-                ]
+                ],
                 // Add series
+
+
+                
                 
         };
         stackedbarcolumnChart.setOption(option);
@@ -88,12 +94,16 @@ $(function() {
                 // Horizontal axis
                 xAxis: [{
                     type: 'category',
-                    data: ['Minggu 1', 'Minggu 2', 'Minggu 3', 'Minggu 4']
+                    data: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11',
+                             '12', '13', '14', '15', '16','17', '18', '19','20','21','22',
+                             '23','24','25','26','27','28','29','30']
                 }],
 
                 // Vertical axis
                 yAxis: [{
                     type: 'value',
+                    name: 'Rp.',
+                    nameRotate: 0
                 }],
 
                 // Add series
@@ -102,8 +112,9 @@ $(function() {
                     {
                         name:'Penghematan Bulanan',
                         type:'bar',
-                        barWidth: 55,
-                        data:[750, 820, 525, 1100],
+                        barWidth: 20,
+                        data:[750, 820, 525, 1100,750, 820, 525, 1100,750, 820, 525, 1100,750, 820, 525, 1100,750, 820, 525, 1100
+                                ,750, 820, 525, 1100,750, 820, 525, 1100, 500, 400]
                     }
                 ]
                 // Add series
@@ -146,6 +157,8 @@ $(function() {
                 // Vertical axis
                 yAxis: [{
                     type: 'value',
+                    name: 'Rp.',
+                    nameRotate: 0
                 }],
 
                 // Add series

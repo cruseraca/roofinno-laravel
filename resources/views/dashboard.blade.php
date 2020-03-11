@@ -9,7 +9,7 @@
 @endsection
 
 @section('content')
-  <div class="card gredient-info-bg mt-0 mb-0" style="background-image:url('{{asset('/images/Untitled-123.png')}}');height: 100%;background-position: center; background-repeat: no-repeat;background-size: cover;">
+  <div class="card gredient-info-bg mt-0 mb-0" style="background-image:url('{{asset('/images/Untitled-123.png')}}'); height: 100%; background-position: center; background-repeat: no-repeat; background-size: cover; ">
       <div class="card-body">
         <!-- KOTAKAN -->
         <div class="row">
@@ -32,7 +32,7 @@
                         <i class="fas fa-plug fa-3x" style="color:white"></i>
                     </div>
                     <div>
-                        <h3 class="text-white mb-0" id="sum1"> 600KWh</h3>
+                        <h3 class="text-white mb-0" id="sum1"> {{$daya_total}} KWh</h3>
                         <span style="color:white"> Konsumsi hari ini </span>
                         <h6>    </h6>
                         <button type="button" class="btn waves-effect waves-light btn-warning">Lihat Lebih</button>
@@ -75,50 +75,15 @@
                       <div class="d-md-flex align-items-center">
                               <div class="col-3">
                                   <h4 class="card-title" style="color: blue" id="kons">10KW</h4>
-                                  <span><h5 class="card-subtitle">Konsumsi pada 12.00 PM</h5></span>
+                                  <span><h5 class="card-subtitle">Konsumsi pada {{$time}} WIB</h5></span>
                               </div>
                               <div class="col-3">
-                                  <h4 class="card-title" style="color: orange" id="prod">10KW</h4>
-                                  <h5 class="card-subtitle">Produksi pada 12.00 PM</h5>
+                                  <h4 class="card-title" style="color: orange" id="prod">- KW</h4>
+                                  <h5 class="card-subtitle">Produksi pada {{$time}} WIB</h5>
                               </div> <br>
                       </div>
                       <div class="row">
-                        <!-- column -->
-                        <div class="col-lg-12"  id="aa">
-                          <div id="rickshawGraph" data-color1="#2d3bed" data-color2="#ffa500"></div>
-                        </div>
-                        <table width="100%" style="font-size:smaller;">
-                          <tr>
-                            <td>00:00</td>
-                            <td>01:00</td>
-                            <td>02:00</td>
-                            <td>03:00</td>
-                            <td>04:00</td>
-                            <td>05:00</td>
-                            <td>06:00</td>
-                            <td>07:00</td>
-                            <td>08:00</td>
-                            <td>09:00</td>
-                            <td>10:00</td>
-                            <td>11:00</td>
-                            <td>12:00</td>
-                            <td>13:00</td>
-                            <td>14:00</td>
-                            <td>15:00</td>
-                            <td>16:00</td>
-                            <td>17:00</td>
-                            <td>18:00</td>
-                            <td>19:00</td>
-                            <td>20:00</td>
-                            <td>21:00</td>
-                            <td>22:00</td>
-                            <td>23:00</td>
-                          </tr>
-                        </table> 
-                        <div class="col-lg-12">
-                            <div class="grafik ct-charts"></div>
-                        </div> 
-                        <!-- column -->
+                        <canvas id="myOwnChart" height="100"></canvas>
                       </div>
                       <hr style="margin-top: unset;">
                       <div class="ml-auto d-flex no-block align-items-center">
@@ -197,38 +162,45 @@
         </div>
 
   </div>
-<script type="text/javascript">
-  $(document).ready(function(){
-    setTimeout(function () {
-      grafik();
-      $( window ).resize(function() {
-          graphData.configure({
-            height: $('#rickshawGraph').height(),
-            width: $('#rickshawGraph').closest('#aa').width()
-          });
-          callGraph();
-      });
-    }, 1000);
-  });
-  </script>
-  
+
   @include('layouts.chartjs1')
+
+  <!-- <script type="text/javascript">
+    $(document).ready(function(){
+      callGraph();
+      // setTimeout(function () {
+      //   callGraph();
+      //   $( window ).resize(function() {
+      //       // graphData.configure({
+      //       //   height: $('#rickshawGraph').height(),
+      //       //   width: $('#rickshawGraph').closest('#aa').width()
+      //       // // });
+      //       // callGraph();
+      //   });
+      //   console.log("tick");
+      // }, 5000);
+    });
+  </script> -->
+  
 
   <script type="text/javascript">
   $(function() {
-    grafikData();
+    // grafikData();
+    counter = 0;
     setInterval(function () {
-      // grafikData();
+      
+      console.log(counter++);
+      callGraph();
   
-    }, 1000);
+    }, 5000);
   })
   
-  function realtime_konsProd() {
-    $.get("{{url('/dashboard')}}/realtime_konsProd", function(data, status){
+  // function realtime_konsProd() {
+  //   $.get("{{url('/dashboard')}}/realtime_konsProd", function(data, status){
   
-       alert("Data: " + data + "\nStatus: " + status);
-     });
-  }
+  //      alert("Data: " + data + "\nStatus: " + status);
+  //    });
+  // }
   </script>
 @endsection
 

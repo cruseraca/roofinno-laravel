@@ -1,7 +1,7 @@
 {{-- @extends('layouts.template') --}}
 
 {{-- @section('header') --}}
-    <header class="topbar bg-transparent">
+    <header class="topbar bg-white">
         <nav class="navbar top-navbar navbar-expand-md navbar-light">
             <div class="navbar-header">
                 <!-- This is for the sidebar toggle which is visible on mobile only -->
@@ -44,7 +44,7 @@
                 <!-- ============================================================== -->
                 <!-- Left Side Toggle and Nav items biar ngga ke kanan -->
                 <ul class="navbar-nav float-left mr-auto">
-                </ul>
+                </ul>   
                 <!-- ============================================================== -->
                 <!-- Right side toggle and nav items -->
                 <!-- ============================================================== -->

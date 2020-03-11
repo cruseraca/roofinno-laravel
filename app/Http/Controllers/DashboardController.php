@@ -1,15 +1,103 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Data;
+use App\Sensor;
+use Carbon\Carbon;
 
 class DashboardController extends Controller
 {
     //fungsi index
     public function index()
     {
-        return view('dashboard');
+        $datetime = Carbon::create(2019,10,17,11,55,0,'Asia/Jakarta');
+        $time = Carbon::create(2019,10,17,11,55,0,'Asia/Jakarta'); 
+        $daya_total = Data::where('ONINSERT','>=',$time->startOfDay()->format('Y-m-d H:i:s'))->where('ONINSERT','<=',$time->addDay()->format('Y-m-d H:i:s'))->sum('POWER');
+        $datetime->minute = 0;
+        $datetime->second = 0;
+        return view('dashboard',['time' => $datetime->format('H:i'), 'daya_total' => round(($daya_total/720)*288/1000,2)]);
+    }
+    
+    //Realtime Grafik
+    public function getRealtimeData()
+    {
+        $data_x = array();
+        $data_y = array();
+        $kons = array();
+        $datetime = Carbon::create(2019,10,17,10,55,0,'Asia/Jakarta'); //ganti menjadi carbon now
+        $datetime = $datetime->startOfDay();
+        
+        for($i=0;$i <= 288;$i++){
+            $data = Data::where('ONINSERT','>=',$datetime->format('Y-m-d H:i:s'))->where('ONINSERT','<=',$datetime->addMinutes(5)->format('Y-m-d H:i:s'))->sum('POWER');
+            $datetime->subMinutes(5);
+            if($data == 0)
+            {
+                array_push($data_x,$datetime->format('H:i'));
+                array_push($data_y,0);
+                $datetime->addMinutes(5);
+            } else 
+            {
+                array_push($data_x,$datetime->format('H:i'));
+                $count = Data::where('ONINSERT','>=',$datetime->format('Y-m-d H:i:s'))->where('ONINSERT','<=',$datetime->addMinutes(5)->format('Y-m-d H:i:s'))->where('POWER','<>',0)->count();
+                array_push($data_y,$data/$count);
+            }
+            
+        }
+        $max_data = max($data_y);
+        $max = round(($max_data + 50/2)/50)*50;
+        
+        //konsumsi & produksi
+        $kons_time = Carbon::create(2019,10,17,11,55,0,'Asia/Jakarta'); //ganti menjadi carbon now
+        // $kons_time = Carbon::now('Asia/Jakarta');
+        $kons_time->minute = 0;
+        $kons_time->second = 0;
+        $kons_data = Data::where('ONINSERT','>=',$kons_time->format('Y-m-d H:i:s'))->where('ONINSERT','<=',$kons_time->addHour()->format('Y-m-d H:i:s'))->sum('POWER');
+        $kons_count = Data::where('ONINSERT','>=',$kons_time->subHour()->format('Y-m-d H:i:s'))->where('ONINSERT','<=',$kons_time->addHour()->format('Y-m-d H:i:s'))->where('POWER','<>',0)->count();
+        array_push($kons,round($kons_data/$kons_count,2));
+        array_push($kons,$kons_time->subHour()->format('Y-m-d H:i:s'));
+        $data_all = array(
+            'time' => $data_x,
+            'kwh' => $data_y, 
+            'max' => $max,
+            'kons' => $kons,
+        );
+        return $data_all;
+    }
+    public function penghematan()
+    {
+        return view('penghematan');
+    }
+
+    public function konsumsi()
+    {
+        return view('konsumsi');
+    }
+
+    public function laporan()
+    {
+        return view('laporan');
+    }
+
+    //penjadwalan
+    public function penjadwalan()
+    {
+        
+        $data = Sensor::all();
+        return view('penjadwalan',compact('data'));
+    }
+
+    //performa
+    public function performa(){
+        $data = array('js' =>'' );
+        return view('performa',$data);
+    }
+
+    //produksi
+    public function produksi(){
+        $data = array('js' => 'produksi' );
+        return view('produksi', $data);
     }
 
     public function realtime_grafik()
@@ -29,17 +117,19 @@ class DashboardController extends Controller
         $tgl_awal = $dateNow." ".date("H:i:s", $awal);
         $tgl_akhir =$dateNow." ".date("H:i:s", $akhir);
 
-        $jumlah1 = $this->db->select_sum('POWER')->where('FLAG','pln')->where('ONINSERT >=',$tgl_awal)->where('ONINSERT <=',$tgl_akhir)->get('data_inout')->row();
-        $banyak1 = $this->db->where('FLAG','pln')->where('ONINSERT >=',$tgl_awal)->where('ONINSERT <=',$tgl_akhir)->get('data_inout')->num_rows();
+        //Get data from database with query builder laravel
+        $jumlah1 = Data::where('ONINSERT','<=',$tgl_akhir)->where('ONINSERT', '>=',$tgl_awal)->where('FLAG','pln')->sum('POWER');
+        $banyak1 = Data::where('ONINSERT','<=',$tgl_akhir)->where('ONINSERT', '>=',$tgl_awal)->where('FLAG','pln')->count();
+        
+        $jumlah2 = Data::where('ONINSERT','<=',$tgl_akhir)->where('ONINSERT', '>=',$tgl_awal)->where('FLAG','ps')->sum('POWER');
+        $banyak2 = Data::where('ONINSERT','<=',$tgl_akhir)->where('ONINSERT', '>=',$tgl_awal)->where('FLAG','ps')->count();
+        
+        $jumlah3 = Data::where('ONINSERT','<=',$tgl_akhir)->where('ONINSERT', '>=',$tgl_awal)->where('IDSENSOR','3')->sum('POWER');
+        $banyak3 = Data::where('ONINSERT','<=',$tgl_akhir)->where('ONINSERT', '>=',$tgl_awal)->where('IDSENSOR','3')->count();
+        
+        $jumlah4 = Data::where('ONINSERT','<=',$tgl_akhir)->where('ONINSERT', '>=',$tgl_awal)->where('IDSENSOR','4')->sum('POWER');
+        $banyak4 = Data::where('ONINSERT','<=',$tgl_akhir)->where('ONINSERT', '>=',$tgl_awal)->where('IDSENSOR','4')->count();
 
-        $jumlah2 = $this->db->select_sum('POWER')->where('FLAG','pv')->where('ONINSERT >=',$tgl_awal)->where('ONINSERT <=',$tgl_akhir)->get('data_inout')->row();
-        $banyak2 = $this->db->where('FLAG','pv')->where('ONINSERT >=',$tgl_awal)->where('ONINSERT <=',$tgl_akhir)->get('data_inout')->num_rows();
-
-        $jumlah3 = $this->db->select_sum('POWER')->where('IDSENSOR','3')->where('ONINSERT >=',$tgl_awal)->where('ONINSERT <=',$tgl_akhir)->get('data_inout')->row();
-        $banyak3 = $this->db->where('IDSENSOR','3')->where('ONINSERT >=',$tgl_awal)->where('ONINSERT <=',$tgl_akhir)->get('data_inout')->num_rows();
-
-        $jumlah4 = $this->db->select_sum('POWER')->where('IDSENSOR','4')->where('ONINSERT >=',$tgl_awal)->where('ONINSERT <=',$tgl_akhir)->get('data_inout')->row();
-        $banyak4 = $this->db->where('IDSENSOR','4')->where('ONINSERT >=',$tgl_awal)->where('ONINSERT <=',$tgl_akhir)->get('data_inout')->num_rows();
 
         if ($banyak1=='0' ) {
             $rata1=0;
