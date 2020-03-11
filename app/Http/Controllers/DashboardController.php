@@ -96,8 +96,8 @@ class DashboardController extends Controller
 
     //produksi
     public function produksi(){
-        $data = array('js' =>'produksi' );
-        return view('produksi',$data);
+        $data = array('js' => 'produksi' );
+        return view('produksi', $data);
     }
 
     public function realtime_grafik()

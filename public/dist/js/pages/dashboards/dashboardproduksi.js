@@ -2,7 +2,6 @@ $(function () {
   "use strict";
   //Data Assignment
   
-
   var charts_production = {
     init: function () {
       this.ajaxCallGraphProduction();
@@ -141,7 +140,7 @@ $(function () {
                 }
             },
           legend: {
-          display: false
+          display: false 
           }
         }
     });

@@ -15,6 +15,8 @@
     <!-- chartist CSS -->
     <link href="{{asset('/libs/chartist/dist/chartist.min.css')}}" rel="stylesheet">
     <link href="{{asset('/libs/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.css')}}" rel="stylesheet">
+    <!-- <link href="{{asset('/libs/chartist-plugin-point/dist/chartist-plugin-pointlabels.css')}}" rel="stylesheet"> -->
+
     <link href="{{asset('/dist/js/pages/chartist/chartist-init.css')}}" rel="stylesheet">
 
     <!--c3 CSS -->
@@ -101,7 +103,7 @@
     <!-- All Jquery -->
     <!-- ============================================================== -->
     <!-- Bootstrap tether Core JavaScript -->
-    @yield('script')
+    
     <script src="{{asset('/libs/popper.js/dist/umd/popper.min.js')}}"></script>
     <script src="{{asset('/libs/bootstrap/dist/js/bootstrap.min.js')}}"></script>
     <!-- apps -->
@@ -138,26 +140,27 @@
     <script src="{{asset('/libs/jquery.flot.tooltip/js/jquery.flot.tooltip.min.js')}}"></script>
     <script src="{{asset('/extra-libs/jvector/jquery-jvectormap-2.0.2.min.js')}}"></script>
     <script src="{{asset('/extra-libs/jvector/jquery-jvectormap-world-mill-en.js')}}"></script>
-    <script src="{{asset('/dist/js/pages/dashboards/dashboard2.js')}}"></script>
-    <script src="{{asset('/dist/js/pages/dashboards/dashboard9.js')}}"></script>
+    <!-- <script src="{{asset('/dist/js/pages/dashboards/dashboard2.js')}}"></script> -->
+    <!-- <script src="{{asset('/dist/js/pages/dashboards/dashboard9.js')}}"></script> -->
     <script src="{{asset('/libs/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js')}}"></script>
+    <!-- <script src="{{asset('/libs/chartist-plugin-pointlabels/dist/chartist-plugin-pointlabels.min.js')}}"></script> -->
 
 
     <script src="{{asset('/libs/echarts/dist/echarts-en.min.js')}}"></script>
 
-    {{-- <script src="{{asset('/dist/js/pages/dashboards/dashboard1monitor.js')}}"></script> --}}
-    <script src="{{asset('/dist/js/pages/dashboards/dashboard1mingguan.js')}}"></script>
+    <!-- <script src="{{asset('/dist/js/pages/dashboards/dashboard1monitor.js')}}"></script> -->
+    <!-- <script src="{{asset('/dist/js/pages/dashboards/dashboard1mingguan.js')}}"></script> -->
     <script src="{{asset('/dist/js/pages/dashboards/dashboardpenghematan.js')}}"></script>
-    <script src="{{asset('/dist/js/pages/dashboards/dashboardpenjadwalan.js')}}"></script>
-    <script src="{{asset('/dist/js/pages/dashboards/dashboardperforma.js')}}"></script>
+    <!-- <script src="{{asset('/dist/js/pages/dashboards/dashboardpenjadwalan.js')}}"></script> -->
+    <!-- <script src="{{asset('/dist/js/pages/dashboards/dashboardperforma.js')}}"></script> -->
     <script src="{{asset('/dist/js/pages/dashboards/dashboardproduksi.js')}}"></script>
-    <script src="{{asset('/dist/js/pages/dashboards/dashboard1.js')}}"></script>
+    <!-- <script src="{{asset('/dist/js/pages/dashboards/dashboard1.js')}}"></script> -->
 
-    <script src="{{asset('/dist/js/pages/dashboards/dashboard1bulanan.js')}}"></script>
+    <!-- <script src="{{asset('/dist/js/pages/dashboards/dashboard1bulanan.js')}}"></script> -->
+    <script src="{{asset('/dist/js/pages/dashboards/dashboardkonsumsi.js')}}"></script>
 
-
-    {{-- <script src="{{asset('/dist/js/pages/dashboards/dashboardkonsumsimonitor.js')}}"></script>
-    <script src="{{asset('/dist/js/pages/dashboards/dashboardkonsumsi.js')}}"></script> --}}
+    <!-- <script src="{{asset('/dist/js/pages/dashboards/dashboardkonsumsimonitor.js')}}"></script> -->
+     
     <!-- DATE PICKER -->
     <script src="{{asset('/libs/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js')}}"></script>
     <script>
@@ -174,6 +177,7 @@
         todayHighlight: true
     });
     </script>
+    @yield('script')
 
 </body>
 

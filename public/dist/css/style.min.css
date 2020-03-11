@@ -14,17 +14,47 @@
     background: #1C62D1
   }
 
-  .ct-sm-line-chart .ct-point {
-    /* Colour of your points */
-    /* stroke: red; */
-    /* Size of your points */
-    stroke-width: 13px;
-    /* Make your points appear as squares */
-    stroke-linecap: round;
+  .grafik-line-harian .ct-point{
+    stroke-width: 3px;
   }
 
+  .grafik-line-harian .ct-series-a  .ct-line{
+    stroke-width: 1px;
+  }
+  .grafik-line-harian .ct-series-b  .ct-line{
+    stroke-width: 1px;
+  }
+  .grafik-line-harian .ct-series-c  .ct-line{
+    stroke-width: 1px;
+  }
 
+  .ct-series-a .ct-line,
+  .ct-series-a .ct-point {
+    stroke:#cc0000;
+  }
+  
+  .ct-series-b .ct-line,
+  .ct-series-b .ct-point {
+    stroke:#00cc00;
+  }
+  
+  .ct-series-c .ct-line,
+  .ct-series-c .ct-point {
+    stroke: #8A2BE2;
+  }
 
+  .ct-series-a .ct-area{
+    fill: #CC0000;
+    fill-opacity: 0.3
+  }
+  .ct-series-b .ct-area{
+    fill: #00CC00;
+    fill-opacity: 0.3
+  }
+  .ct-series-c .ct-area{
+    fill: #8A2BE2;
+    fill-opacity: 0.3
+  }
 
 
 .fa-fw,.fa-li,.wi-fw{text-align:center}.flag-icon,.flag-icon-background{background-repeat:no-repeat;background-position:50%}.waves-effect,html{-webkit-tap-highlight-color:transparent}pre,textarea{overflow:auto}.fa-stack,.flag-icon,.mdi-set,.mdi:before,.wi,label,output{display:inline-block}.dropdown-menu,.nav,.navbar-nav{list-style:none}@font-face{font-family:'Nunito Sans';font-style:normal;font-weight:300;src:local('Nunito Sans Light'),local('NunitoSans-Light'),url(https://fonts.gstatic.com/s/nunitosans/v3/pe03MImSLYBIv1o4X1M8cc8WAc5tU1Q.ttf) format('truetype')}@font-face{font-family:'Nunito Sans';font-style:normal;font-weight:400;src:local('Nunito Sans Regular'),local('NunitoSans-Regular'),url(https://fonts.gstatic.com/s/nunitosans/v3/pe0qMImSLYBIv1o4X1M8cce9I94.ttf) format('truetype')}@font-face{font-family:'Nunito Sans';font-style:normal;font-weight:600;src:local('Nunito Sans SemiBold'),local('NunitoSans-SemiBold'),url(https://fonts.gstatic.com/s/nunitosans/v3/pe03MImSLYBIv1o4X1M8cc9iB85tU1Q.ttf) format('truetype')}@font-face{font-family:'Nunito Sans';font-style:normal;font-weight:700;src:local('Nunito Sans Bold'),local('NunitoSans-Bold'),url(https://fonts.gstatic.com/s/nunitosans/v3/pe03MImSLYBIv1o4X1M8cc8GBs5tU1Q.ttf) format('truetype')}@font-face{font-family:'Nunito Sans';font-style:normal;font-weight:800;src:local('Nunito Sans ExtraBold'),local('NunitoSans-ExtraBold'),url(https://fonts.gstatic.com/s/nunitosans/v3/pe03MImSLYBIv1o4X1M8cc8aBc5tU1Q.ttf) format('truetype')}/*!

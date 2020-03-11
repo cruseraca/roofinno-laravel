@@ -9,7 +9,7 @@
 @endsection
 
 @section('content')
-  <div class="card gredient-info-bg mt-0 mb-0" style="background-image:url('{{asset('/images/Untitled-123.png')}}');height: 100%;background-position: center; background-repeat: no-repeat;background-size: cover;">
+  <div class="card gredient-info-bg mt-0 mb-0" style="background-image:url('{{asset('/images/Untitled-123.png')}}'); height: 100%; background-position: center; background-repeat: no-repeat; background-size: cover; ">
       <div class="card-body">
         <!-- KOTAKAN -->
         <div class="row">
@@ -165,37 +165,42 @@
 
   @include('layouts.chartjs1')
 
-  <script type="text/javascript">
+  <!-- <script type="text/javascript">
     $(document).ready(function(){
-      setTimeout(function () {
-        callGraph();
-        $( window ).resize(function() {
-            // graphData.configure({
-            //   height: $('#rickshawGraph').height(),
-            //   width: $('#rickshawGraph').closest('#aa').width()
-            // // });
-            // callGraph();
-        });
-      }, 5000);
+      callGraph();
+      // setTimeout(function () {
+      //   callGraph();
+      //   $( window ).resize(function() {
+      //       // graphData.configure({
+      //       //   height: $('#rickshawGraph').height(),
+      //       //   width: $('#rickshawGraph').closest('#aa').width()
+      //       // // });
+      //       // callGraph();
+      //   });
+      //   console.log("tick");
+      // }, 5000);
     });
-  </script>
+  </script> -->
   
 
   <script type="text/javascript">
   $(function() {
     // grafikData();
+    counter = 0;
     setInterval(function () {
-      // grafikData();
+      
+      console.log(counter++);
+      callGraph();
   
     }, 5000);
   })
   
-  function realtime_konsProd() {
-    $.get("{{url('/dashboard')}}/realtime_konsProd", function(data, status){
+  // function realtime_konsProd() {
+  //   $.get("{{url('/dashboard')}}/realtime_konsProd", function(data, status){
   
-       alert("Data: " + data + "\nStatus: " + status);
-     });
-  }
+  //      alert("Data: " + data + "\nStatus: " + status);
+  //    });
+  // }
   </script>
 @endsection
 

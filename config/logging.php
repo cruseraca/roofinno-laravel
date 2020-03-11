@@ -37,9 +37,17 @@ return [
     'channels' => [
         'stack' => [
             'driver' => 'stack',
-            'channels' => ['single'],
+            'channels' => array_merge(['single'], php_sapi_name() === 'cli' ? ['stdout'] : []),
             'ignore_exceptions' => false,
         ],
+		
+		'stdout' => [
+			'driver' => 'monolog',
+			'handler' => StreamHandler::class,
+			'with' => [
+				'stream' => 'php://stdout',
+			],
+		],
 
         'single' => [
             'driver' => 'single',
