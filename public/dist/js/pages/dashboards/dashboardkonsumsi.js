@@ -67,7 +67,7 @@ $(function () {
                             borderWidth: 2,
                         },
                         {
-                            label: 'Beban 2',
+                            label: 'Beban 3',
                             data:  dataKonsumsi.konsumsi_data[0].konsumsi_day3,
                             borderColor: '#8A2BE2',
                             backgroundColor: "rgba(138,43,226,0.25)",
@@ -145,7 +145,7 @@ $(function () {
                             borderWidth: 1
                         },
                         {
-                            label: 'Beban 2',
+                            label: 'Beban 3',
                             stack: 'Konsumsi',
                             data:  dataKonsumsi.konsumsi_data[0].konsumsi_week3,
                             backgroundColor: '#8A2BE2',
@@ -228,7 +228,7 @@ $(function () {
                             borderWidth: 1
                         },
                         {
-                            label: 'Beban 2',
+                            label: 'Beban 3',
                             stack: 'Konsumsi',
                             data: dataKonsumsi.konsumsi_data[0].konsumsi_month3,
                             backgroundColor: '#8A2BE2',
@@ -292,28 +292,28 @@ $(function () {
                         {
                             label: 'Produksi',
                             stack: 'Produksi',
-                            data: dataKonsumsi.konsumsi_data[0].konsumsi_year1,
+                            data: dataProduksi.power_month,
                             backgroundColor: '#ffbf00',
                             borderWidth: 1
                         },
                         {
                             label: 'Beban 1',
                             stack: 'Konsumsi',
-                            data: dataKonsumsi.konsumsi_data[0].konsumsi_year2,
+                            data: dataKonsumsi.konsumsi_data[0].konsumsi_year1,
                             backgroundColor: '#cc0000',
                             borderWidth: 1
                         },
                         {
                             label: 'Beban 2',
                             stack: 'Konsumsi',
-                            data: dataKonsumsi.konsumsi_data[0].konsumsi_year3  ,
+                            data: dataKonsumsi.konsumsi_data[0].konsumsi_year2,
                             backgroundColor: '#00cc00',
                             borderWidth: 1
                         },
                         {
-                            label: 'Beban 2',
+                            label: 'Beban 3',
                             stack: 'Konsumsi',
-                            data: dataProduksi.power_month,
+                            data: dataKonsumsi.konsumsi_data[0].konsumsi_year3,
                             backgroundColor: '#8A2BE2',
                             borderWidth: 1
                         }
