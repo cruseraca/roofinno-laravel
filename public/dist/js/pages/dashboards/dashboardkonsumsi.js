@@ -99,7 +99,7 @@ $(function () {
                         }]
                     },
                     animation: {
-                        duration: 0 // general animation time
+                        duration: 800
                     },
                     hover: {
                         animationDuration: 0 // duration of animations when hovering an item
@@ -182,7 +182,7 @@ $(function () {
                         }]
                     },
                     animation: {
-                        duration: 0 // general animation time
+                        duration: 800 // general animation time
                     },
                     hover: {
                         animationDuration: 0 // duration of animations when hovering an item
@@ -265,7 +265,7 @@ $(function () {
                         }]
                     },
                     animation: {
-                        duration: 0 // general animation time
+                        duration: 800 // general animation time
                     },
                     hover: {
                         animationDuration: 0 // duration of animations when hovering an item
@@ -348,7 +348,7 @@ $(function () {
                         }]
                     },
                     animation: {
-                        duration: 0 // general animation time
+                        duration: 800 // general animation time
                     },
                     hover: {
                         animationDuration: 0 // duration of animations when hovering an item
@@ -381,6 +381,6 @@ $(function () {
     UpdateGraph()
     setInterval(() => {
         UpdateGraph()
-    }, 5000);
+    }, 2000);
 
 })
