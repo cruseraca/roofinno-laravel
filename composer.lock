@@ -424,7 +424,6 @@
         },
         {
             "name": "laravel/framework",
-<<<<<<< HEAD
             "version": "v6.13.1",
             "source": {
                 "type": "git",
@@ -435,18 +434,6 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/laravel/framework/zipball/f0059760814b76fb5f98bb80628607c7560ebe58",
                 "reference": "f0059760814b76fb5f98bb80628607c7560ebe58",
-=======
-            "version": "v6.14.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/laravel/framework.git",
-                "reference": "9e78f1aeb2c60bd7badcbafc352a9a2c5863c60c"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/9e78f1aeb2c60bd7badcbafc352a9a2c5863c60c",
-                "reference": "9e78f1aeb2c60bd7badcbafc352a9a2c5863c60c",
->>>>>>> 3ab8f4f7d5c7cd0f5365d953356ad3388d329ce4
                 "shasum": ""
             },
             "require": {

@@ -200,3 +200,7 @@
     <!-- END PRODUKSI TAHUNAN -->
     <!-- ============================================================== -->
 @endsection
+
+@section('script')
+<script src="{{asset('/dist/js/pages/dashboards/dashboardproduksi.js')}}"></script>
+@endsection
