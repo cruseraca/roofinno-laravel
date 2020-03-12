@@ -181,7 +181,7 @@
                         <div class="row">
                             <!-- column -->
                             <div class="col-md-12 col-lg-12">
-                                <div id="stacked-column-mingguan" style="position: relative; height:250px;"></div>
+                                <canvas id="stacked-column-mingguan" height="80"></canvas>
                                 <div class="row mb-0 mt-3 text-center">
                                 </div>
                             </div>
@@ -270,7 +270,7 @@
                         <div class="row">
                             <!-- column -->
                             <div class="col-md-12 col-lg-12">
-                                <div id="stacked-column-bulanan" style="position: relative; height:250px;"></div>
+                                <canvas id="stacked-column-bulanan" height="80"></canvas>
                                 <div class="row mb-0 mt-3 text-center">
                                 </div>
                             </div>
@@ -340,7 +340,7 @@
                         <div class="row">
                             <!-- column -->
                             <div class="col-md-12 col-lg-12">
-                                <div id="stacked-column-tahunan" style="position: relative; height:250px;"></div>
+                                <canvas id="stacked-column-tahunan" height="80"></canvas>
                                 <div class="row mb-0 mt-3 text-center">
                                 </div>
                             </div>
@@ -364,11 +364,8 @@
 </div>
 @endsection
 
-<!-- @section('script')
-<script type="module" src="{{asset('/dist/js/pages/dashboards/dashboardkonsumsi.js')}}">
-
-import {hello} from "{{asset('/dist/js/pages/dashboards/dashboardkonsumsi.js')}}";
-hello();
+@section('script')
+<script src="{{asset('/dist/js/pages/dashboards/dashboardkonsumsi.js')}}"></script>
 
 </script>
-@endsection -->
+@endsection
