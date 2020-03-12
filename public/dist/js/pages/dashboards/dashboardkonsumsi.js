@@ -54,21 +54,21 @@ $(function () {
                     datasets: [
                         {
                             label: 'Beban 1',
-                            data: dataProduksi.power_hour,
+                            data: dataKonsumsi.konsumsi_data[0].konsumsi_day1,
                             borderColor: '#cc0000',
                             backgroundColor: "rgba(204,0,0,0.25)",
                             borderWidth: 2,
                         },
                         {
                             label: 'Beban 2',
-                            data: dataProduksi.power_month,
+                            data:  dataKonsumsi.konsumsi_data[0].konsumsi_day2,
                             borderColor: '#00cc00',
                             backgroundColor: "rgba(0,204,0,0.25)",
                             borderWidth: 2,
                         },
                         {
                             label: 'Beban 2',
-                            data: dataProduksi.power_week,
+                            data:  dataKonsumsi.konsumsi_data[0].konsumsi_day3,
                             borderColor: '#8A2BE2',
                             backgroundColor: "rgba(138,43,226,0.25)",
                             borderWidth: 2,
@@ -133,21 +133,21 @@ $(function () {
                         {
                             label: 'Beban 1',
                             stack: 'Konsumsi',
-                            data: dataProduksi.power_week,
+                            data:  dataKonsumsi.konsumsi_data[0].konsumsi_week1,
                             backgroundColor: '#cc0000',
                             borderWidth: 1
                         },
                         {
                             label: 'Beban 2',
                             stack: 'Konsumsi',
-                            data: dataProduksi.power_week,
+                            data:  dataKonsumsi.konsumsi_data[0].konsumsi_week2,
                             backgroundColor: '#00cc00',
                             borderWidth: 1
                         },
                         {
                             label: 'Beban 2',
                             stack: 'Konsumsi',
-                            data: dataProduksi.power_week,
+                            data:  dataKonsumsi.konsumsi_data[0].konsumsi_week3,
                             backgroundColor: '#8A2BE2',
                             borderWidth: 1
                         }
@@ -216,21 +216,21 @@ $(function () {
                         {
                             label: 'Beban 1',
                             stack: 'Konsumsi',
-                            data: dataProduksi.power_day,
+                            data:  dataKonsumsi.konsumsi_data[0].konsumsi_month1,
                             backgroundColor: '#cc0000',
                             borderWidth: 1
                         },
                         {
                             label: 'Beban 2',
                             stack: 'Konsumsi',
-                            data: dataProduksi.power_day,
+                            data: dataKonsumsi.konsumsi_data[0].konsumsi_month2,
                             backgroundColor: '#00cc00',
                             borderWidth: 1
                         },
                         {
                             label: 'Beban 2',
                             stack: 'Konsumsi',
-                            data: dataProduksi.power_day,
+                            data: dataKonsumsi.konsumsi_data[0].konsumsi_month3,
                             backgroundColor: '#8A2BE2',
                             borderWidth: 1
                         }
@@ -292,21 +292,21 @@ $(function () {
                         {
                             label: 'Produksi',
                             stack: 'Produksi',
-                            data: dataProduksi.power_month,
+                            data: dataKonsumsi.konsumsi_data[0].konsumsi_year1,
                             backgroundColor: '#ffbf00',
                             borderWidth: 1
                         },
                         {
                             label: 'Beban 1',
                             stack: 'Konsumsi',
-                            data: dataProduksi.power_month,
+                            data: dataKonsumsi.konsumsi_data[0].konsumsi_year2,
                             backgroundColor: '#cc0000',
                             borderWidth: 1
                         },
                         {
                             label: 'Beban 2',
                             stack: 'Konsumsi',
-                            data: dataProduksi.power_month,
+                            data: dataKonsumsi.konsumsi_data[0].konsumsi_year3  ,
                             backgroundColor: '#00cc00',
                             borderWidth: 1
                         },
@@ -371,7 +371,7 @@ $(function () {
     async function UpdateGraph() {
         await ajaxDataProd()
         await ajaxDataKons()
-        if(!_.isEqual(dataProduksi,tmpdataProduksi) && !_.isEqual(dataKonsumsi, tmpdataKonsumsi)){
+        if(!_.isEqual(dataProduksi,tmpdataProduksi) || !_.isEqual(dataKonsumsi, tmpdataKonsumsi)){
             chartBuilder()
             tmpdataProduksi = dataProduksi
             tmpdataKonsumsi = dataKonsumsi

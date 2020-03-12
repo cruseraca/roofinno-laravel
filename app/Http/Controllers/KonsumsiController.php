@@ -36,10 +36,10 @@ class KonsumsiController extends Controller
         $dataKonsumsi['konsumsi_day2'] = array();
         $dataKonsumsi['konsumsi_day3'] = array();
 
-        $daysample = Carbon::create(2019, 11, 25, 11, 55, 0, 'Asia/Jakarta')->startOfDay()->subHour();
-        $weeksample = Carbon::create(2019, 11, 25, 11, 55, 0, 'Asia/Jakarta')->startOfDay()->startOfWeek();
-        $monthsample = Carbon::create(2019, 11, 10, 11, 55, 0, 'Asia/Jakarta')->startOfMonth();
-        $yearsample = Carbon::create(2019, 11, 11, 11, 11, 11, 'Asia/Jakarta')->startOfYear();
+        $daysample = Carbon::now('Asia/Jakarta')->startOfDay()->subHour();
+        $weeksample = Carbon::now('Asia/Jakarta')->startOfDay()->startOfWeek();
+        $monthsample = Carbon::now('Asia/Jakarta')->startOfMonth();
+        $yearsample = Carbon::now('Asia/Jakarta')->startOfYear();
         $sizeDay = $monthsample->daysInMonth;
         for ($i = 0; $i < $sizeDay; $i++) {
             // $data_monthGrafik1 = KonsumsiDataDB::select('select * from users where active = ?', [1])
@@ -54,17 +54,17 @@ class KonsumsiController extends Controller
             $status3 = !empty($data_monthGrafik1);
             // dd($monthsample->format('Y-m-d H:i:s'));
             if ($status1) {
-                array_push($dataKonsumsi['konsumsi_month1'], $data_monthGrafik1);
+                array_push($dataKonsumsi['konsumsi_month1'], round($data_monthGrafik1 / 1000, 2));
             } else {
                 array_push($dataKonsumsi['konsumsi_month1'], 0);
             }
             if ($status2) {
-                array_push($dataKonsumsi['konsumsi_month2'], $data_monthGrafik2);
+                array_push($dataKonsumsi['konsumsi_month2'], round($data_monthGrafik2 / 1000, 2));
             } else {
                 array_push($dataKonsumsi['konsumsi_month2'], 0);
             }
             if ($status3) {
-                array_push($dataKonsumsi['konsumsi_month3'],$data_monthGrafik3);
+                array_push($dataKonsumsi['konsumsi_month3'], round($data_monthGrafik3 / 1000, 2));
             } else {
                 array_push($dataKonsumsi['konsumsi_month3'], 0);
             }
@@ -82,17 +82,17 @@ class KonsumsiController extends Controller
                 $status3 = !empty($data_week3);
     
                 if ($status1) {
-                    array_push($dataKonsumsi['konsumsi_week1'], $data_week1);
+                    array_push($dataKonsumsi['konsumsi_week1'], round($data_week1/1000, 2));
                 } else {
                     array_push($dataKonsumsi['konsumsi_week1'], 0);
                 }
                 if ($status2) {
-                    array_push($dataKonsumsi['konsumsi_week2'], $data_week2);
+                    array_push($dataKonsumsi['konsumsi_week2'], round($data_week2/1000, 2));
                 } else {
                     array_push($dataKonsumsi['konsumsi_week2'], 0);
                 }
                 if ($status3) {
-                    array_push($dataKonsumsi['konsumsi_week3'], $data_week3);
+                    array_push($dataKonsumsi['konsumsi_week3'], round($data_week3/1000, 2));
                 } else {
                     array_push($dataKonsumsi['konsumsi_week3'], 0);
                 }
@@ -110,17 +110,17 @@ class KonsumsiController extends Controller
                 $status3 = !empty($data_year2);
 
                 if ($status1) {
-                    array_push($dataKonsumsi['konsumsi_year1'], $data_year1);
+                    array_push($dataKonsumsi['konsumsi_year1'], round($data_year1/1000,2));
                 } else {
                     array_push($dataKonsumsi['konsumsi_year1'], 0);
                 }
                 if ($status2) {
-                    array_push($dataKonsumsi['konsumsi_year2'], $data_year2);
+                    array_push($dataKonsumsi['konsumsi_year2'], round($data_year2/1000,2));
                 } else {
                     array_push($dataKonsumsi['konsumsi_year2'], 0);
                 }
                 if ($status3) {
-                    array_push($dataKonsumsi['konsumsi_year3'], $data_year3);
+                    array_push($dataKonsumsi['konsumsi_year3'], round($data_year3/1000,2));
                 } else {
                     array_push($dataKonsumsi['konsumsi_year3'], 0);
                 }
@@ -138,17 +138,17 @@ class KonsumsiController extends Controller
                 $status3 = !empty($data_day2);
 
                 if ($status1) {
-                    array_push($dataKonsumsi['konsumsi_day1'], $data_day1);
+                    array_push($dataKonsumsi['konsumsi_day1'], round($data_day1/1000, 2));
                 } else {
                     array_push($dataKonsumsi['konsumsi_day1'], 0);
                 }
                 if ($status2) {
-                    array_push($dataKonsumsi['konsumsi_day2'], $data_day2);
+                    array_push($dataKonsumsi['konsumsi_day2'], round($data_day2/1000, 2));
                 } else {
                     array_push($dataKonsumsi['konsumsi_day2'], 0);
                 }
                 if ($status3) {
-                    array_push($dataKonsumsi['konsumsi_day3'], $data_day3);
+                    array_push($dataKonsumsi['konsumsi_day3'], round($data_day3/1000, 2));
                 } else {
                     array_push($dataKonsumsi['konsumsi_day3'], 0);
                 }
