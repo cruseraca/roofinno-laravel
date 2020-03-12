@@ -121,7 +121,7 @@ $(function () {
             chartMingguan = new Chart(ctxMingguan, {
                 type: 'bar',
                 data: {
-                    labels: ['1 Agust', '2 Agust', '3 Agust', '4 Agust', '5 Agust', '6 Agust', '7 Agust'],
+                    labels: ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'],
                     datasets: [
                         {
                             label: 'Produksi',
