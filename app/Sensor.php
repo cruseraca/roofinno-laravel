@@ -8,4 +8,7 @@ class Sensor extends Model
 {
     //deklarasi tabel
     protected $table = 'sensor';
+    protected $fillable = ['ISACTIVE'];
+    public $timestamps = false;
+    protected $primaryKey = 'IDSENSOR';
 }

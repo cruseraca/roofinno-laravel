@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Data;
+use App\Sensor;
 use App\KonsumsiData;
 use Carbon\Carbon;
 
@@ -34,6 +35,22 @@ class HardwareController extends Controller
 
         $data->save();
         return $data;
+    }
+
+    public function getStatusSensor(Request $request){
+        $data = $request->IDSENSOR;
+        if(!empty($data)){
+            $status = Sensor::where('IDSENSOR',$data)->get('ISACTIVE');
+            $status_sensor = $status[0]->ISACTIVE;
+            if($status_sensor == 1) {
+                $change = Sensor::find($data)->update(['ISACTIVE' => 0]);
+            }
+            if($status_sensor == 0) {
+                $change = Sensor::find($data)->update(['ISACTIVE' => 1]);
+            }
+            return response($status_sensor);
+        }
+        else return response('null');
     }
 
 }
