@@ -87,7 +87,7 @@
                     <div class="row">
                         <!-- column -->
                         <div class="col-12">
-                            <div class="grafik-line-harian" style="height: 250px"></div>
+                            <canvas id="chart-konsumsi-harian" height="80"></canvas>
                         </div>
                         <!-- column -->
                     </div>

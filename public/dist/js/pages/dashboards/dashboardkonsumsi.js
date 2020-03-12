@@ -1,84 +1,128 @@
 $(function () {
     "use strict";
 
-    function ajaxDataProd(){
+    var dataProduksi = null
+    var dataKonsumsi = null
+
+    function ajaxDataProd() {
         let XHRprod = jQuery.ajax({
             url: '/dashboard/produksi/get-realtime-data',
             type: 'GET',
-            dataType: 'json'
+            dataType: 'json',
+            success: function (res){
+                dataProduksi = res
+            }
         })
-        return XHRprod
     }
 
-    function ajaxDataKons(){
+    function ajaxDataKons() {
         let XHRkons = jQuery.ajax({
             url: '/dashboard/konsumsi/get-realtime-data',
             type: 'GET',
-            dataType: 'json'
+            dataType: 'json',
+            success: function (res){
+                dataKonsumsi = res
+            }
         })
-        return XHRkons
+        
     }
 
-    var dataProduksi = null
-    var dataKonsumsi = null
+    var tmpdataProduksi = null
+    var tmpdataKonsumsi = null
 
     let chartHarian = null
     let chartMingguan = null
     let chartBulanan = null
-    let chartTahunan = null 
-    var chartBuilder = function(){
- 
+    let chartTahunan = null
 
-        if(dataKonsumsi != null && dataProduksi != null){
+    var chartBuilder = function () {
 
-            if(chartHarian != null && chartMingguan != null && chartBulanan != null && chartTahunan != null){
+        if (dataKonsumsi != null && dataProduksi != null) {
+
+            if (chartHarian != null && chartMingguan != null && chartBulanan != null && chartTahunan != null) {
                 chartHarian.destroy()
                 chartMingguan.destroy()
                 chartBulanan.destroy()
                 chartTahunan.destroy()
             }
-            
-            chartHarian = new Chartist.Line('.grafik-line-harian', {
-                labels: dataProduksi.time,
-                series: [
-                    dataProduksi.power_hour,
-                    dataProduksi.power_hour,
-                    dataProduksi.power_hour
-                ]
-            },
-                {                         
+
+            let ctxHarian = document.getElementById('chart-konsumsi-harian').getContext('2d')
+            chartHarian = new Chart(ctxHarian, {
+                type: 'line',
+                data: {
+                    labels:  dataProduksi.time,
+                    datasets: [
+                        {
+                            label: 'Beban 1',
+                            data: dataProduksi.power_hour,
+                            borderColor: '#cc0000',
+                            backgroundColor: "rgba(204,0,0,0.25)",
+                            borderWidth: 2,
+                        },
+                        {
+                            label: 'Beban 2',
+                            data: dataProduksi.power_month,
+                            borderColor: '#00cc00',
+                            backgroundColor: "rgba(0,204,0,0.25)",
+                            borderWidth: 2,
+                        },
+                        {
+                            label: 'Beban 2',
+                            data: dataProduksi.power_week,
+                            borderColor: '#8A2BE2',
+                            backgroundColor: "rgba(138,43,226,0.25)",
+                            borderWidth: 2,
+                        }
+                    ]
+                },
+                options: {
                     
-                    showArea: true,
-                    showPoint: true,
-                    low: 0,
-                    // high: dataProduksi.max[3],
-                    fullWidth: true,
-                    axisY: {
-                        onlyInteger: false,
-                        scaleMinSpace: 40,
-                        offset: 60,
-                        labelInterpolationFnc: function (value) {
-                            return (value / 1) + 'KWh';
+                    scales: {
+                        xAxes: [{
+                            type: 'category',
+                            ticks: {
+                                sampleSize: 12,
+                                autoSkip: true,
+                                maxRotation: 0,
+                                callback: function (value, index, values) {
+                                    return value;
+                                }
+                            }
+                        }],
+                        yAxes: [{
+                            ticks: {
+                                min: 0,
+                                callback: function (value, index, values) {
+                                    return value + " Wh";
+                                }
+                            }
+                        }]
+                    },
+                    animation: {
+                        duration: 0 // general animation time
+                    },
+                    hover: {
+                        animationDuration: 0 // duration of animations when hovering an item
+                    },
+                    responsiveAnimationDuration: 0, // animation duration after a resize
+                    elements: {
+                        point: {
+                            radius: 0
                         }
                     },
-        
-                    plugins: [
-                        Chartist.plugins.tooltip(),
-                        // Chartist.plugins.ctPointLabels({
-                        //     textAnchor: 'middle'
-                        //   })
-                    ],
-                    chartPadding: {
-                        right: 40
+                    legend: {
+                        display: false
                     }
-                })
-        
+                }
+
+            })
+
             let ctxMingguan = document.getElementById('stacked-column-mingguan').getContext('2d');
             chartMingguan = new Chart(ctxMingguan, {
                 type: 'bar',
                 data: {
                     labels: ['1 Agust', '2 Agust', '3 Agust', '4 Agust', '5 Agust', '6 Agust', '7 Agust'],
-                    datasets:[
+                    datasets: [
                         {
                             label: 'Produksi',
                             stack: 'Produksi',
@@ -111,57 +155,57 @@ $(function () {
                 },
                 options: {
                     scales: {
-                      xAxes: [{
-                        barPercentage: 0.5,
-                        stacked: true,
-                        type: 'category',
-                        
-                        ticks: {
-                          sampleSize: 12,
-                          autoSkip: true,
-                          maxRotation: 0,
-                          callback: function(value, index, values) {
-                              return value;
-                          }
-                        }
-                      }],
-                      yAxes: [{
-                        stacked: true,
-                        ticks: {
-                            min: 0,
-                            // Include a dollar sign in the ticks
-                            // max: data.max[1],
-                            callback: function(value, index, values) {
-                                return value+" Wh";
+                        xAxes: [{
+                            barPercentage: 0.5,
+                            stacked: true,
+                            type: 'category',
+
+                            ticks: {
+                                sampleSize: 12,
+                                autoSkip: true,
+                                maxRotation: 0,
+                                callback: function (value, index, values) {
+                                    return value;
+                                }
                             }
-                        }
-                      }]
+                        }],
+                        yAxes: [{
+                            stacked: true,
+                            ticks: {
+                                min: 0,
+                                // Include a dollar sign in the ticks
+                                // max: data.max[1],
+                                callback: function (value, index, values) {
+                                    return value + " Wh";
+                                }
+                            }
+                        }]
                     },
                     animation: {
-                      duration: 0 // general animation time
+                        duration: 0 // general animation time
                     },
                     hover: {
-                      animationDuration: 0 // duration of animations when hovering an item
+                        animationDuration: 0 // duration of animations when hovering an item
                     },
                     responsiveAnimationDuration: 0, // animation duration after a resize
                     elements: {
-                          point:{
-                              radius: 0
-                          }
-                      },
+                        point: {
+                            radius: 0
+                        }
+                    },
                     legend: {
-                    display: false
+                        display: false
                     }
-                  }
-        
+                }
+
             })
-        
+
             let ctxBulanan = document.getElementById('stacked-column-bulanan').getContext('2d');
             chartBulanan = new Chart(ctxBulanan, {
                 type: 'bar',
                 data: {
                     labels: dataProduksi.time_day,
-                    datasets:[
+                    datasets: [
                         {
                             label: 'Produksi',
                             stack: 'Produksi',
@@ -194,57 +238,57 @@ $(function () {
                 },
                 options: {
                     scales: {
-                      xAxes: [{
-                        barPercentage: 0.7,
-                        stacked: true,
-                        type: 'category',
-                        
-                        ticks: {
-                          sampleSize: 12,
-                          autoSkip: true,
-                          maxRotation: 0,
-                          callback: function(value, index, values) {
-                              return value;
-                          }
-                        }
-                      }],
-                      yAxes: [{
-                        stacked: true,
-                        ticks: {
-                            min: 0,
-                            // Include a dollar sign in the ticks
-                            // max: data.max[1],
-                            callback: function(value, index, values) {
-                                return value+" Wh";
+                        xAxes: [{
+                            barPercentage: 0.7,
+                            stacked: true,
+                            type: 'category',
+
+                            ticks: {
+                                sampleSize: 12,
+                                autoSkip: true,
+                                maxRotation: 0,
+                                callback: function (value, index, values) {
+                                    return value;
+                                }
                             }
-                        }
-                      }]
+                        }],
+                        yAxes: [{
+                            stacked: true,
+                            ticks: {
+                                min: 0,
+                                // Include a dollar sign in the ticks
+                                // max: data.max[1],
+                                callback: function (value, index, values) {
+                                    return value + " Wh";
+                                }
+                            }
+                        }]
                     },
                     animation: {
-                      duration: 0 // general animation time
+                        duration: 0 // general animation time
                     },
                     hover: {
-                      animationDuration: 0 // duration of animations when hovering an item
+                        animationDuration: 0 // duration of animations when hovering an item
                     },
                     responsiveAnimationDuration: 0, // animation duration after a resize
                     elements: {
-                          point:{
-                              radius: 0
-                          }
-                      },
+                        point: {
+                            radius: 0
+                        }
+                    },
                     legend: {
-                    display: false
+                        display: false
                     }
-                  }
-        
+                }
+
             })
-        
+
             let ctxTahunan = document.getElementById('stacked-column-tahunan').getContext('2d');
             chartTahunan = new Chart(ctxTahunan, {
                 type: 'bar',
                 data: {
                     labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Des'],
-                    datasets:[
+                    datasets: [
                         {
                             label: 'Produksi',
                             stack: 'Produksi',
@@ -277,57 +321,61 @@ $(function () {
                 },
                 options: {
                     scales: {
-                      xAxes: [{
-                        barPercentage: 0.5,
-                        stacked: true,
-                        type: 'category',
-                        
-                        ticks: {
-                          sampleSize: 12,
-                          autoSkip: true,
-                          maxRotation: 0,
-                          callback: function(value, index, values) {
-                              return value;
-                          }
-                        }
-                      }],
-                      yAxes: [{
-                        stacked: true,
-                        ticks: {
-                            min: 0,
-                            // Include a dollar sign in the ticks
-                            // max: data.max[1],
-                            callback: function(value, index, values) {
-                                return value+" Wh";
+                        xAxes: [{
+                            barPercentage: 0.5,
+                            stacked: true,
+                            type: 'category',
+
+                            ticks: {
+                                sampleSize: 12,
+                                autoSkip: true,
+                                maxRotation: 0,
+                                callback: function (value, index, values) {
+                                    return value;
+                                }
                             }
-                        }
-                      }]
+                        }],
+                        yAxes: [{
+                            stacked: true,
+                            ticks: {
+                                min: 0,
+                                // Include a dollar sign in the ticks
+                                // max: data.max[1],
+                                callback: function (value, index, values) {
+                                    return value + " Wh";
+                                }
+                            }
+                        }]
                     },
                     animation: {
-                      duration: 0 // general animation time
+                        duration: 0 // general animation time
                     },
                     hover: {
-                      animationDuration: 0 // duration of animations when hovering an item
+                        animationDuration: 0 // duration of animations when hovering an item
                     },
                     responsiveAnimationDuration: 0, // animation duration after a resize
                     elements: {
-                          point:{
-                              radius: 0
-                          }
-                      },
+                        point: {
+                            radius: 0
+                        }
+                    },
                     legend: {
-                    display: false
+                        display: false
                     }
-                  }
-        
+                }
+
             })
         }
-    } 
+    }
 
-     async function UpdateGraph(){
-        dataProduksi = await ajaxDataProd()
-        dataKonsumsi = await ajaxDataKons()
-        chartBuilder()
+    async function UpdateGraph() {
+        await ajaxDataProd()
+        await ajaxDataKons()
+        if(!_.isEqual(dataProduksi,tmpdataProduksi) && !_.isEqual(dataKonsumsi, tmpdataKonsumsi)){
+            chartBuilder()
+            tmpdataProduksi = dataProduksi
+            tmpdataKonsumsi = dataKonsumsi
+        }
     }
 
     UpdateGraph()
