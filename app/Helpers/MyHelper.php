@@ -1,7 +1,7 @@
 <?php 
 use Illuminate\Support\Facades\DB;
 use App\Sensor;
-use App\Data;
+use App\KonsumsiData;
 
 if (! function_exists('getkode')) {
     function getkode()
@@ -96,7 +96,7 @@ function get_last_daya_oneday_tools($id='')
   $dateNow = date('Y-m-d');
   $hourNow = date('H');
 
-  $result = Data::where('IDSENSOR',$id)->where('ONINSERT','like','%'.$dateNow.'%')->sum('POWER');
+  $result = KonsumsiData::where('IDSENSOR',$id)->where('ONINSERT','like','%'.$dateNow.'%')->sum('POWER');
 
   return $hourNow == 0 ? 0 : $result/$hourNow;
 }

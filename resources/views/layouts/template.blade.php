@@ -19,6 +19,9 @@
 
     <link href="{{asset('/dist/js/pages/chartist/chartist-init.css')}}" rel="stylesheet">
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/switchery/0.8.2/switchery.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/switchery/0.8.2/switchery.min.js"></script>
+
     <!--c3 CSS -->
     <link href="{{asset('/extra-libs/c3/c3.min.css')}}" rel="stylesheet">
     <!-- Place your kit's code here -->
