@@ -381,6 +381,6 @@ $(function () {
     UpdateGraph()
     setInterval(() => {
         UpdateGraph()
-    }, 2000);
+    }, 5000);
 
 })
