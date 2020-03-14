@@ -33,6 +33,7 @@ Route::get('/dashboard/konsumsi/get-realtime-data', 'KonsumsiController@getRealt
 
 //Dashboard Penjadwalan
 Route::get('/dashboard/penjadwalan', 'DashboardController@penjadwalan');
+Route::get('/dashboard/penjadwalan/update', 'DashboardController@updateStatusSensor')->name('sensor.update.status');
 
 //Dashboard Performa
 Route::get('/dashboard/performa', 'DashboardController@performa');

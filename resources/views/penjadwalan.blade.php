@@ -90,7 +90,7 @@
                                         <th class="border-0"><Strong>Nama Peralatan</Strong></th>
                                         <th class="border-0"><Strong>Daya</Strong></th>
                                         <th class="border-0"><Strong>Konsumsi Hari Ini</Strong></th>
-                                        <th class="border-0"><Strong>Kontrol</Strong></th>
+                                        <th class="border-0"><Strong>Status</Strong></th>
                                         <th class="border-0"><Strong>Aksi</Strong></th>
                                     </tr>
                                 </thead>
@@ -107,12 +107,7 @@
                                         <td>{{$d->DAYA}} Kw</td>
                                         <td>{{get_last_daya_oneday_tools($d->IDSENSOR)}} Kwh </td>
                                         <td>
-                                            <div class="custom-control custom-switch">
-                                            <input type="checkbox" class="custom-control-input" onclick="controlCheck({{$d->IDSENSOR}},{{$loop->iteration}})" id="customSwitch{{$loop->iteration}}" <?php if ($d->CONTROL=='1'): ?>
-                                                checked
-                                            <?php endif; ?>>
-                                            <label class="custom-control-label" for="customSwitch{{$loop->iteration}}"></label>
-                                            </div>
+                                            <input type="checkbox" data-id="{{ $d->IDSENSOR }}" name="status" class="js-switch" {{ $d->ISACTIVE == 1 ? 'checked' : '' }}>
                                         </td>
                                         <td>
                                         <button class="btn btn-info btn-circle" onclick="edit({{$d->IDSENSOR}})"> <i class="fa fa-pencil"></i> </button>
@@ -229,7 +224,35 @@
     </div>
     </div>
 
-    <script type="text/javascript">
+    <script>
+        let elems = Array.prototype.slice.call(document.querySelectorAll('.js-switch'));
+    
+        elems.forEach(function(html) {
+        let switchery = new Switchery(html,  { size: 'small' });
+        });
+
+        $(document).ready(function(){
+            $('.js-switch').change(function () {
+                let status = $(this).prop('checked') === true ? 1 : 0;
+                let userId = $(this).data('id');
+                $.ajax({
+                    type: "GET",
+                    dataType: "json",
+                    url: '{{ route('sensor.update.status') }}',
+                    data: {'status': status, 'user_id': userId},
+                    success: function (data) {
+                        console.log(data.message);
+                        toastr.options.closeButton = true;
+                        toastr.options.closeMethod = 'fadeOut';
+                        toastr.options.closeDuration = 100;
+                        toastr.success(data.message);
+                    }
+                });
+            });
+        });
+    </script>
+
+    {{-- <script type="text/javascript">
     var table;
         $(document).ready(function() {
             //datatables
@@ -241,30 +264,30 @@
             });
 
         });
-    function controlCheck(id,cs) {
-        var checker = $('#customSwitch'+cs).is(':checked');
-        var value;
-        if (checker) {
-        value =1;
-        }else {
-        value =0;
-        }
+    // function controlCheck(id,cs) {
+    //     var checker = $('#customSwitch'+cs).is(':checked');
+    //     var value;
+    //     if (checker) {
+    //     value =1;
+    //     }else {
+    //     value =0;
+    //     }
 
-        $.ajax(
-            {
-            type: "GET",
-            url: "{{url('User/controlSensor')}}/"+id+"/"+value,
-            dataType:"JSON"
-            }
-        ).done(function( data )
-        {
-            if (data=='1') {
-            toastr.success("Success update control.", "Success!");
-            }else {
-            toastr.error("Gagal update control.", "Gagal!");
-            }
-        });
-    }
+    //     $.ajax(
+    //         {
+    //         type: "GET",
+    //         url: "{{url('User/controlSensor')}}/"+id+"/"+value,
+    //         dataType:"JSON"
+    //         }
+    //     ).done(function( data )
+    //     {
+    //         if (data=='1') {
+    //         toastr.success("Success update control.", "Success!");
+    //         }else {
+    //         toastr.error("Gagal update control.", "Gagal!");
+    //         }
+    //     });
+    // }
 
     function tambah() {
         $('#formModal')[0].reset();
@@ -298,5 +321,5 @@
     function hapus(id) {
         toastr.error('Anda akan menghapus data ini?<br /><a href="{{url('User/hapusTools/') }}'+id+'" class="btn btn-secondary clear">Yes</a>', 'Anda yakin?',{ "progressBar": true });
     }
-    </script>
+    </script> --}}
 @endsection

@@ -42,12 +42,7 @@ class HardwareController extends Controller
         if(!empty($data)){
             $status = Sensor::where('IDSENSOR',$data)->get('ISACTIVE');
             $status_sensor = $status[0]->ISACTIVE;
-            if($status_sensor == 1) {
-                $change = Sensor::find($data)->update(['ISACTIVE' => 0]);
-            }
-            if($status_sensor == 0) {
-                $change = Sensor::find($data)->update(['ISACTIVE' => 1]);
-            }
+            
             return response($status_sensor);
         }
         else return response('null');

@@ -88,6 +88,16 @@ class DashboardController extends Controller
         return view('penjadwalan',compact('data'));
     }
 
+    //update Status Sensor
+    public function updateStatusSensor(Request $request)
+    {
+        $user = Sensor::findOrFail($request->user_id);
+        $user->ISACTIVE = $request->status;
+        $user->save();
+
+        return response()->json(['message' => 'Sensor status updated successfully.']);
+    }
+
     //performa
     public function performa(){
         $data = array('js' =>'' );
