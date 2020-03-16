@@ -45,8 +45,8 @@ Route::get('/dashboard/produksi/get-realtime-data', 'ProduksiController@getRealt
 Route::get('/get-post-chart-data', 'ChartDataController@getMonthlyPostData');
 
 //Post Data from Hardware
-Route::get('/esp8266/post','HardwareController@postData');
-Route::get('/esp8266/post_kons','HardwareController@postKons');
+// Route::get('/esp8266/post','HardwareController@postData');
+// Route::get('/esp8266/post_kons','HardwareController@postKons');
 
 //Get Data for Hardware
 Route::get('/esp8266/get_status_sensor', 'HardwareController@getStatusSensor');

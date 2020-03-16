@@ -21,7 +21,20 @@ class HardwareController extends Controller
         $data->timestamps = false;
 
         $data->save();
-        return $data;
+        return "OK";
+        // if(empty($request)) return "null";
+        // else {
+        //     $timestamp = Carbon::now('Asia/Jakarta')->format('Y-m-d H:i:s');
+        //     $data = new Data;
+        //     $data->IDUSER = $request->IDUSER;
+        //     $data->POWER_PS = $request->POWER_PS;
+        //     $data->POWER_LOAD = $request->POWER_LOAD;
+        //     $data->ONINSERT = $timestamp;
+        //     $data->timestamps = false;
+            
+        //     $data->save();
+        //     return "OK";
+        // };
     }
     
     public function postKons(Request $request){
