@@ -126,7 +126,7 @@ class KonsumsiController extends Controller
                 }
 
             }
-            if($i<=12){
+            if($i<=24){
                 $data_day1 = KonsumsiData::where('IDSENSOR','=', 2)->whereBetween('ONINSERT', [$daysample->format('Y-m-d H:i:s'), $daysample->addHour()->format('Y-m-d H:i:s')])->sum('POWER');
                 $daysample->subHour();
                 $data_day2 = KonsumsiData::where('IDSENSOR','=', 3)->whereBetween('ONINSERT', [$daysample->format('Y-m-d H:i:s'), $daysample->addHour()->format('Y-m-d H:i:s')])->sum('POWER');
