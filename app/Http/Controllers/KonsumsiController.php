@@ -44,11 +44,11 @@ class KonsumsiController extends Controller
         for ($i = 0; $i < $sizeDay; $i++) {
             // $data_monthGrafik1 = KonsumsiDataDB::select('select * from users where active = ?', [1])
 
-            $data_monthGrafik1 = KonsumsiData::where('IDSENSOR','=', 2)->whereBetween('ONINSERT', [$monthsample->format('Y-m-d H:i:s'), $monthsample->addDay()->format('Y-m-d H:i:s')])->sum('POWER');
+            $data_monthGrafik1 = KonsumsiData::where('IDSENSOR','=', 1)->whereBetween('ONINSERT', [$monthsample->format('Y-m-d H:i:s'), $monthsample->addDay()->format('Y-m-d H:i:s')])->sum('POWER');
             $monthsample->subDay();
-            $data_monthGrafik2 = KonsumsiData::where('IDSENSOR','=', 3)->whereBetween('ONINSERT', [$monthsample->format('Y-m-d H:i:s'), $monthsample->addDay()->format('Y-m-d H:i:s')])->sum('POWER');
+            $data_monthGrafik2 = KonsumsiData::where('IDSENSOR','=', 2)->whereBetween('ONINSERT', [$monthsample->format('Y-m-d H:i:s'), $monthsample->addDay()->format('Y-m-d H:i:s')])->sum('POWER');
             $monthsample->subDay();
-            $data_monthGrafik3 = KonsumsiData::where('IDSENSOR','=', 4)->whereBetween('ONINSERT', [$monthsample->format('Y-m-d H:i:s'), $monthsample->addDay()->format('Y-m-d H:i:s')])->sum('POWER');
+            $data_monthGrafik3 = KonsumsiData::where('IDSENSOR','=', 3)->whereBetween('ONINSERT', [$monthsample->format('Y-m-d H:i:s'), $monthsample->addDay()->format('Y-m-d H:i:s')])->sum('POWER');
             $status1 = !empty($data_monthGrafik1);
             $status2 = !empty($data_monthGrafik1);
             $status3 = !empty($data_monthGrafik1);
@@ -71,11 +71,11 @@ class KonsumsiController extends Controller
 
 
             if($i<7){
-                $data_week1 = KonsumsiData::where('IDSENSOR','=', 2)->whereBetween('ONINSERT', [$weeksample->format('Y-m-d H:i:s'), $weeksample->addDay()->format('Y-m-d H:i:s')])->sum('POWER');
+                $data_week1 = KonsumsiData::where('IDSENSOR','=', 1)->whereBetween('ONINSERT', [$weeksample->format('Y-m-d H:i:s'), $weeksample->addDay()->format('Y-m-d H:i:s')])->sum('POWER');
                 $weeksample->subDay();
-                $data_week2 = KonsumsiData::where('IDSENSOR','=', 3)->whereBetween('ONINSERT', [$weeksample->format('Y-m-d H:i:s'), $weeksample->addDay()->format('Y-m-d H:i:s')])->sum('POWER');
+                $data_week2 = KonsumsiData::where('IDSENSOR','=', 2)->whereBetween('ONINSERT', [$weeksample->format('Y-m-d H:i:s'), $weeksample->addDay()->format('Y-m-d H:i:s')])->sum('POWER');
                 $weeksample->subDay();
-                $data_week3 = KonsumsiData::where('IDSENSOR','=', 4)->whereBetween('ONINSERT', [$weeksample->format('Y-m-d H:i:s'), $weeksample->addDay()->format('Y-m-d H:i:s')])->sum('POWER');
+                $data_week3 = KonsumsiData::where('IDSENSOR','=', 3)->whereBetween('ONINSERT', [$weeksample->format('Y-m-d H:i:s'), $weeksample->addDay()->format('Y-m-d H:i:s')])->sum('POWER');
 
                 $status1 = !empty($data_week1);
                 $status2 = !empty($data_week2);
@@ -99,11 +99,11 @@ class KonsumsiController extends Controller
             }
 
             if($i<12){
-                $data_year1 = KonsumsiData::where('IDSENSOR','=', 2)->whereBetween('ONINSERT', [$yearsample->format('Y-m-d H:i:s'), $yearsample->addMonth()->format('Y-m-d H:i:s')])->sum('POWER');
+                $data_year1 = KonsumsiData::where('IDSENSOR','=', 1)->whereBetween('ONINSERT', [$yearsample->format('Y-m-d H:i:s'), $yearsample->addMonth()->format('Y-m-d H:i:s')])->sum('POWER');
                 $yearsample->subMonth();
-                $data_year2 = KonsumsiData::where('IDSENSOR','=', 3)->whereBetween('ONINSERT', [$yearsample->format('Y-m-d H:i:s'), $yearsample->addMonth()->format('Y-m-d H:i:s')])->sum('POWER');
+                $data_year2 = KonsumsiData::where('IDSENSOR','=', 2)->whereBetween('ONINSERT', [$yearsample->format('Y-m-d H:i:s'), $yearsample->addMonth()->format('Y-m-d H:i:s')])->sum('POWER');
                 $yearsample->subMonth();
-                $data_year3 = KonsumsiData::where('IDSENSOR','=', 4)->whereBetween('ONINSERT', [$yearsample->format('Y-m-d H:i:s'), $yearsample->addMonth()->format('Y-m-d H:i:s')])->sum('POWER');
+                $data_year3 = KonsumsiData::where('IDSENSOR','=', 3)->whereBetween('ONINSERT', [$yearsample->format('Y-m-d H:i:s'), $yearsample->addMonth()->format('Y-m-d H:i:s')])->sum('POWER');
 
                 $status1 = !empty($data_year1);
                 $status2 = !empty($data_year2);
@@ -127,11 +127,11 @@ class KonsumsiController extends Controller
 
             }
             if($i<=24){
-                $data_day1 = KonsumsiData::where('IDSENSOR','=', 2)->whereBetween('ONINSERT', [$daysample->format('Y-m-d H:i:s'), $daysample->addHour()->format('Y-m-d H:i:s')])->sum('POWER');
+                $data_day1 = KonsumsiData::where('IDSENSOR','=', 1)->whereBetween('ONINSERT', [$daysample->format('Y-m-d H:i:s'), $daysample->addHour()->format('Y-m-d H:i:s')])->sum('POWER');
                 $daysample->subHour();
-                $data_day2 = KonsumsiData::where('IDSENSOR','=', 3)->whereBetween('ONINSERT', [$daysample->format('Y-m-d H:i:s'), $daysample->addHour()->format('Y-m-d H:i:s')])->sum('POWER');
+                $data_day2 = KonsumsiData::where('IDSENSOR','=', 2)->whereBetween('ONINSERT', [$daysample->format('Y-m-d H:i:s'), $daysample->addHour()->format('Y-m-d H:i:s')])->sum('POWER');
                 $daysample->subHour();
-                $data_day3 = KonsumsiData::where('IDSENSOR','=', 4)->whereBetween('ONINSERT', [$daysample->format('Y-m-d H:i:s'), $daysample->addHour()->format('Y-m-d H:i:s')])->sum('POWER');
+                $data_day3 = KonsumsiData::where('IDSENSOR','=', 3)->whereBetween('ONINSERT', [$daysample->format('Y-m-d H:i:s'), $daysample->addHour()->format('Y-m-d H:i:s')])->sum('POWER');
 
                 $status1 = !empty($data_day1);
                 $status2 = !empty($data_day2);

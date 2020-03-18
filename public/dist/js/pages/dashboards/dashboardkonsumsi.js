@@ -92,7 +92,7 @@ $(function () {
                         yAxes: [{
                             ticks: {
                                 min: 0,
-                                max: Math.round(dataKonsumsi.max[0]),
+                                // max: Math.round(dataKonsumsi.max[0]),
                                 callback: function (value, index, values) {
                                     return value + " Wh";
                                 }
@@ -118,7 +118,6 @@ $(function () {
 
             })
 
-            let maxYmingguan = [];
             let ctxMingguan = document.getElementById('stacked-column-mingguan').getContext('2d');
             chartMingguan = new Chart(ctxMingguan, {
                 type: 'bar',
@@ -179,8 +178,6 @@ $(function () {
                                 // Include a dollar sign in the ticks
                                 // max: data.max[1],
                                 callback: function (value, index, values) {
-                                    maxYmingguan = values;
-                                    console.log(maxYmingguan);
                                     return value + " Wh";
                                 },
                             },
