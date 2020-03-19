@@ -16,6 +16,9 @@
 
     function konsumsi(data) {
       document.getElementById("kons").innerHTML = data[0]+" W";
+      document.getElementById("prod").innerHTML = data[1]+" W";
+      document.getElementById("kons_time").innerHTML = "Konsumsi pada "+data[2]+" WIB";
+      document.getElementById("prod_time").innerHTML = "Produksi pada "+data[2]+" WIB";
     }
     function grafikku(data) {
         let ctx1 = document.getElementById("myOwnChart");
@@ -25,7 +28,14 @@
             data: {
                 labels: data.time,
                 datasets: [{
-                    data: data.kwh,
+                    data: data.kwh1,
+                    lineTension: 0.4,
+                    backgroundColor: "rgba(255, 165, 0, 0.3)",
+                    borderColor: "rgba(255, 165, 0, 1)",
+                    borderWidth: 1
+                },
+                {
+                    data: data.kwh2,
                     lineTension: 0.4,
                     backgroundColor: "rgba(41, 98, 255,0.3)",
                     borderColor: "rgba(41, 98, 255, 1)",
