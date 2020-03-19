@@ -72,6 +72,13 @@ $(function () {
                             borderColor: '#8A2BE2',
                             backgroundColor: "rgba(138,43,226,0.25)",
                             borderWidth: 2,
+                        },
+                        {
+                            label: 'Beban 4',
+                            data:  dataKonsumsi.konsumsi_data[0].konsumsi_day_total,
+                            borderColor: '#2962FF',
+                            backgroundColor: "rgba(41,98,255,0.25)",
+                            borderWidth: 2,
                         }
                     ]
                 },
@@ -150,6 +157,13 @@ $(function () {
                             stack: 'Konsumsi',
                             data:  dataKonsumsi.konsumsi_data[0].konsumsi_week3,
                             backgroundColor: '#8A2BE2',
+                            borderWidth: 1
+                        },
+                        {
+                            label: 'Beban Total',
+                            stack: 'Konsumsi',
+                            data:  dataKonsumsi.konsumsi_data[0].konsumsi_week_total,
+                            backgroundColor: '#2962FF',
                             borderWidth: 1
                         }
                     ]
@@ -237,6 +251,13 @@ $(function () {
                             data: dataKonsumsi.konsumsi_data[0].konsumsi_month3,
                             backgroundColor: '#8A2BE2',
                             borderWidth: 1
+                        },
+                        {
+                            label: 'Beban Total',
+                            stack: 'Konsumsi',
+                            data:  dataKonsumsi.konsumsi_data[0].konsumsi_month_total,
+                            backgroundColor: '#2962FF',
+                            borderWidth: 1
                         }
                     ]
                 },
@@ -321,6 +342,13 @@ $(function () {
                             stack: 'Konsumsi',
                             data: dataKonsumsi.konsumsi_data[0].konsumsi_year3,
                             backgroundColor: '#8A2BE2',
+                            borderWidth: 1
+                        },
+                        {
+                            label: 'Beban Total',
+                            stack: 'Konsumsi',
+                            data:  dataKonsumsi.konsumsi_data[0].konsumsi_year_total,
+                            backgroundColor: '#2962FF',
                             borderWidth: 1
                         }
                     ]

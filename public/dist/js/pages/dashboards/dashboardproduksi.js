@@ -38,8 +38,8 @@ $(function () {
             datasets: [{
                 data: data.power_week,
                 lineTension: 0.1,
-                backgroundColor: "rgba(41, 98, 255,0.3)",
-                borderColor: "rgba(41, 98, 255, 1)",
+                backgroundColor: "rgba(255, 165, 0, 0.3)",
+                borderColor: "rgba(255, 165, 0, 1)",
                 borderWidth: 1
             }]
         },
@@ -96,8 +96,8 @@ $(function () {
             labels: data.time_day,
             datasets: [{
                 data: data.power_day,
-                backgroundColor: "rgba(41, 98, 255,0.3)",
-                borderColor: "rgba(41, 98, 255, 1)",
+                backgroundColor: "rgba(255, 165, 0, 0.3)",
+                borderColor: "rgba(255, 165, 0, 1)",
                 borderWidth: 1
             }]
         },
@@ -157,8 +157,8 @@ $(function () {
             labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Des'],
             datasets: [{
                 data: data.power_month,
-                backgroundColor: "rgba(41, 98, 255,0.3)",
-                borderColor: "rgba(41, 98, 255, 1)",
+                backgroundColor: "rgba(255, 165, 0, 0.3)",
+                borderColor: "rgba(255, 165, 0, 1)",
                 borderWidth: 1
             }]
         },
@@ -219,8 +219,8 @@ $(function () {
             datasets: [{
                 data: data.power_hour,
                 lineTension: 0.2,
-                backgroundColor: "rgba(41, 98, 255,0.3)",
-                borderColor: "rgba(41, 98, 255, 1)",
+                backgroundColor: "rgba(255, 165, 0, 0.3)",
+                borderColor: "rgba(255, 165, 0, 1)",
                 borderWidth: 1
             }]
         },

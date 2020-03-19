@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\KonsumsiData;
+use App\Data;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -23,18 +24,22 @@ class KonsumsiController extends Controller
         $dataKonsumsi['konsumsi_month1'] = array();
         $dataKonsumsi['konsumsi_month2'] = array();
         $dataKonsumsi['konsumsi_month3'] = array();
+        $dataKonsumsi['konsumsi_month_total'] = array();
 
         $dataKonsumsi['konsumsi_week1'] = array();
         $dataKonsumsi['konsumsi_week2'] = array();
         $dataKonsumsi['konsumsi_week3'] = array();
+        $dataKonsumsi['konsumsi_week_total'] = array();
 
         $dataKonsumsi['konsumsi_year1'] = array();
         $dataKonsumsi['konsumsi_year2'] = array();
         $dataKonsumsi['konsumsi_year3'] = array();
+        $dataKonsumsi['konsumsi_year_total'] = array();
 
         $dataKonsumsi['konsumsi_day1'] = array();
         $dataKonsumsi['konsumsi_day2'] = array();
         $dataKonsumsi['konsumsi_day3'] = array();
+        $dataKonsumsi['konsumsi_day_total'] = array();
 
         $daysample = Carbon::now('Asia/Jakarta')->startOfDay()->subHour();
         $weeksample = Carbon::now('Asia/Jakarta')->startOfDay()->startOfWeek();
@@ -49,9 +54,12 @@ class KonsumsiController extends Controller
             $data_monthGrafik2 = KonsumsiData::where('IDSENSOR','=', 2)->whereBetween('ONINSERT', [$monthsample->format('Y-m-d H:i:s'), $monthsample->addDay()->format('Y-m-d H:i:s')])->sum('POWER');
             $monthsample->subDay();
             $data_monthGrafik3 = KonsumsiData::where('IDSENSOR','=', 3)->whereBetween('ONINSERT', [$monthsample->format('Y-m-d H:i:s'), $monthsample->addDay()->format('Y-m-d H:i:s')])->sum('POWER');
+            $monthsample->subDay();
+            $data_monthGrafikTotal = Data::whereBetween('ONINSERT', [$monthsample->format('Y-m-d H:i:s'), $monthsample->addDay()->format('Y-m-d H:i:s')])->sum('POWER_LOAD');
             $status1 = !empty($data_monthGrafik1);
-            $status2 = !empty($data_monthGrafik1);
-            $status3 = !empty($data_monthGrafik1);
+            $status2 = !empty($data_monthGrafik2);
+            $status3 = !empty($data_monthGrafik3);
+            $status4 = !empty($data_monthGrafikTotal);
             // dd($monthsample->format('Y-m-d H:i:s'));
             if ($status1) {
                 array_push($dataKonsumsi['konsumsi_month1'], round($data_monthGrafik1 / 1000, 2));
@@ -68,6 +76,11 @@ class KonsumsiController extends Controller
             } else {
                 array_push($dataKonsumsi['konsumsi_month3'], 0);
             }
+            if ($status4) {
+                array_push($dataKonsumsi['konsumsi_month_total'], round($data_monthGrafikTotal / 1000, 2));
+            } else {
+                array_push($dataKonsumsi['konsumsi_month_total'], 0);
+            }
 
 
             if($i<7){
@@ -76,10 +89,13 @@ class KonsumsiController extends Controller
                 $data_week2 = KonsumsiData::where('IDSENSOR','=', 2)->whereBetween('ONINSERT', [$weeksample->format('Y-m-d H:i:s'), $weeksample->addDay()->format('Y-m-d H:i:s')])->sum('POWER');
                 $weeksample->subDay();
                 $data_week3 = KonsumsiData::where('IDSENSOR','=', 3)->whereBetween('ONINSERT', [$weeksample->format('Y-m-d H:i:s'), $weeksample->addDay()->format('Y-m-d H:i:s')])->sum('POWER');
+                $weeksample->subDay();
+                $data_week_total = Data::whereBetween('ONINSERT', [$weeksample->format('Y-m-d H:i:s'), $weeksample->addDay()->format('Y-m-d H:i:s')])->sum('POWER_LOAD');
 
                 $status1 = !empty($data_week1);
                 $status2 = !empty($data_week2);
                 $status3 = !empty($data_week3);
+                $status4 = !empty($data_week_total);
     
                 if ($status1) {
                     array_push($dataKonsumsi['konsumsi_week1'], round($data_week1/1000, 2));
@@ -96,6 +112,11 @@ class KonsumsiController extends Controller
                 } else {
                     array_push($dataKonsumsi['konsumsi_week3'], 0);
                 }
+                if ($status4) {
+                    array_push($dataKonsumsi['konsumsi_week_total'], round($data_week_total/1000, 2));
+                } else {
+                    array_push($dataKonsumsi['konsumsi_week_total'], 0);
+                }
             }
 
             if($i<12){
@@ -104,10 +125,13 @@ class KonsumsiController extends Controller
                 $data_year2 = KonsumsiData::where('IDSENSOR','=', 2)->whereBetween('ONINSERT', [$yearsample->format('Y-m-d H:i:s'), $yearsample->addMonth()->format('Y-m-d H:i:s')])->sum('POWER');
                 $yearsample->subMonth();
                 $data_year3 = KonsumsiData::where('IDSENSOR','=', 3)->whereBetween('ONINSERT', [$yearsample->format('Y-m-d H:i:s'), $yearsample->addMonth()->format('Y-m-d H:i:s')])->sum('POWER');
+                $yearsample->subMonth();
+                $data_year_total = Data::whereBetween('ONINSERT', [$yearsample->format('Y-m-d H:i:s'), $yearsample->addMonth()->format('Y-m-d H:i:s')])->sum('POWER_LOAD');
 
                 $status1 = !empty($data_year1);
                 $status2 = !empty($data_year2);
-                $status3 = !empty($data_year2);
+                $status3 = !empty($data_year3);
+                $status4 = !empty($data_year_total);
 
                 if ($status1) {
                     array_push($dataKonsumsi['konsumsi_year1'], round($data_year1/1000,2));
@@ -124,6 +148,11 @@ class KonsumsiController extends Controller
                 } else {
                     array_push($dataKonsumsi['konsumsi_year3'], 0);
                 }
+                if ($status4) {
+                    array_push($dataKonsumsi['konsumsi_year_total'], round($data_year_total/1000,2));
+                } else {
+                    array_push($dataKonsumsi['konsumsi_year_total'], 0);
+                }
 
             }
             if($i<=24){
@@ -132,10 +161,12 @@ class KonsumsiController extends Controller
                 $data_day2 = KonsumsiData::where('IDSENSOR','=', 2)->whereBetween('ONINSERT', [$daysample->format('Y-m-d H:i:s'), $daysample->addHour()->format('Y-m-d H:i:s')])->sum('POWER');
                 $daysample->subHour();
                 $data_day3 = KonsumsiData::where('IDSENSOR','=', 3)->whereBetween('ONINSERT', [$daysample->format('Y-m-d H:i:s'), $daysample->addHour()->format('Y-m-d H:i:s')])->sum('POWER');
+                $data_day_total = Data::whereBetween('ONINSERT', [$daysample->format('Y-m-d H:i:s'), $daysample->addHour()->format('Y-m-d H:i:s')])->sum('POWER_LOAD');
 
                 $status1 = !empty($data_day1);
                 $status2 = !empty($data_day2);
-                $status3 = !empty($data_day2);
+                $status3 = !empty($data_day3);
+                $status4 = !empty($data_day_total);
 
                 if ($status1) {
                     array_push($dataKonsumsi['konsumsi_day1'], round($data_day1/1000, 2));
@@ -152,6 +183,11 @@ class KonsumsiController extends Controller
                 } else {
                     array_push($dataKonsumsi['konsumsi_day3'], 0);
                 }
+                if ($status4) {
+                    array_push($dataKonsumsi['konsumsi_day_total'], round($data_day_total/1000, 2));
+                } else {
+                    array_push($dataKonsumsi['konsumsi_day_total'], 0);
+                }
 
             }
 
@@ -164,33 +200,41 @@ class KonsumsiController extends Controller
         $maxday1 = max($dataKonsumsi['konsumsi_day1']);
         $maxday2 = max($dataKonsumsi['konsumsi_day2']);
         $maxday3 = max($dataKonsumsi['konsumsi_day3']);
+        $maxday4 = max($dataKonsumsi['konsumsi_day_total']);
 
         $max = max($maxday1, $maxday2);
         $max = max($max, $maxday3);
+        $max = max($max, $maxday4);
         array_push($jsonData['max'], $max);
 
         $maxweek1 = max($dataKonsumsi['konsumsi_week1']);
         $maxweek2 = max($dataKonsumsi['konsumsi_week2']);
         $maxweek3 = max($dataKonsumsi['konsumsi_week3']);
+        $maxweek4 = max($dataKonsumsi['konsumsi_week_total']);
 
         $max = max($maxweek1, $maxweek2);
         $max = max($max, $maxweek3);
+        $max = max($max, $maxweek4);
         array_push($jsonData['max'], $max);
 
         $maxmonth1 = max($dataKonsumsi['konsumsi_month1']);
         $maxmonth2 = max($dataKonsumsi['konsumsi_month2']);
         $maxmonth3 = max($dataKonsumsi['konsumsi_month3']);
+        $maxmonth4 = max($dataKonsumsi['konsumsi_month_total']);
 
         $max = max($maxmonth1, $maxmonth2);
         $max = max($max, $maxmonth3);
+        $max = max($max, $maxmonth4);
         array_push($jsonData['max'], $max);
 
         $maxyear1 = max($dataKonsumsi['konsumsi_year1']);
         $maxyear2 = max($dataKonsumsi['konsumsi_year2']);
         $maxyear3 = max($dataKonsumsi['konsumsi_year3']);
-
+        $maxyear4 = max($dataKonsumsi['konsumsi_year_total']);
+        
         $max = max($maxyear1, $maxyear2);
         $max = max($max, $maxyear3);
+        $max = max($max, $maxyear4);
         array_push($jsonData['max'], $max);
 
         return $jsonData;
