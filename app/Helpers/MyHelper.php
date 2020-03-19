@@ -98,5 +98,5 @@ function get_last_daya_oneday_tools($id='')
 
   $result = KonsumsiData::where('IDSENSOR',$id)->where('ONINSERT','like','%'.$dateNow.'%')->sum('POWER');
 
-  return $hourNow == 0 ? 0 : $result/$hourNow;
+  return $hourNow == 0 ? 0 : round($result/$hourNow,2);
 }
