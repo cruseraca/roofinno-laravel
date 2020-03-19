@@ -12,54 +12,94 @@ class DashboardController extends Controller
     //fungsi index
     public function index()
     {
-        $datetime = Carbon::now('Asia/Jakarta');
-        $time = Carbon::now('Asia/Jakarta'); 
-        $daya_total = Data::where('ONINSERT','>=',$time->startOfDay()->format('Y-m-d H:i:s'))->where('ONINSERT','<=',$time->addDay()->format('Y-m-d H:i:s'))->sum('POWER_LOAD');
-        $datetime->minute = 0;
-        $datetime->second = 0;
-        return view('dashboard',['time' => $datetime->format('H:i'), 'daya_total' => round(($daya_total/720)*288/1000,2)]);
+        $datetime = Carbon::now('Asia/Jakarta')->startOfDay();
+        $prod_total = 0;
+        $kons_total = 0;
+        
+        for($i=0;$i<=288;$i++){
+            $prod = Data::where('ONINSERT','>=',$datetime->format('Y-m-d H:i:s'))->where('ONINSERT','<=',$datetime->addMinutes(5)->format('Y-m-d H:i:s'))->sum('POWER_PS');
+            if($prod==0) {
+                continue;
+            }
+            else {
+                $datetime->subMinutes(5);
+                $prod_count = Data::where('ONINSERT','>=',$datetime->format('Y-m-d H:i:s'))->where('ONINSERT','<=',$datetime->addMinutes(5)->format('Y-m-d H:i:s'))->where('POWER_PS','<>',0)->count();
+                $prod_total += $prod/$prod_count;
+                $datetime->subMinutes(5);
+                $kons = Data::where('ONINSERT','>=',$datetime->format('Y-m-d H:i:s'))->where('ONINSERT','<=',$datetime->addMinutes(5)->format('Y-m-d H:i:s'))->sum('POWER_LOAD');
+                if($kons == 0) {
+                    continue;
+                }
+                else {
+                    $datetime->subMinutes(5);
+                    $kons_count = Data::where('ONINSERT','>=',$datetime->format('Y-m-d H:i:s'))->where('ONINSERT','<=',$datetime->addMinutes(5)->format('Y-m-d H:i:s'))->where('POWER_LOAD','<>',0)->count();
+                    $kons_total += $kons/$kons_count;
+                }
+            }
+        }
+        return view('dashboard',['prod_total' => round($prod_total/1000,2), 'kons_total' => round($kons_total/1000,2)]);
     }
     
     //Realtime Grafik
     public function getRealtimeData()
     {
         $data_x = array();
-        $data_y = array();
+        $data_y1 = array();
+        $data_y2 = array();
         $kons = array();
         $datetime = Carbon::now('Asia/Jakarta'); //ganti menjadi carbon now
         $datetime = $datetime->startOfDay();
         
         for($i=0;$i <= 288;$i++){
-            $data = Data::where('ONINSERT','>=',$datetime->format('Y-m-d H:i:s'))->where('ONINSERT','<=',$datetime->addMinutes(5)->format('Y-m-d H:i:s'))->sum('POWER_LOAD');
+            $data = Data::where('ONINSERT','>=',$datetime->format('Y-m-d H:i:s'))->where('ONINSERT','<=',$datetime->addMinutes(5)->format('Y-m-d H:i:s'))->sum('POWER_PS');
             $datetime->subMinutes(5);
             if($data == 0)
             {
                 array_push($data_x,$datetime->format('H:i'));
-                array_push($data_y,0);
+                array_push($data_y1,0);
                 $datetime->addMinutes(5);
             } else 
             {
                 array_push($data_x,$datetime->format('H:i'));
-                $count = Data::where('ONINSERT','>=',$datetime->format('Y-m-d H:i:s'))->where('ONINSERT','<=',$datetime->addMinutes(5)->format('Y-m-d H:i:s'))->where('POWER_LOAD','<>',0)->count();
-                array_push($data_y,$data/$count);
+                $count = Data::where('ONINSERT','>=',$datetime->format('Y-m-d H:i:s'))->where('ONINSERT','<=',$datetime->addMinutes(5)->format('Y-m-d H:i:s'))->where('POWER_PS','<>',0)->count();
+                array_push($data_y1,$data/$count);
             }
             
         }
-        $max_data = max($data_y);
+
+        $datetime->subDay()->subMinutes(5);
+        for($i=0;$i <= 288;$i++){
+            $data = Data::where('ONINSERT','>=',$datetime->format('Y-m-d H:i:s'))->where('ONINSERT','<=',$datetime->addMinutes(5)->format('Y-m-d H:i:s'))->sum('POWER_LOAD');
+            $datetime->subMinutes(5);
+            if($data == 0)
+            {
+                // array_push($data_x,$datetime->format('H:i'));
+                array_push($data_y2,0);
+                $datetime->addMinutes(5);
+            } else 
+            {
+                // array_push($data_x,$datetime->format('H:i'));
+                $count = Data::where('ONINSERT','>=',$datetime->format('Y-m-d H:i:s'))->where('ONINSERT','<=',$datetime->addMinutes(5)->format('Y-m-d H:i:s'))->where('POWER_LOAD','<>',0)->count();
+                array_push($data_y2,$data/$count);
+            }
+            
+        }
+        $max_data = max($data_y1);
+        if(max($data_y1)<max($data_y2)) $max_data = max($data_y2);
         $max = round(($max_data + 50/2)/50)*50;
         
         //konsumsi & produksi
-        $kons_time = Carbon::now('Asia/Jakarta'); //ganti menjadi carbon now
-        // $kons_time = Carbon::now('Asia/Jakarta');
-        $kons_time->minute = 0;
-        $kons_time->second = 0;
-        $kons_data = Data::where('ONINSERT','>=',$kons_time->format('Y-m-d H:i:s'))->where('ONINSERT','<=',$kons_time->addHour()->format('Y-m-d H:i:s'))->sum('POWER_LOAD');
-        $kons_count = Data::where('ONINSERT','>=',$kons_time->subHour()->format('Y-m-d H:i:s'))->where('ONINSERT','<=',$kons_time->addHour()->format('Y-m-d H:i:s'))->where('POWER_LOAD','<>',0)->count();
-        array_push($kons,round($kons_data/$kons_count,2));
-        array_push($kons,$kons_time->subHour()->format('Y-m-d H:i:s'));
+       
+        $kons_data = Data::orderBy('ONINSERT','desc')->pluck('POWER_LOAD')->first();
+        $prod_data = Data::orderBy('ONINSERT','desc')->pluck('POWER_PS')->first();
+        array_push($kons,round($kons_data,2));
+        array_push($kons,round($prod_data,2));
+        array_push($kons,Carbon::now('Asia/Jakarta')->format('H:i'));
+
         $data_all = array(
             'time' => $data_x,
-            'kwh' => $data_y, 
+            'kwh1' => $data_y1, 
+            'kwh2' => $data_y2, 
             'max' => $max,
             'kons' => $kons,
         );

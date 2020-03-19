@@ -32,7 +32,7 @@
                         <i class="fas fa-plug fa-3x" style="color:white"></i>
                     </div>
                     <div>
-                        <h3 class="text-white mb-0" id="sum1"> {{$daya_total}} KWh</h3>
+                        <h3 class="text-white mb-0" id="sum1"> {{$kons_total}} KWh</h3>
                         <span style="color:white"> Konsumsi hari ini </span>
                         <h6>    </h6>
                         <button type="button" class="btn waves-effect waves-light btn-warning">Lihat Lebih</button>
@@ -51,7 +51,7 @@
                           <i class="fas fa-solar-panel fa-3x" style="color:white"></i>
                       </div>
                       <div>
-                          <h3 class="text-white mb-0" id="sum2"> 500KWh</h3>
+                          <h3 class="text-white mb-0" id="sum2"> {{$prod_total}} KWh</h3>
                           <span style="color:white"> Produksi hari ini </span>
                           <h6>    </h6>
                           <button type="button" class="btn waves-effect waves-light btn-warning">Lihat Lebih</button>
@@ -74,12 +74,12 @@
                     <h2>Realtime Monitoring</h2>
                       <div class="d-md-flex align-items-center">
                               <div class="col-3">
-                                  <h4 class="card-title" style="color: blue" id="kons">10KW</h4>
-                                  <span><h5 class="card-subtitle">Konsumsi pada {{$time}} WIB</h5></span>
+                                  <h4 class="card-title" style="color: blue" id="kons">-</h4>
+                                  <span><h5 class="card-subtitle" id="kons_time"></h5></span>
                               </div>
                               <div class="col-3">
-                                  <h4 class="card-title" style="color: orange" id="prod">- KW</h4>
-                                  <h5 class="card-subtitle">Produksi pada {{$time}} WIB</h5>
+                                  <h4 class="card-title" style="color: orange" id="prod">-</h4>
+                                  <h5 class="card-subtitle" id="prod_time">-</h5>
                               </div> <br>
                       </div>
                       <div class="row">
