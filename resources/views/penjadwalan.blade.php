@@ -45,15 +45,16 @@
                         <div class="row">
                             <!-- column -->
                             <div class="col-lg-12">
-                                <div class="ct-sm-line-chart" id="penjadwalan-chart"></div>
+                                <canvas id="penjadwalan-chart" height="80"></canvas>
                             </div>
                             <!-- column -->
                         </div>
                         <div class="ml-auto d-flex no-block align-items-center">
                                 <ul class="list-inline font-12 dl mr-3 mb-0">
-                                    <li class="list-inline-item text-info"><i class="fas fa-check-square" style="color: red"></i> Beban A</li>
-                                    <li class="list-inline-item text-primary"><i class="fas fa-check-square" style="color: green"></i> Beban B</li>
-                                    <li class="list-inline-item text-primary"><i class="fas fa-check-square" style="color: purple"></i> Beban C</li>
+                                    <li class="list-inline-item text-info"><i class="fas fa-check-square" style="color: #cc0000"></i> Beban A</li>
+                                    <li class="list-inline-item text-primary"><i class="fas fa-check-square" style="color: #00cc00"></i> Beban B</li>
+                                    <li class="list-inline-item text-primary"><i class="fas fa-check-square" style="color: #8A2BE2"></i> Beban C</li>
+                                    <li class="list-inline-item text-primary"><i class="fas fa-check-square" style="color: #2962FF"></i> Beban Total</li>
                                 </ul>
                         </div>
                     </div>
@@ -322,4 +323,8 @@
         toastr.error('Anda akan menghapus data ini?<br /><a href="{{url('User/hapusTools/') }}'+id+'" class="btn btn-secondary clear">Yes</a>', 'Anda yakin?',{ "progressBar": true });
     }
     </script> --}}
+@endsection
+
+@section('script')
+<script src="{{asset('/dist/js/pages/dashboards/dashboardpenjadwalan.js')}}"></script>
 @endsection

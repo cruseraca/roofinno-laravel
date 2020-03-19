@@ -72,11 +72,17 @@ $(function () {
                             borderColor: '#8A2BE2',
                             backgroundColor: "rgba(138,43,226,0.25)",
                             borderWidth: 2,
+                        },
+                        {
+                            label: 'Beban 4',
+                            data:  dataKonsumsi.konsumsi_data[0].konsumsi_day_total,
+                            borderColor: '#2962FF',
+                            backgroundColor: "rgba(41,98,255,0.25)",
+                            borderWidth: 2,
                         }
                     ]
                 },
-                options: {
-                    
+                options: {                 
                     scales: {
                         xAxes: [{
                             type: 'category',
@@ -150,6 +156,13 @@ $(function () {
                             stack: 'Konsumsi',
                             data:  dataKonsumsi.konsumsi_data[0].konsumsi_week3,
                             backgroundColor: '#8A2BE2',
+                            borderWidth: 1
+                        },
+                        {
+                            label: 'Beban Total',
+                            stack: 'Konsumsi Total',
+                            data:  dataKonsumsi.konsumsi_data[0].konsumsi_week_total,
+                            backgroundColor: '#2962FF',
                             borderWidth: 1
                         }
                     ]
@@ -237,6 +250,13 @@ $(function () {
                             data: dataKonsumsi.konsumsi_data[0].konsumsi_month3,
                             backgroundColor: '#8A2BE2',
                             borderWidth: 1
+                        },
+                        {
+                            label: 'Beban Total',
+                            stack: 'Konsumsi Total',
+                            data:  dataKonsumsi.konsumsi_data[0].konsumsi_month_total,
+                            backgroundColor: '#2962FF',
+                            borderWidth: 1
                         }
                     ]
                 },
@@ -259,7 +279,7 @@ $(function () {
                         yAxes: [{
                             stacked: true,
                             min:0,
-                            max: dataProduksi.max[2],
+                            // max: dataProduksi.max[2],
                             ticks: {
                                 min: 0,
                                 // Include a dollar sign in the ticks
@@ -322,6 +342,13 @@ $(function () {
                             data: dataKonsumsi.konsumsi_data[0].konsumsi_year3,
                             backgroundColor: '#8A2BE2',
                             borderWidth: 1
+                        },
+                        {
+                            label: 'Beban Total',
+                            stack: 'Konsumsi Total',
+                            data:  dataKonsumsi.konsumsi_data[0].konsumsi_year_total,
+                            backgroundColor: '#2962FF',
+                            borderWidth: 1
                         }
                     ]
                 },
@@ -344,11 +371,12 @@ $(function () {
                         yAxes: [{
                             stacked: true,
                             min:0,
-                            max: dataProduksi.max[3],
+                            // max: dataProduksi.max[3],
                             ticks: {
                                 // min: 0,
                                 // Include a dollar sign in the ticks
                                 // max: data.max[1],
+                                
                                 callback: function (value, index, values) {
                                     return value + " Wh";
                                 }
