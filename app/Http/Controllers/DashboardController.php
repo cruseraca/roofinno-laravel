@@ -45,6 +45,22 @@ class DashboardController extends Controller
             }
             
         }
+        for($i=0;$i <= 288;$i++){
+            $data = Data::where('ONINSERT','>=',$datetime->format('Y-m-d H:i:s'))->where('ONINSERT','<=',$datetime->addMinutes(5)->format('Y-m-d H:i:s'))->sum('POWER_LOAD');
+            $datetime->subMinutes(5);
+            if($data == 0)
+            {
+                array_push($data_x,$datetime->format('H:i'));
+                array_push($data_y,0);
+                $datetime->addMinutes(5);
+            } else 
+            {
+                array_push($data_x,$datetime->format('H:i'));
+                $count = Data::where('ONINSERT','>=',$datetime->format('Y-m-d H:i:s'))->where('ONINSERT','<=',$datetime->addMinutes(5)->format('Y-m-d H:i:s'))->where('POWER_LOAD','<>',0)->count();
+                array_push($data_y,$data/$count);
+            }
+            
+        }
         $max_data = max($data_y);
         $max = round(($max_data + 50/2)/50)*50;
         
