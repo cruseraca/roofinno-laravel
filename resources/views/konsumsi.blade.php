@@ -97,6 +97,7 @@
                             <li class="list-inline-item"><i class="fas fa-check-square" style="color: #cc0000"></i> Beban A</li>
                             <li class="list-inline-item"><i class="fas fa-check-square" style="color: #00cc00"></i> Beban B</li>
                             <li class="list-inline-item"><i class="fas fa-check-square" style="color: #8A2BE2"></i> Beban C</li>
+                            <li class="list-inline-item"><i class="fas fa-check-square" style="color: #2962FF"></i> Beban Total</li>
                         </ul>
                     </div>
                 </div>
@@ -194,6 +195,7 @@
                             <li class="list-inline-item"><i class="fas fa-check-square" style="color: #cc0000"></i> Beban A</li>
                             <li class="list-inline-item"><i class="fas fa-check-square" style="color: #00cc00"></i> Beban B</li>
                             <li class="list-inline-item"><i class="fas fa-check-square" style="color: #8A2BE2"></i> Beban C</li>
+                            <li class="list-inline-item"><i class="fas fa-check-square" style="color: #2962FF"></i> Beban Total</li>
                         </ul>
                     </div>
                 </div>
@@ -283,6 +285,7 @@
                             <li class="list-inline-item"><i class="fas fa-check-square" style="color: #cc0000"></i> Beban A</li>
                             <li class="list-inline-item"><i class="fas fa-check-square" style="color: #00cc00"></i> Beban B</li>
                             <li class="list-inline-item"><i class="fas fa-check-square" style="color: #8A2BE2"></i> Beban C</li>
+                            <li class="list-inline-item"><i class="fas fa-check-square" style="color: #2962FF"></i> Beban Total</li>
                         </ul>
                     </div>
                 </div>
@@ -353,6 +356,7 @@
                             <li class="list-inline-item"><i class="fas fa-check-square" style="color: #cc0000"></i> Beban A</li>
                             <li class="list-inline-item"><i class="fas fa-check-square" style="color: #00cc00"></i> Beban B</li>
                             <li class="list-inline-item"><i class="fas fa-check-square" style="color: #8A2BE2"></i> Beban C</li>
+                            <li class="list-inline-item"><i class="fas fa-check-square" style="color: #2962FF"></i> Beban Total</li>
                     </div>
                     <!--==============================================================-->
                     <!-- END KONSUMSI BULANAN -->

@@ -161,6 +161,7 @@ class KonsumsiController extends Controller
                 $data_day2 = KonsumsiData::where('IDSENSOR','=', 2)->whereBetween('ONINSERT', [$daysample->format('Y-m-d H:i:s'), $daysample->addHour()->format('Y-m-d H:i:s')])->sum('POWER');
                 $daysample->subHour();
                 $data_day3 = KonsumsiData::where('IDSENSOR','=', 3)->whereBetween('ONINSERT', [$daysample->format('Y-m-d H:i:s'), $daysample->addHour()->format('Y-m-d H:i:s')])->sum('POWER');
+                $daysample->subHour();
                 $data_day_total = Data::whereBetween('ONINSERT', [$daysample->format('Y-m-d H:i:s'), $daysample->addHour()->format('Y-m-d H:i:s')])->sum('POWER_LOAD');
 
                 $status1 = !empty($data_day1);

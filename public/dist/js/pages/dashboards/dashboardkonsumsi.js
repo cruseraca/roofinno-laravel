@@ -82,8 +82,7 @@ $(function () {
                         }
                     ]
                 },
-                options: {
-                    
+                options: {                 
                     scales: {
                         xAxes: [{
                             type: 'category',
@@ -161,7 +160,7 @@ $(function () {
                         },
                         {
                             label: 'Beban Total',
-                            stack: 'Konsumsi',
+                            stack: 'Konsumsi Total',
                             data:  dataKonsumsi.konsumsi_data[0].konsumsi_week_total,
                             backgroundColor: '#2962FF',
                             borderWidth: 1
@@ -254,7 +253,7 @@ $(function () {
                         },
                         {
                             label: 'Beban Total',
-                            stack: 'Konsumsi',
+                            stack: 'Konsumsi Total',
                             data:  dataKonsumsi.konsumsi_data[0].konsumsi_month_total,
                             backgroundColor: '#2962FF',
                             borderWidth: 1
@@ -280,7 +279,7 @@ $(function () {
                         yAxes: [{
                             stacked: true,
                             min:0,
-                            max: dataProduksi.max[2],
+                            // max: dataProduksi.max[2],
                             ticks: {
                                 min: 0,
                                 // Include a dollar sign in the ticks
@@ -346,7 +345,7 @@ $(function () {
                         },
                         {
                             label: 'Beban Total',
-                            stack: 'Konsumsi',
+                            stack: 'Konsumsi Total',
                             data:  dataKonsumsi.konsumsi_data[0].konsumsi_year_total,
                             backgroundColor: '#2962FF',
                             borderWidth: 1
@@ -372,11 +371,12 @@ $(function () {
                         yAxes: [{
                             stacked: true,
                             min:0,
-                            max: dataProduksi.max[3],
+                            // max: dataProduksi.max[3],
                             ticks: {
                                 // min: 0,
                                 // Include a dollar sign in the ticks
                                 // max: data.max[1],
+                                
                                 callback: function (value, index, values) {
                                     return value + " Wh";
                                 }
