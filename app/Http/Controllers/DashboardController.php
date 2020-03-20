@@ -37,7 +37,7 @@ class DashboardController extends Controller
                 }
             }
         }
-        return view('dashboard',['prod_total' => round($prod_total/1000,2), 'kons_total' => round($kons_total/1000,2)]);
+        return view('dashboard',['prod_total' => round(($prod_total/12)/1000,2), 'kons_total' => round(($kons_total/12)/1000,2)]);
     }
     
     //Realtime Grafik
