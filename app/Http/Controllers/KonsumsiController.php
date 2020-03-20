@@ -41,7 +41,7 @@ class KonsumsiController extends Controller
         $dataKonsumsi['konsumsi_day3'] = array();
         $dataKonsumsi['konsumsi_day_total'] = array();
 
-        $daysample = Carbon::now('Asia/Jakarta')->startOfDay()->subHour();
+        $daysample = Carbon::now('Asia/Jakarta')->startOfDay();
         $weeksample = Carbon::now('Asia/Jakarta')->startOfDay()->startOfWeek();
         $monthsample = Carbon::now('Asia/Jakarta')->startOfMonth();
         $yearsample = Carbon::now('Asia/Jakarta')->startOfYear();
