@@ -9,10 +9,10 @@
 @endsection
 
 @section('content')
-<div class="container-fluid">
-<!-- ============================================================== -->
-<!-- JUDUL MONITOR DATA KONSUMSI -->
-<!-- ============================================================== -->
+<div class="container-fluid" id="dashboard_konsumsi">
+    <!-- ============================================================== -->
+    <!-- JUDUL MONITOR DATA KONSUMSI -->
+    <!-- ============================================================== -->
     <div class="row">
         <div class="col-12">
             <div class="card bg-transparent">
@@ -60,7 +60,7 @@
                         </div>
                         <div class="row">
                             <div class="col-1.5">
-                                <h4 class="card-title" style="color: blue ; margin-left: 15px" ><strong>2KW</strong></h4>
+                                <h4 class="card-title" style="color: blue ; margin-left: 15px"><strong>2KW</strong></h4>
                                 <h6 class="card-subtitle" style="margin-left: 15px">Pada 12.00 PM</h6>
                             </div>
                             <div class=" col " style="text-align: left">
@@ -87,32 +87,34 @@
                     <div class="row">
                         <!-- column -->
                         <div class="col-12">
-                            <div class="ct-sm-line-chart" style="height: 250px"></div>
+                            <canvas id="chart-konsumsi-harian" height="80"></canvas>
                         </div>
                         <!-- column -->
                     </div>
-                     <!-- Simbol Keterangan Warna -->
+                    <!-- Simbol Keterangan Warna -->
                     <div class="ml-auto d-flex no-block align-items-center">
-                            <ul class="list-inline font-15 dl mr-3 mb-0" style="margin-left: 45px">
-                                <li class="list-inline-item"><i class="fas fa-check-square" style="color: #cc0000"></i> Beban A</li>
-                                <li class="list-inline-item"><i class="fas fa-check-square" style="color: #00cc00"></i> Beban B</li>
-                                <li class="list-inline-item"><i class="fas fa-check-square" style="color: #8A2BE2"></i> Beban C</li>
-                            </ul>
+                        <ul class="list-inline font-15 dl mr-3 mb-0" style="margin-left: 45px">
+                            <li class="list-inline-item"><i class="fas fa-check-square" style="color: #cc0000"></i> Beban A</li>
+                            <li class="list-inline-item"><i class="fas fa-check-square" style="color: #00cc00"></i> Beban B</li>
+                            <li class="list-inline-item"><i class="fas fa-check-square" style="color: #8A2BE2"></i> Beban C</li>
+                            <li class="list-inline-item"><i class="fas fa-check-square" style="color: #2962FF"></i> Beban Total</li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-<!--========================================================================================== -->
-                                    <!-- Konsumsi Mingguan -->
-<!-- ========================================================================================== -->
+    <!--========================================================================================== -->
+    <!-- Konsumsi Mingguan -->
+    <!-- ========================================================================================== -->
 
-     <div class="row">
+    <div class="row">
         <!-- column -->
         <div class="col-sm-12">
+
             <div class="card">
                 <div class="card-body">
-                     <div class="col-12">
+                    <div class="col-12">
                         <h4 class="card-title"><Strong>Konsumsi Mingguan</Strong></h4>
                         <hr>
                     </div>
@@ -122,94 +124,97 @@
                             <h4 class="card-title" style="color: blue; margin-left: 30px"><strong>600KWh</strong></h4>
                         </div>
                         <div class="col-sm-2 col-md-auto">
-                             <h5 class="card-subtitle" style=" margin-top:5px; color: black;">1 Agustus - 7 Agustus</h5>
+                            <h5 class="card-subtitle" style=" margin-top:5px; color: black;">1 Agustus - 7 Agustus</h5>
                         </div>
                         <div class="col-md-1">
-                                <i class="fas fa-angle-left" style="margin-left:5px; margin-top:10px"></i>
-                                <i class="fas fa-angle-right" style="margin-left: 10px; margin-top:10px"></i>
+                            <i class="fas fa-angle-left" style="margin-left:5px; margin-top:10px"></i>
+                            <i class="fas fa-angle-right" style="margin-left: 10px; margin-top:10px"></i>
                         </div>
                     </div>
                     <!-- BULAN TAHUN MINGGU DROPDOWN -->
                     <div class="row">
-                            <div class="col-4"></div>
-                                <div class="col-2 float-right">
-                                    <div class="dl">
-                                        <select class="custom-select">
-                                            <option value="0" selected>Bulan</option>
-                                            <option value="1">Januari</option>
-                                            <option value="2">Februari</option>
-                                            <option value="3">Maret</option>
-                                            <option value="4">April</option>
-                                            <option value="5">Mei</option>
-                                            <option value="6">Juni</option>
-                                            <option value="7">Juli</option>
-                                            <option value="8">Agustus</option>
-                                            <option value="9">September</option>
-                                            <option value="10">Oktober</option>
-                                            <option value="11">November</option>
-                                            <option value="12">Desember</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-2 float-right">
-                                    <div class="dl">
-                                        <select class="custom-select dropdown-toggle">
-                                            <option value="0" selected>Tahun</option>
-                                            <option value="1">2018</option>
-                                            <option value="2">2019</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-2 float-right">
-                                    <div class="dl">
-                                        <select class="custom-select">
-                                            <option value="0" selected>Minggu</option>
-                                            <option value="1">Minggu 1</option>
-                                            <option value="2">Minggu 2</option>
-                                            <option value="3">Minggu 3</option>
-                                            <option value="4">Minggu 4</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-2 float-right">
-                                    <button type="button" class="btn btn-block btn-info">Terapkan</button>
-                                </div>
+                        <div class="col-4"></div>
+                        <div class="col-2 float-right">
+                            <div class="dl">
+                                <select class="custom-select">
+                                    <option value="0" selected>Bulan</option>
+                                    <option value="1">Januari</option>
+                                    <option value="2">Februari</option>
+                                    <option value="3">Maret</option>
+                                    <option value="4">April</option>
+                                    <option value="5">Mei</option>
+                                    <option value="6">Juni</option>
+                                    <option value="7">Juli</option>
+                                    <option value="8">Agustus</option>
+                                    <option value="9">September</option>
+                                    <option value="10">Oktober</option>
+                                    <option value="11">November</option>
+                                    <option value="12">Desember</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-2 float-right">
+                            <div class="dl">
+                                <select class="custom-select dropdown-toggle">
+                                    <option value="0" selected>Tahun</option>
+                                    <option value="1">2018</option>
+                                    <option value="2">2019</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-2 float-right">
+                            <div class="dl">
+                                <select class="custom-select">
+                                    <option value="0" selected>Minggu</option>
+                                    <option value="1">Minggu 1</option>
+                                    <option value="2">Minggu 2</option>
+                                    <option value="3">Minggu 3</option>
+                                    <option value="4">Minggu 4</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-2 float-right">
+                            <button type="button" class="btn btn-block btn-info">Terapkan</button>
+                        </div>
                     </div>
                     <!-- Bulanan -->
                     <div class="pt-3">
                         <div class="row">
                             <!-- column -->
-                           <div class="col-md-12 col-lg-12">
-                              <div id="stacked-column-mingguan" style="position: relative; height:250px;"></div>
+                            <div class="col-md-12 col-lg-12">
+                                <canvas id="stacked-column-mingguan" height="80"></canvas>
                                 <div class="row mb-0 mt-3 text-center">
                                 </div>
                             </div>
                         </div>
                     </div>
-                     <!-- Simbol Keterangan Warna -->
+                    <!-- Simbol Keterangan Warna -->
                     <div class="ml-auto d-flex no-block align-items-center">
-                            <ul class="list-inline font-15 dl mr-3 mb-0" style="margin-left: 40px">
-                                <li class="list-inline-item"><i class="fas fa-check-square" style="color: #ffbf00"></i> Produksi Panel Surya</li>
-                                <li class="list-inline-item"><i class="fas fa-check-square" style="color: #cc0000"></i> Beban A</li>
-                                <li class="list-inline-item"><i class="fas fa-check-square" style="color: #00cc00"></i> Beban B</li>
-                                <li class="list-inline-item"><i class="fas fa-check-square" style="color: #8A2BE2"></i> Beban C</li>
-                            </ul>
+                        <ul class="list-inline font-15 dl mr-3 mb-0" style="margin-left: 40px">
+                            <li class="list-inline-item"><i class="fas fa-check-square" style="color: #ffbf00"></i> Produksi Panel Surya</li>
+                            <li class="list-inline-item"><i class="fas fa-check-square" style="color: #cc0000"></i> Beban A</li>
+                            <li class="list-inline-item"><i class="fas fa-check-square" style="color: #00cc00"></i> Beban B</li>
+                            <li class="list-inline-item"><i class="fas fa-check-square" style="color: #8A2BE2"></i> Beban C</li>
+                            <li class="list-inline-item"><i class="fas fa-check-square" style="color: #2962FF"></i> Beban Total</li>
+                        </ul>
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
     <!-- ============================================================== -->
     <!-- END KONSUMSI MINGGUAN -->
     <!-- ============================================================== -->
-<!-- ========================================================================================== -->
-                                    <!-- Konsumsi Bulanan -->
-<!-- ========================================================================================== -->
+    <!-- ========================================================================================== -->
+    <!-- Konsumsi Bulanan -->
+    <!-- ========================================================================================== -->
 
-      <div class="row">
+    <div class="row">
         <!-- column -->
         <div class="col-sm-12">
             <div class="card">
                 <div class="card-body">
-                     <div class="col-12">
+                    <div class="col-12">
                         <h4 class="card-title"><Strong>Konsumsi Bulanan</Strong></h4>
                         <hr>
                     </div>
@@ -219,84 +224,87 @@
                             <h4 class="card-title" style="color: blue; margin-left: 30px"><strong>600KWh</strong></h4>
                         </div>
                         <div class="col-sm-2 col-md-auto">
-                             <h5 class="card-subtitle" style=" margin-top:5px; color: black">Agustus 2019</h5>
+                            <h5 class="card-subtitle" style=" margin-top:5px; color: black">Agustus 2019</h5>
                         </div>
                         <div class="col-md-1">
-                                <i class="fas fa-angle-left" style="margin-left:5px; margin-top:10px"></i>
-                                <i class="fas fa-angle-right" style="margin-left: 10px; margin-top:10px"></i>
+                            <i class="fas fa-angle-left" style="margin-left:5px; margin-top:10px"></i>
+                            <i class="fas fa-angle-right" style="margin-left: 10px; margin-top:10px"></i>
                         </div>
                     </div>
                     <!-- DROPDOWN BULAN, TAHUN, TERAPKAN -->
                     <div class="row">
-                            <div class="col-6"></div>
-                                <div class="col-2 float-right">
-                                    <div class="dl">
-                                        <select class="custom-select">
-                                            <option value="0" selected>Bulan</option>
-                                            <option value="1">Januari</option>
-                                            <option value="2">Februari</option>
-                                            <option value="3">Maret</option>
-                                            <option value="4">April</option>
-                                            <option value="5">Mei</option>
-                                            <option value="6">Juni</option>
-                                            <option value="7">Juli</option>
-                                            <option value="8">Agustus</option>
-                                            <option value="9">September</option>
-                                            <option value="10">Oktober</option>
-                                            <option value="11">November</option>
-                                            <option value="12">Desember</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-2 float-right">
-                                    <div class="dl">
-                                        <select class="custom-select dropdown-toggle">
-                                            <option value="0" selected>Tahun</option>
-                                            <option value="1">2018</option>
-                                            <option value="2">2019</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-2 float-right">
-                                    <button type="button" class="btn btn-block btn-info">Terapkan</button>
-                                </div>
+                        <div class="col-6"></div>
+                        <div class="col-2 float-right">
+                            <div class="dl">
+                                <select class="custom-select">
+                                    <option value="0" selected>Bulan</option>
+                                    <option value="1">Januari</option>
+                                    <option value="2">Februari</option>
+                                    <option value="3">Maret</option>
+                                    <option value="4">April</option>
+                                    <option value="5">Mei</option>
+                                    <option value="6">Juni</option>
+                                    <option value="7">Juli</option>
+                                    <option value="8">Agustus</option>
+                                    <option value="9">September</option>
+                                    <option value="10">Oktober</option>
+                                    <option value="11">November</option>
+                                    <option value="12">Desember</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-2 float-right">
+                            <div class="dl">
+                                <select class="custom-select dropdown-toggle">
+                                    <option value="0" selected>Tahun</option>
+                                    <option value="1">2018</option>
+                                    <option value="2">2019</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-2 float-right">
+                            <button type="button" class="btn btn-block btn-info">Terapkan</button>
+                        </div>
                     </div>
                     <!-- DROPDOWN END -->
                     <!-- Bulanan -->
                     <div class="pt-3">
                         <div class="row">
                             <!-- column -->
-                           <div class="col-md-12 col-lg-12">
-                              <div id="stacked-column-bulanan" style="position: relative; height:250px;"></div>
+                            <div class="col-md-12 col-lg-12">
+                                <canvas id="stacked-column-bulanan" height="80"></canvas>
                                 <div class="row mb-0 mt-3 text-center">
                                 </div>
                             </div>
                         </div>
                     </div>
-                     <!-- Simbol Keterangan Warna -->
+                    <!-- Simbol Keterangan Warna -->
                     <div class="ml-auto d-flex no-block align-items-center">
-                            <ul class="list-inline font-15 dl mr-3 mb-0" style="margin-left: 40px">
-                                <li class="list-inline-item"><i class="fas fa-check-square" style="color: #ffbf00"></i> Produksi Panel Surya</li>
-                                <li class="list-inline-item"><i class="fas fa-check-square" style="color: #cc0000"></i> Beban A</li>
-                                <li class="list-inline-item"><i class="fas fa-check-square" style="color: #00cc00"></i> Beban B</li>
-                                <li class="list-inline-item"><i class="fas fa-check-square" style="color: #8A2BE2"></i> Beban C</li>
-                            </ul>
+                        <ul class="list-inline font-15 dl mr-3 mb-0" style="margin-left: 40px">
+                            <li class="list-inline-item"><i class="fas fa-check-square" style="color: #ffbf00"></i> Produksi Panel Surya</li>
+                            <li class="list-inline-item"><i class="fas fa-check-square" style="color: #cc0000"></i> Beban A</li>
+                            <li class="list-inline-item"><i class="fas fa-check-square" style="color: #00cc00"></i> Beban B</li>
+                            <li class="list-inline-item"><i class="fas fa-check-square" style="color: #8A2BE2"></i> Beban C</li>
+                            <li class="list-inline-item"><i class="fas fa-check-square" style="color: #2962FF"></i> Beban Total</li>
+                        </ul>
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
     <!-- ============================================================== -->
     <!-- END KONSUMSI BULANAN -->
     <!-- ============================================================== -->
-<!-- ========================================================================================== -->
-                                    <!-- Konsumsi Tahunan -->
-<!-- ========================================================================================== -->
+    <!-- ========================================================================================== -->
+    <!-- Konsumsi Tahunan -->
+    <!-- ========================================================================================== -->
 
-      <div class="row">
+    <div class="row">
         <!-- column -->
         <div class="col-sm-12">
             <div class="card">
                 <div class="card-body">
-                     <div class="col-12">
+                    <div class="col-12">
                         <h4 class="card-title"><Strong>Konsumsi Tahunan</Strong></h4>
                         <hr>
                     </div>
@@ -306,36 +314,36 @@
                             <h4 class="card-title" style="color: blue; margin-left: 30px"><strong>600KWh</strong></h4>
                         </div>
                         <div class="col-dm-2 col-md-auto">
-                             <h5 class="card-subtitle" style=" margin-top:5px; color: black">2019</h5>
+                            <h5 class="card-subtitle" style=" margin-top:5px; color: black">2019</h5>
                         </div>
                         <div class="col-md-1">
-                                <i class="fas fa-angle-left" style="margin-left:5px; margin-top:10px"></i>
-                                <i class="fas fa-angle-right" style="margin-left: 10px; margin-top:10px"></i>
+                            <i class="fas fa-angle-left" style="margin-left:5px; margin-top:10px"></i>
+                            <i class="fas fa-angle-right" style="margin-left: 10px; margin-top:10px"></i>
                         </div>
                     </div>
                     <!-- DROPDOWN TAHUN, TERAPKAN -->
                     <div class="row">
-                            <div class="col-8"></div>
-                                <div class="col-2 float-right">
-                                    <div class="dl">
-                                        <select class="custom-select dropdown-toggle">
-                                            <option value="0" selected>Tahun</option>
-                                            <option value="1">2018</option>
-                                            <option value="2">2019</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-2 float-right">
-                                    <button type="button" class="btn btn-block btn-info">Terapkan</button>
-                                </div>
+                        <div class="col-8"></div>
+                        <div class="col-2 float-right">
+                            <div class="dl">
+                                <select class="custom-select dropdown-toggle">
+                                    <option value="0" selected>Tahun</option>
+                                    <option value="1">2018</option>
+                                    <option value="2">2019</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-2 float-right">
+                            <button type="button" class="btn btn-block btn-info">Terapkan</button>
+                        </div>
                     </div>
                     <!-- DROPDOWN END -->
                     <!-- Bulanan -->
                     <div class="pt-3">
                         <div class="row">
                             <!-- column -->
-                           <div class="col-md-12 col-lg-12">
-                              <div id="stacked-column-tahunan" style="position: relative; height:250px;"></div>
+                            <div class="col-md-12 col-lg-12">
+                                <canvas id="stacked-column-tahunan" height="80"></canvas>
                                 <div class="row mb-0 mt-3 text-center">
                                 </div>
                             </div>
@@ -343,22 +351,25 @@
                     </div>
                     <!-- Simbol Keterangan Warna -->
                     <div class="ml-auto d-flex no-block align-items-center">
-                            <ul class="list-inline font-15 dl mr-3 mb-0" style="margin-left: 40px">
-                                <li class="list-inline-item"><i class="fas fa-check-square" style="color: #ffbf00"></i> Produksi Panel Surya</li>
-                                <li class="list-inline-item"><i class="fas fa-check-square" style="color: #cc0000"></i> Beban A</li>
-                                <li class="list-inline-item"><i class="fas fa-check-square" style="color: #00cc00"></i> Beban B</li>
-                                <li class="list-inline-item"><i class="fas fa-check-square" style="color: #8A2BE2"></i> Beban C</li>
-                            </ul>
+                        <ul class="list-inline font-15 dl mr-3 mb-0" style="margin-left: 40px">
+                            <li class="list-inline-item"><i class="fas fa-check-square" style="color: #ffbf00"></i> Produksi Panel Surya</li>
+                            <li class="list-inline-item"><i class="fas fa-check-square" style="color: #cc0000"></i> Beban A</li>
+                            <li class="list-inline-item"><i class="fas fa-check-square" style="color: #00cc00"></i> Beban B</li>
+                            <li class="list-inline-item"><i class="fas fa-check-square" style="color: #8A2BE2"></i> Beban C</li>
+                            <li class="list-inline-item"><i class="fas fa-check-square" style="color: #2962FF"></i> Beban Total</li>
                     </div>
-                </div>
-            </div>
-    <!-- ============================================================== -->
-    <!-- END KONSUMSI BULANAN -->
-    <!-- ============================================================== -->
+                    <!--==============================================================-->
+                    <!-- END KONSUMSI BULANAN -->
+                    <!-- ============================================================== -->
                 </div>
             </div>
         </div>
     </div>
 </div>
-</div>
+@endsection
+
+@section('script')
+<script src="{{asset('/dist/js/pages/dashboards/dashboardkonsumsi.js')}}"></script>
+
+</script>
 @endsection

@@ -1,76 +1,78 @@
 <script type="text/javascript">
-    var SeriesData = [[],[]];
-    var graphData = null;
-    
     var callGraph = function () {
-          jqXHR = jQuery.ajax({
-              url: "{{url('/dashboard/realtime_grafik')}}",
-              type: 'GET',
-              dataType: "json"
-          }).then(function (responseJson) { // ajax success handler
-              if (responseJson!='') {
-                  // SeriesData.splice(0,SeriesData.length);
-                  responseJson[0].forEach(function(item) {
-                    SeriesData[0].push({ x: item.x, y: item.y });
-                  });
-                  responseJson[1].forEach(function(item) {
-                    SeriesData[1].push({ x: item.x, y: item.y });
-                  });
-                  var sum1 = responseJson[4]/10;
-                  var sum2 = responseJson[5]/10;
-    
-    
-                  $('#kons').text(responseJson[2].toFixed(2)+"W");
-                  $('#prod').text(responseJson[3].toFixed(2)+"W");
-                  $('#sum1').text(sum1.toFixed(2)+"Wh");
-                  $('#sum2').text(sum2.toFixed(2)+"Wh");
-                  graphData.render();
-              }
-              setTimeout(function() {
-                  callGraph();
-              }, 5000);
-          }, function(jqXHR, textStatus, errorThrown) { // ajax error handler
-    
-                  setTimeout(function() {
-                      callGraph(); // retry with same lastDate as previous ajax call.
-                  }, 5000);
-    
-          });
-    
+        jqXHR = jQuery.ajax({
+            url: "/test",
+            type: 'GET',
+            dataType: "json",
+            success: function(data){
+              konsumsi(data.kons);
+              grafikku(data);
+            },
+            error: function(xhr,b,c){
+              console.log("xhr=" + xhr + " b=" + b + " c=" + c);
+            }
+        });
     };
-    
-    function grafik() {
-      // Init Richshaw graph
-      graphData = new Rickshaw.Graph({
-        element: $('#rickshawGraph').get(0),
-        width: $('#rickshawGraph').closest('#aa').width(),
-        height: $('#rickshawGraph').height(),
-        interpolation: 'linear',
-        renderer: 'line',
-        series: [
-          {
-            data: SeriesData[0],
-            color: $('#rickshawGraph').data('color1'),
-            name: 'Konsumsi'
-          }, {
-            data: SeriesData[1],
-            color: $('#rickshawGraph').data('color2'),
-            name: 'Produksi'
-          }
-        ]
-      });
-    
-      // Add hover info
-      var hoverDetail = new Rickshaw.Graph.HoverDetail({
-        graph: graphData,
-        xFormatter: function(x) { return moment(x*1000).format('LLLL')},
-        yFormatter: function(y) { return y.toFixed(2) + " KW" }
-      });
-    
-    
-    
-      callGraph();
+
+    function konsumsi(data) {
+      document.getElementById("kons").innerHTML = data[0]+" W";
+      document.getElementById("prod").innerHTML = data[1]+" W";
+      document.getElementById("kons_time").innerHTML = "Konsumsi pada "+data[2]+" WIB";
+      document.getElementById("prod_time").innerHTML = "Produksi pada "+data[2]+" WIB";
     }
+    function grafikku(data) {
+        let ctx1 = document.getElementById("myOwnChart");
     
+        let myChart = new Chart(ctx1, {
+            type: 'line',
+            data: {
+                labels: data.time,
+                datasets: [{
+                    data: data.kwh1,
+                    lineTension: 0.4,
+                    backgroundColor: "rgba(255, 165, 0, 0.3)",
+                    borderColor: "rgba(255, 165, 0, 1)",
+                    borderWidth: 1
+                },
+                {
+                    data: data.kwh2,
+                    lineTension: 0.4,
+                    backgroundColor: "rgba(41, 98, 255,0.3)",
+                    borderColor: "rgba(41, 98, 255, 1)",
+                    borderWidth: 1
+                }]
+            },
+            options: {
+              scales: {
+                xAxes: [{
+                  type: 'category',
+                  ticks: {
+                    sampleSize: 12,
+                    autoSkip: true,
+                    maxRotation: 0,
+                    callback: function(value, index, values) {
+                        return ' '+value+'  ';
+                    }
+                  }
+                }]
+              },
+              animation: {
+                duration: 0 // general animation time
+              },
+              hover: {
+                animationDuration: 0 // duration of animations when hovering an item
+              },
+              responsiveAnimationDuration: 0, // animation duration after a resize
+              elements: {
+                    point:{
+                        radius: 0
+                    }
+                },
+              legend: {
+              display: false
+              }
+            }
+        });
+    }
     </script>
     

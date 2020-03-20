@@ -1,7 +1,7 @@
 <?php 
 use Illuminate\Support\Facades\DB;
 use App\Sensor;
-use App\Data;
+use App\KonsumsiData;
 
 if (! function_exists('getkode')) {
     function getkode()
@@ -58,7 +58,7 @@ function find_max_daya_tools()
 //   $ci->load->database();
 //   $result = $ci->db->order_by('DAYA','DESC')->limit(1)->get('sensor');
   $result = Sensor::orderBy('DAYA','desc')->first();
-  return array($result->KODE,$result->DAYA);
+  return array($result->NAME,$result->DAYA);
 }
 
 function find_max_harian()
@@ -88,20 +88,15 @@ function find_kode_tools($id='')
     // $result = $ci->db->where('IDSENSOR',$id)->order_by('IDSENSOR','DESC')->get('sensor');
     $result = Sensor::orderBy('IDSENSOR','desc')->where('IDSENSOR',$id)->first();
     
-    return $result->KODE;
+    return $result->NAME;
 }
 
 function get_last_daya_oneday_tools($id='')
 {
-//   $ci =& get_instance();
-//   $ci->load->database();
   $dateNow = date('Y-m-d');
   $hourNow = date('H');
-//   $dateNow = "2019-10-17";
-  $result = Data::where('IDSENSOR',$id)->where('ONINSERT','like','%'.$dateNow.'%')->sum('POWER');
-//   if(count($result)!=0){
 
-//   }
-//   $result =$ci->db->select_sum('POWER')->like('ONINSERT',$dateNow)->where('IDSENSOR',$id)->get('data_inout')->row();
-  return $result/$hourNow;
+  $result = KonsumsiData::where('IDSENSOR',$id)->where('ONINSERT','like','%'.$dateNow.'%')->sum('POWER');
+
+  return $hourNow == 0 ? 0 : round($result/$hourNow,2);
 }

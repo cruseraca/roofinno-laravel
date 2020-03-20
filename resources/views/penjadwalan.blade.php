@@ -45,15 +45,16 @@
                         <div class="row">
                             <!-- column -->
                             <div class="col-lg-12">
-                                <div class="ct-sm-line-chart" id="penjadwalan-chart"></div>
+                                <canvas id="penjadwalan-chart" height="80"></canvas>
                             </div>
                             <!-- column -->
                         </div>
                         <div class="ml-auto d-flex no-block align-items-center">
                                 <ul class="list-inline font-12 dl mr-3 mb-0">
-                                    <li class="list-inline-item text-info"><i class="fas fa-check-square" style="color: red"></i> Beban A</li>
-                                    <li class="list-inline-item text-primary"><i class="fas fa-check-square" style="color: green"></i> Beban B</li>
-                                    <li class="list-inline-item text-primary"><i class="fas fa-check-square" style="color: purple"></i> Beban C</li>
+                                    <li class="list-inline-item text-info"><i class="fas fa-check-square" style="color: #cc0000"></i> Beban A</li>
+                                    <li class="list-inline-item text-primary"><i class="fas fa-check-square" style="color: #00cc00"></i> Beban B</li>
+                                    <li class="list-inline-item text-primary"><i class="fas fa-check-square" style="color: #8A2BE2"></i> Beban C</li>
+                                    <li class="list-inline-item text-primary"><i class="fas fa-check-square" style="color: #2962FF"></i> Beban Total</li>
                                 </ul>
                         </div>
                     </div>
@@ -86,11 +87,11 @@
                                 <thead>
                                     <tr class="border-0">
                                         <th class="border-0"><Strong>No</Strong></th>
-                                        <th class="border-0"><Strong>Kode</Strong></th>
+                                        {{-- <th class="border-0"><Strong>Kode</Strong></th> --}}
                                         <th class="border-0"><Strong>Nama Peralatan</Strong></th>
                                         <th class="border-0"><Strong>Daya</Strong></th>
                                         <th class="border-0"><Strong>Konsumsi Hari Ini</Strong></th>
-                                        <th class="border-0"><Strong>Kontrol</Strong></th>
+                                        <th class="border-0"><Strong>Status</Strong></th>
                                         <th class="border-0"><Strong>Aksi</Strong></th>
                                     </tr>
                                 </thead>
@@ -102,17 +103,12 @@
                                                     <h5 class="mb-0 font-16 font-medium">{{$loop->iteration}}</h5>
                                             </div>
                                         </td>
-                                        <td>{{$d->KODE}}</td>
+                                        {{-- <td>{{$d->KODE}}</td> --}}
                                         <td>{{$d->NAME}}</td>
                                         <td>{{$d->DAYA}} Kw</td>
                                         <td>{{get_last_daya_oneday_tools($d->IDSENSOR)}} Kwh </td>
                                         <td>
-                                            <div class="custom-control custom-switch">
-                                            <input type="checkbox" class="custom-control-input" onclick="controlCheck({{$d->IDSENSOR}},{{$loop->iteration}})" id="customSwitch{{$loop->iteration}}" <?php if ($d->CONTROL=='1'): ?>
-                                                checked
-                                            <?php endif; ?>>
-                                            <label class="custom-control-label" for="customSwitch{{$loop->iteration}}"></label>
-                                            </div>
+                                            <input type="checkbox" data-id="{{ $d->IDSENSOR }}" name="status" class="js-switch" {{ $d->ISACTIVE == 1 ? 'checked' : '' }}>
                                         </td>
                                         <td>
                                         <button class="btn btn-info btn-circle" onclick="edit({{$d->IDSENSOR}})"> <i class="fa fa-pencil"></i> </button>
@@ -229,7 +225,35 @@
     </div>
     </div>
 
-    <script type="text/javascript">
+    <script>
+        let elems = Array.prototype.slice.call(document.querySelectorAll('.js-switch'));
+    
+        elems.forEach(function(html) {
+        let switchery = new Switchery(html,  { size: 'small' });
+        });
+
+        $(document).ready(function(){
+            $('.js-switch').change(function () {
+                let status = $(this).prop('checked') === true ? 1 : 0;
+                let userId = $(this).data('id');
+                $.ajax({
+                    type: "GET",
+                    dataType: "json",
+                    url: '{{ route('sensor.update.status') }}',
+                    data: {'status': status, 'user_id': userId},
+                    success: function (data) {
+                        console.log(data.message);
+                        toastr.options.closeButton = true;
+                        toastr.options.closeMethod = 'fadeOut';
+                        toastr.options.closeDuration = 100;
+                        toastr.success(data.message);
+                    }
+                });
+            });
+        });
+    </script>
+
+    {{-- <script type="text/javascript">
     var table;
         $(document).ready(function() {
             //datatables
@@ -241,30 +265,30 @@
             });
 
         });
-    function controlCheck(id,cs) {
-        var checker = $('#customSwitch'+cs).is(':checked');
-        var value;
-        if (checker) {
-        value =1;
-        }else {
-        value =0;
-        }
+    // function controlCheck(id,cs) {
+    //     var checker = $('#customSwitch'+cs).is(':checked');
+    //     var value;
+    //     if (checker) {
+    //     value =1;
+    //     }else {
+    //     value =0;
+    //     }
 
-        $.ajax(
-            {
-            type: "GET",
-            url: "{{url('User/controlSensor')}}/"+id+"/"+value,
-            dataType:"JSON"
-            }
-        ).done(function( data )
-        {
-            if (data=='1') {
-            toastr.success("Success update control.", "Success!");
-            }else {
-            toastr.error("Gagal update control.", "Gagal!");
-            }
-        });
-    }
+    //     $.ajax(
+    //         {
+    //         type: "GET",
+    //         url: "{{url('User/controlSensor')}}/"+id+"/"+value,
+    //         dataType:"JSON"
+    //         }
+    //     ).done(function( data )
+    //     {
+    //         if (data=='1') {
+    //         toastr.success("Success update control.", "Success!");
+    //         }else {
+    //         toastr.error("Gagal update control.", "Gagal!");
+    //         }
+    //     });
+    // }
 
     function tambah() {
         $('#formModal')[0].reset();
@@ -298,5 +322,9 @@
     function hapus(id) {
         toastr.error('Anda akan menghapus data ini?<br /><a href="{{url('User/hapusTools/') }}'+id+'" class="btn btn-secondary clear">Yes</a>', 'Anda yakin?',{ "progressBar": true });
     }
-    </script>
+    </script> --}}
+@endsection
+
+@section('script')
+<script src="{{asset('/dist/js/pages/dashboards/dashboardpenjadwalan.js')}}"></script>
 @endsection

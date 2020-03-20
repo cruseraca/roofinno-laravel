@@ -15,13 +15,12 @@ class CreateRoofinnoLaravel extends Migration
     {
         Schema::create('data_inout', function (Blueprint $table) {
             $table->increments('IDINOUT');
-            $table->integer('IDSENSOR');
-            $table->string('POWER',50);
-            $table->string('VOLTAGE',50);
-            $table->string('CURRENT',50);
+            $table->integer('IDUSER');
+            $table->string('POWER_PS',50);
+            $table->string('POWER_LOAD',50);
             $table->dateTime('ONINSERT');
-            $table->enum('FLAG',['load','battery','pln','ps']);
         });
+
     }
 
     /**
