@@ -30,7 +30,7 @@
     <!-- font awesome CSS -->
     <link href="{{asset('/css/font-awesome.min.css')}}" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <link href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"  integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous" rel="stylesheet" >
+    <link href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="{{asset('/dist/css/style.min.css')}}" rel="stylesheet">
     <link href="{{asset('/extra-libs/DataTables/datatables.min.css')}}" rel="stylesheet">
@@ -45,7 +45,9 @@
     <script src="{{asset('/libs/rickshaw/rickshaw.min.js')}}"></script>
     <script src="{{asset('/js/moment-with-locales.js')}}"></script>
     <style media="screen">
-      .ct-point{stroke-width: 5px;}
+        .ct-point {
+            stroke-width: 5px;
+        }
     </style>
     <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
     <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
@@ -90,10 +92,10 @@
         <!-- Page wrapper  -->
         <!-- ============================================================== -->
         <div class="page-wrapper">
-          @yield('content')
-          <footer class="footer text-center">
-             Designed with <i class="fas fa-heart" style="color: red"></i> by <a href="{{url('/')}}" style="color: black">roof-inno</a>
-          </footer>
+            @yield('content')
+            <footer class="footer text-center">
+                Designed with <i class="fas fa-heart" style="color: red"></i> by <a href="{{url('/')}}" style="color: black">roof-inno</a>
+            </footer>
         </div>
     </div>
     <!-- ============================================================== -->
@@ -168,18 +170,18 @@
     <!-- DATE PICKER -->
     <script src="{{asset('/libs/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js')}}"></script>
     <script>
-    // Date Picker
-    jQuery('.mydatepicker, #datepicker, .input-group.date').datepicker();
-    jQuery('#datepicker-autoclose').datepicker({
-        autoclose: true,
-        todayHighlight: true
-    });
-    jQuery('#date-range').datepicker({
-        toggleActive: true
-    });
-    jQuery('#datepicker-inline').datepicker({
-        todayHighlight: true
-    });
+        // Date Picker
+        jQuery('.mydatepicker, #datepicker, .input-group.date').datepicker();
+        jQuery('#datepicker-autoclose').datepicker({
+            autoclose: true,
+            todayHighlight: true
+        });
+        jQuery('#date-range').datepicker({
+            toggleActive: true
+        });
+        jQuery('#datepicker-inline').datepicker({
+            todayHighlight: true
+        });
     </script>
     @yield('script')
 
