@@ -3,36 +3,37 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="dicoding:email" content="miftahcoiri354@gmail.com">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>savtrik | Home</title>
     <meta name="description" content="" />
     <meta name="keywords" content="" />
     <meta name="author" content="ThemesBoss" />
 
-    <link rel="icon" type="image/png" sizes="16x16" href="<?php echo base_url(); ?>assets/images/logodoang_soerja.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{asset('/images/logodoang_soerja.png')}}">
 
     <!--Bootstrap Css-->
-    <link rel="stylesheet" href="<?= base_url('assets_home/'); ?>css/bootstrap.min.css" />
+    <link rel="stylesheet" href="{{asset('assets_home/css/bootstrap.min.css')}}" />
 
     <!-- Materialdesign icons Css -->
-    <link rel="stylesheet" href="<?= base_url('assets_home/'); ?>css/materialdesignicons.min.css">
+    <link rel="stylesheet" href=" {{asset('assets_home/css/materialdesignicons.min.css')}}">
 
     <!-- Mobirise icons Css -->
-    <link rel="stylesheet" href="<?= base_url('assets_home/'); ?>css/mobiriseicons.css">
+    <link rel="stylesheet" href=" {{asset('assets_home/css/mobiriseicons.css')}}">
 
     <!-- Magnific-popup -->
-    <link rel="stylesheet" href="<?= base_url('assets_home/'); ?>css/magnific-popup.css">
+    <link rel="stylesheet" href=" {{asset('assets_home/css/magnific-popup.css')}}">
 
     <!-- Animate Css -->
-    <link rel="stylesheet" href="<?= base_url('assets_home/'); ?>css/animate.min.css">
+    <link rel="stylesheet" href=" {{asset('assets_home/css/animate.min.css')}}">
 
     <!-- Owl Slider -->
-    <link rel="stylesheet" href="<?= base_url('assets_home/'); ?>css/owl.carousel.css" />
-    <link rel="stylesheet" href="<?= base_url('assets_home/'); ?>css/owl.theme.css" />
-    <link rel="stylesheet" href="<?= base_url('assets_home/'); ?>css/owl.transitions.css" />
+    <link rel="stylesheet" href=" {{asset('assets_home/css/owl.carousel.css')}}" />
+    <link rel="stylesheet" href=" {{asset('assets_home/css/owl.theme.css')}}" />
+    <link rel="stylesheet" href=" {{asset('assets_home/css/owl.transitions.css')}}" />
 
     <!-- Custom style Css -->
-    <link rel="stylesheet" href="<?= base_url('assets_home/'); ?>css/style.css">
+    <link rel="stylesheet" href=" {{asset('assets_home/css/style.css')}}">
 </head>
 
 <body>
@@ -50,8 +51,8 @@
         <div class="container">
             <!-- LOGO -->
             <a class="navbar-brand logo" href="index.html">
-                <img src="<?= base_url('assets_home/'); ?>images/logo.png" alt="" class="img-fluid logo-light">
-                <img src="<?= base_url('assets_home/'); ?>images/logo-dark.png" alt="" class="img-fluid logo-dark">
+                <img src="{{asset('assets_home/images/logo.png')}}" alt="" class="img-fluid logo-light">
+                <img src="{{asset('assets_home/images/logo-dark.png')}}" alt="" class="img-fluid logo-dark">
             </a>
 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
@@ -89,7 +90,7 @@
 
     <!--START HOME-->
     <section class=" section h-100vh jarallax" data-jarallax='{"speed": 0.2}'
-        style="background-image: url('<?= base_url('assets_home/'); ?>images/roofinno-home-bg.jpg');" id="home">
+        style="background-image: url('{{asset('assets_home/images/roofinno-home-bg.jpg')}}" id="home">
         <div class="bg-overlay"></div>
         <div class="home-table">
             <div class="home-table-center">
@@ -149,7 +150,7 @@
                         <div class="row justify-content-center mt-5">
                             <div class="lan_box_ser problem-content mt-lg-4 mb-lg-8">
                                 <div class="ser_icon">
-                                    <img src="<?php echo base_url('assets_home/images/icon/wifi.png') ?>" alt="" width="78px">
+                                    <img src="{{asset('assets_home/images/icon/wifi.png')}}" alt="" width="78px">
                                     <p class="text-muted mt-4">Duck Curve Effect the side <br>of Solar Energy</p>
                                 </div>
 
@@ -160,7 +161,7 @@
                         <div class="row justify-content-center mt-5">
                             <div class=" lan_box_ser problem-content mt-lg-4">
                                 <div class="ser_icon">
-                                  <img src="<?php echo base_url('assets_home/images/icon/execution.png') ?>" alt="" width="78px">
+                                  <img src="{{asset('assets_home/images/icon/execution.png')}}" alt="" width="78px">
                                     <p class="text-muted mt-4">Unintegrated System</p>
                                 </div>
 
@@ -171,7 +172,7 @@
                         <div class="row justify-content-center mt-5">
                             <div class="lan_box_ser problem-content mt-4">
                                 <div class="ser_icon">
-                                  <img src="<?php echo base_url('assets_home/images/icon/install-wizard.png') ?>" alt="" width="78px">
+                                  <img src="{{asset('assets_home/images/icon/install-wizard.png')}}" alt="" width="78px">
                                     <p class="text-muted mt-4">Complicated Post Installation</p>
                                 </div>
 
@@ -185,7 +186,7 @@
                         <div class="row justify-content-center mt-5">
                             <div class="lan_box_ser problem-content mt-lg-4 mb-lg-8 ">
                                 <div class="ser_icon">
-                                    <img src="<?php echo base_url('assets_home/images/icon/money.png') ?>" alt="" width="78px">
+                                    <img src="{{asset('assets_home/images/icon/money.png')}}" alt="" width="78px">
                                     <p class="text-muted mt-4">Willing to Buy Cash <br>Power Lease</p>
                                 </div>
 
@@ -196,7 +197,7 @@
                         <div class="row justify-content-center mt-5">
                             <div class="lan_box_ser problem-content mt-lg-4">
                                 <div class="ser_icon">
-                                  <img src="<?php echo base_url('assets_home/images/icon/debit-card.png') ?>" alt="" width="78px">
+                                  <img src="{{asset('assets_home/images/icon/debit-card.png')}}" alt="" width="78px">
                                     <p class="text-muted mt-4">Willing to Pay Gradually <br>in 12 - 36 mounths</p>
                                 </div>
 
@@ -207,7 +208,7 @@
                         <div class="row justify-content-center mt-5">
                             <div class="lan_box_ser problem-content mt-4">
                                 <div class="ser_icon">
-                                  <img src="<?php echo base_url('assets_home/images/icon/bill.png') ?>" alt="" width="78px">
+                                  <img src="{{asset('assets_home/images/icon/bill.png')}}" alt="" width="78px">
                                     <p class="text-muted mt-4">Willing to pay with Power<br>Purchase Agreement</p>
                                 </div>
 
@@ -221,7 +222,7 @@
                         <div class="row justify-content-center mt-5">
                             <div class="lan_box_ser problem-content mt-lg-4 mb-lg-8 x">
                                 <div class="ser_icon">
-                                  <img src="<?php echo base_url('assets_home/images/icon/renewable-energy.png') ?>" alt="" width="78px">
+                                  <img src="{{asset('assets_home/images/icon/renewable-energy.png')}}" alt="" width="78px">
                                     <p class="text-muted mt-4">Renewable energy penetration roughly stuck in <br>the 13%
                                         since 2010</p>
                                 </div>
@@ -233,7 +234,7 @@
                         <div class="row justify-content-center mt-5">
                             <div class="lan_box_ser problem-content mt-lg-4">
                                 <div class="ser_icon">
-                                  <img src="<?php echo base_url('assets_home/images/icon/pollution.png') ?>" alt="" width="78px">
+                                  <img src="{{asset('assets_home/images/icon/pollution.png')}}" alt="" width="78px">
                                     <p class="text-muted mt-4">Indonesia's GHG emissions from electricity are
                                         <br>expected to rise over 400Mio CO2 in the next 10 years</p>
                                 </div>
@@ -245,7 +246,7 @@
                         <div class="row justify-content-center mt-5">
                             <div class="lan_box_ser problem-content mt-4">
                                 <div class="ser_icon">
-                                  <img src="<?php echo base_url('assets_home/images/icon/air-quality.png') ?>" alt="" width="78px">
+                                  <img src="{{asset('assets_home/images/icon/air-quality.png')}}" alt="" width="78px">
                                     <p class="text-muted mt-4">Average Air Quality in urban city <br>(Jakarta, Surabaya,
                                         Bali) are unhealthy</p>
                                 </div>
@@ -292,7 +293,7 @@
                     <div class="box-mission text-center">
                         <div class="ser_icon mt-5">
                             <!-- <i style="font-size: 78px;" class="mbri-mobile"></i> -->
-                            <img src="<?php echo base_url('assets_home/images/icon/solar-energy.png') ?>" alt="" width="78px">
+                            <img src="{{asset('assets_home/images/icon/solar-energy.png')}}" alt="" width="78px">
                             <p class="text-muted mt-4">1. Create sustainable solution by helping utility company
                                 managing the distributed solar power generation</p>
                         </div>
@@ -301,7 +302,7 @@
                 <div class="col-sm-4 content-mission">
                     <div class="box-mission text-center">
                         <div class="ser_icon mt-5">
-                          <img src="<?php echo base_url('assets_home/images/icon/flag.png') ?>" alt="" width="78px">
+                          <img src="{{asset('assets_home/images/icon/flag.png')}}" alt="" width="78px">
                             <p class="text-muted mt-4">2. Create simplicity access in solar installation process with
                                 national <br />standard guidance </p>
                         </div>
@@ -310,7 +311,7 @@
                 <div class="col-sm-4 content-mission">
                     <div class="box-mission text-center">
                         <div class="ser_icon mt-5">
-                          <img src="<?php echo base_url('assets_home/images/icon/go-green.png') ?>" alt="" width="78px">
+                          <img src="{{asset('assets_home/images/icon/go-green.png')}}" alt="" width="78px">
                             <p class="text-muted mt-4">3. Create freedom to choose affordable energy independency for
                                 our customer while together reduce air polution</p>
                         </div>
@@ -335,19 +336,19 @@
             <div class="row mt-5 text-center">
                 <div class="col-md-4 mt-5">
                     <div class="solution-icon text-white">
-                        <img src="<?= base_url('assets_home/'); ?>images/solution-icon1.png">
+                        <img src="{{asset('assets_home')}}/images/solution-icon1.png">
                         <h4 class="mt-5" style="margin-top: 4px;">Maximize Capital Return</h4>
                     </div>
                 </div>
                 <div class="col-md-4 mt-5">
                     <div class="solution-icon text-white">
-                        <img src="<?= base_url('assets_home/'); ?>images/solution-icon2.png">
+                        <img src="{{asset('assets_home')}}/images/solution-icon2.png">
                         <h4 class="mt-5" style="margin-top: 4px;">Better Service Performance</h4>
                     </div>
                 </div>
                 <div class="col-md-4 mt-5">
                     <div class="solution-icon text-white">
-                        <img src="<?= base_url('assets_home/'); ?>images/solution-icon3.png">
+                        <img src="{{asset('assets_home')}}/images/solution-icon3.png">
                         <h4 class="mt-5" style="margin-top: 4px;">Improved Profitability</h4>
                     </div>
                 </div>
@@ -371,7 +372,7 @@
                 </div>
                 <div class="col-sm-12 mt-4">
                     <div class="solution-img text-center">
-                        <img src="<?= base_url('assets_home/'); ?>images/solution-img.png" width="100%">
+                        <img src="{{asset('assets_home')}}/images/solution-img.png" width="100%">
                     </div>
                 </div>
             </div>
@@ -400,7 +401,7 @@
                     <div class="prod-title-box">
                         <h2 class="font-weight-bold">Solar Charge Controller with MPPT</h2>
                     </div>
-                    <img src="<?= base_url('assets_home/'); ?>images/product-icon1.png" height="30%" class="m-4">
+                    <img src="{{asset('assets_home')}}/images/product-icon1.png" height="30%" class="m-4">
                     <h5>Integrated with solar panel on
                         your roof, MPPT maximize the
                         power production output &
@@ -411,7 +412,7 @@
                     <div class="prod-title-box">
                         <h2 class="font-weight-bold">Solar Inverter</h2>
                     </div>
-                    <img src="<?= base_url('assets_home/'); ?>images/product-icon2.png" height="30%" class="m-4">
+                    <img src="{{asset('assets_home')}}/images/product-icon2.png" height="30%" class="m-4">
                     <h5>Integrated PV system to convert
                         DC to AC with excellent reliability</h5>
                 </div>
@@ -420,7 +421,7 @@
                         <h2 class=" font-weight-bold">Battery Management
                             System</h2>
                     </div>
-                    <img src="<?= base_url('assets_home/'); ?>images/product-icon3.png" height="30%" class="m-4">
+                    <img src="{{asset('assets_home')}}/images/product-icon3.png" height="30%" class="m-4">
 
                     <h5>The brain of energy manage
                         ment system to manage solar
@@ -434,7 +435,7 @@
                     <div class="prod-title-box">
                         <h2 class="font-weight-bold">Admin Web Server</h2>
                     </div>
-                    <img src="<?= base_url('assets_home/'); ?>images/product-icon4.png" height="30%" class="m-4">
+                    <img src="{{asset('assets_home')}}/images/product-icon4.png" height="30%" class="m-4">
                     <h5>Digital infrastructure with IBM 
                         Blockhain to manage distributed 
                         solar energy resource to optimize
@@ -445,7 +446,7 @@
                     <div class="prod-title-box">
                         <h2 class="font-weight-bold">Smart Energy Device</h2>
                     </div>
-                    <img src="<?= base_url('assets_home/'); ?>images/product-icon5.png" height="30%" class="m-4">
+                    <img src="{{asset('assets_home')}}/images/product-icon5.png" height="30%" class="m-4">
                     <h5>Utilize & control excess solar
                         energy to home appliances by
                         automatically via Savtrik
@@ -456,7 +457,7 @@
                     <div class="prod-title-box">
                         <h2 class="font-weight-bold">Monitoring Apps</h2>
                     </div>
-                    <img src="<?= base_url('assets_home/'); ?>images/product-icon6.png" height="30%" class="m-4">
+                    <img src="{{asset('assets_home')}}/images/product-icon6.png" height="30%" class="m-4">
                     <h5>Digital solution for home energy
                         management system to monitor
                         system performance, production
@@ -525,7 +526,7 @@
                     <div class="work_img_box rounded">
                         <a class="img-zoom" href="images/works/1.jpg"></a>
                         <div class="work_images">
-                            <img src="<?= base_url('assets_home/'); ?>images/works/1.jpg" alt="image" class="img-fluid mx-auto d-block">
+                            <img src="{{asset('assets_home')}}/images/works/1.jpg" alt="image" class="img-fluid mx-auto d-block">
                             <div class="work_overlay">
                                 <h4 class="mb-0">UI Elements, Icons</h4>
                                 <h6 class="mb-0">Studio &amp; Art</h6>
@@ -535,9 +536,9 @@
                 </div>
                 <div class="col-lg-4 seo webdesign">
                     <div class="work_img_box rounded">
-                        <a class="img-zoom" href="<?= base_url('assets_home/'); ?>images/works/2.jpg"></a>
+                        <a class="img-zoom" href="{{asset('assets_home')}}/images/works/2.jpg"></a>
                         <div class="work_images">
-                            <img src="<?= base_url('assets_home/'); ?>images/works/2.jpg" alt="image" class="img-fluid mx-auto d-block">
+                            <img src="{{asset('assets_home')}}/images/works/2.jpg" alt="image" class="img-fluid mx-auto d-block">
                             <div class="work_overlay">
                                 <h4>Illustrations</h4>
                                 <h6>Creative &amp; Art</h6>
@@ -547,9 +548,9 @@
                 </div>
                 <div class="col-lg-4 work">
                     <div class="work_img_box rounded">
-                        <a class="img-zoom" href="<?= base_url('assets_home/'); ?>images/works/3.jpg"></a>
+                        <a class="img-zoom" href="{{asset('assets_home')}}/images/works/3.jpg"></a>
                         <div class="work_images">
-                            <img src="<?= base_url('assets_home/'); ?>images/works/3.jpg" alt="image" class="img-fluid mx-auto d-block">
+                            <img src="{{asset('assets_home')}}/images/works/3.jpg" alt="image" class="img-fluid mx-auto d-block">
                             <div class="work_overlay">
                                 <h4>Media, Icons</h4>
                                 <h6>Open Imagination</h6>
@@ -559,9 +560,9 @@
                 </div>
                 <div class="col-lg-4 seo webdesign">
                     <div class="work_img_box rounded">
-                        <a class="img-zoom" href="<?= base_url('assets_home/'); ?>images/works/4.jpg"></a>
+                        <a class="img-zoom" href="{{asset('assets_home')}}/images/works/4.jpg"></a>
                         <div class="work_images">
-                            <img src="<?= base_url('assets_home/'); ?>images/works/4.jpg" alt="image" class="img-fluid mx-auto d-block">
+                            <img src="{{asset('assets_home')}}/images/works/4.jpg" alt="image" class="img-fluid mx-auto d-block">
                             <div class="work_overlay">
                                 <h4>Graphics, UI Elements</h4>
                                 <h6>Locked Steel Gate</h6>
@@ -571,9 +572,9 @@
                 </div>
                 <div class="col-lg-4 seo work">
                     <div class="work_img_box rounded">
-                        <a class="img-zoom" href="<?= base_url('assets_home/'); ?>images/works/5.jpg"></a>
+                        <a class="img-zoom" href="{{asset('assets_home')}}/images/works/5.jpg"></a>
                         <div class="work_images">
-                            <img src="<?= base_url('assets_home/'); ?>images/works/5.jpg" alt="image" class="img-fluid mx-auto d-block">
+                            <img src="{{asset('assets_home')}}/images/works/5.jpg" alt="image" class="img-fluid mx-auto d-block">
                             <div class="work_overlay">
                                 <h4>Illustrations, Graphics</h4>
                                 <h6>Mac Sunglasses</h6>
@@ -583,9 +584,9 @@
                 </div>
                 <div class="col-lg-4 wordpress">
                     <div class="work_img_box rounded">
-                        <a class="img-zoom" href="<?= base_url('assets_home/'); ?>images/works/6.jpg"></a>
+                        <a class="img-zoom" href="{{asset('assets_home')}}/images/works/6.jpg"></a>
                         <div class="work_images">
-                            <img src="<?= base_url('assets_home/'); ?>images/works/6.jpg" alt="image" class="img-fluid mx-auto d-block">
+                            <img src="{{asset('assets_home')}}/images/works/6.jpg" alt="image" class="img-fluid mx-auto d-block">
                             <div class="work_overlay">
                                 <h4>UI Elements, Media</h4>
                                 <h6>Backpack Contents</h6>
@@ -618,7 +619,7 @@
                         <div class="text-white text-center">
                             <div class="achievement_icon">
                                 <div class="inner">
-                                    <img src="<?= base_url('assets_home/'); ?>images/achievement/1.png">
+                                    <img src="{{asset('assets_home')}}/images/achievement/1.png">
                                 </div>
                             </div>
                             <div class=" mt-4">
@@ -634,7 +635,7 @@
                         <div class="text-white text-center">
                             <div class="achievement_icon">
                                 <div class="inner">
-                                    <img src="<?= base_url('assets_home/'); ?>images/achievement/2.png">
+                                    <img src="{{asset('assets_home')}}/images/achievement/2.png">
                                 </div>
                             </div>
                             <div class=" mt-4">
@@ -650,7 +651,7 @@
                         <div class="text-white text-center">
                             <div class="achievement_icon">
                                 <div class="inner">
-                                    <img src="<?= base_url('assets_home/'); ?>images/achievement/3.png">
+                                    <img src="{{asset('assets_home')}}/images/achievement/3.png">
                                 </div>
                             </div>
                             <div class=" mt-4">
@@ -667,7 +668,7 @@
                         <div class="text-white text-center">
                             <div class="achievement_icon">
                                 <div class="inner">
-                                    <img src="<?= base_url('assets_home/'); ?>images/achievement/2.png">
+                                    <img src="{{asset('assets_home')}}/images/achievement/2.png">
                                 </div>
                             </div>
                             <div class=" mt-4">
@@ -682,7 +683,7 @@
                         <div class="text-white text-center">
                             <div class="achievement_icon">
                                 <div class="inner">
-                                    <img src="<?= base_url('assets_home/'); ?>images/achievement/5.png">
+                                    <img src="{{asset('assets_home')}}/images/achievement/5.png">
                                 </div>
                             </div>
                             <div class=" mt-4">
@@ -723,42 +724,42 @@
             <div class="row mt-4 pt-4 justify-content-center text-center">
                 <div class="col-lg-1 m-3  ">
                     <div class="logo_img">
-                        <img src="<?= base_url('assets_home/'); ?>images/partners/a1.png" alt="logo-img">
+                        <img src="{{asset('assets_home')}}/images/partners/a1.png" alt="logo-img">
                     </div>
                 </div>
                 <div class="col-lg-1 m-3">
                     <div class="logo_img">
-                        <img src="<?= base_url('assets_home/'); ?>images/partners/a2.png" alt="logo-img">
+                        <img src="{{asset('assets_home')}}/images/partners/a2.png" alt="logo-img">
                     </div>
                 </div>
                 <div class="col-lg-1 m-3">
                     <div class="logo_img">
-                        <img src="<?= base_url('assets_home/'); ?>images/partners/a3.png" alt="logo-img">
+                        <img src="{{asset('assets_home')}}/images/partners/a3.png" alt="logo-img">
                     </div>
                 </div>
                 <div class="col-lg-1 mt-3">
                     <div class="logo_img">
-                        <img src="<?= base_url('assets_home/'); ?>images/partners/a4.png" alt="logo-img">
+                        <img src="{{asset('assets_home')}}/images/partners/a4.png" alt="logo-img">
                     </div>
                 </div>
                 <div class="col-lg-1 mt-3">
                     <div class="logo_img">
-                        <img src="<?= base_url('assets_home/'); ?>images/partners/a5.png" alt="logo-img">
+                        <img src="{{asset('assets_home')}}/images/partners/a5.png" alt="logo-img">
                     </div>
                 </div>
                 <div class="col-lg-1 mt-3">
                     <div class="logo_img">
-                        <img src="<?= base_url('assets_home/'); ?>images/partners/a6.png" alt="logo-img">
+                        <img src="{{asset('assets_home')}}/images/partners/a6.png" alt="logo-img">
                     </div>
                 </div>
                 <div class="col-lg-1 mt-3">
                     <div class="logo_img">
-                        <img src="<?= base_url('assets_home/'); ?>images/partners/a7.png" alt="logo-img">
+                        <img src="{{asset('assets_home')}}/images/partners/a7.png" alt="logo-img">
                     </div>
                 </div>
                 <div class="col-lg-1 mt-3">
                     <div class="logo_img">
-                        <img src="<?= base_url('assets_home/'); ?>images/partners/a8.png" alt="logo-img">
+                        <img src="{{asset('assets_home')}}/images/partners/a8.png" alt="logo-img">
                     </div>
                 </div>
             </div>
@@ -782,7 +783,7 @@
                         We will get to you as soon as possible.</p>
                 </div>
                 <div class="demo_btn mt-5">
-                    <a href="<?= base_url('User/');?>" class="btn btn-outline-demo btn-rounded ">Get Demo</a>
+                    <a href="{{url('dashboard/')}}" class="btn btn-outline-demo btn-rounded ">Get Demo</a>
                 </div>
                 <p class="mt-4">To fins out more,<span class="font-weight-bold"> <a href="#" class="text-blue">contact
                             us</a></span> today!</p>
@@ -812,7 +813,7 @@
                   <br><br><br>
                     <div class="col-md-3 text-center">
                       <div class="founder-info">
-                        <img src="<?= base_url('assets_home/'); ?>images/kotak5.jpg" class="rounded-circle" width="200">
+                        <img src="{{asset('assets_home')}}/images/kotak5.jpg" class="rounded-circle" width="200">
                           <h4 class="text-blue">Miftah Ahmad Choiri S.T</h4>
                           <p class="text-blue" style="margin-top: -10px;">Co-Founder / CBDO</p>
                           <p class="mt-2">Power System Engineer<br>
@@ -823,8 +824,8 @@
 
                     <div class="col-md-3 text-center">
                       <div class="founder-info">
-                        <img src="<?= base_url('assets_home/'); ?>images/kotak2.jpg" class="rounded-circle" width="200">
-                          <h4 class="text-blue">Muhammad Syahrian Adil</h4>
+                        <img src="{{asset('assets_home')}}/images/kotak2.jpg" class="rounded-circle" width="200">
+                          <h4 class="text-blue">Mohammad Syahrian Adil</h4>
                           <p class="text-blue" style="margin-top: -10px;">Co-Founder / CEO</p>
                           <p class="mt-2">Computer Engineer<br>
                               ITS Surabaya</p>
@@ -834,7 +835,7 @@
 
                     <div class="col-md-3 text-center">
                       <div class="founder-info">
-                        <img src="<?= base_url('assets_home/'); ?>images/kotak1.jpg" class="rounded-circle" width="200">
+                        <img src="{{asset('assets_home')}}/images/kotak1.jpg" class="rounded-circle" width="200">
                           <h4 class="text-blue">Reza Rizky Pahlevi</h4>
                           <p class="text-blue" style="margin-top: -10px;">Co-Founder / CTO</p>
                           <p class="mt-2">System Information Engineer<br>
@@ -845,8 +846,8 @@
 
                     <div class="col-md-3 text-center">
                       <div class="founder-info">
-                        <img src="<?= base_url('assets_home/'); ?>images/kotak3.jpg" class="rounded-circle" width="200">
-                          <h4 class="text-blue">Wildan</h4>
+                        <img src="{{asset('assets_home')}}/images/kotak3.jpg" class="rounded-circle" width="200">
+                          <h4 class="text-blue">Wildan Adition</h4>
                           <p class="text-blue" style="margin-top: -10px;">Co-Founder / CPO</p>
                           <p class="mt-2">Electronic Engineer<br>
                               ITS Surabaya</p>
@@ -856,8 +857,8 @@
 
                     <div class="col-md-3 text-center">
                       <div class="founder-info">
-                        <img src="<?= base_url('assets_home/'); ?>images/kotak3.jpg" class="rounded-circle" width="200">
-                          <h4 class="text-blue">Satrya</h4>
+                        <img src="{{asset('assets_home')}}/images/kotak3.jpg" class="rounded-circle" width="200">
+                          <h4 class="text-blue">Satrya Bagus</h4>
                           <p class="text-blue" style="margin-top: -10px;">Co-Founder / CMO</p>
                           <p class="mt-2">System Information Engineer<br>
                               ITS Surabaya</p>
@@ -999,29 +1000,29 @@
 
 
     <!-- JAVASCRIPTS -->
-    <script src="<?= base_url('assets_home/'); ?>js/jquery.min.js"></script>
-    <script src="<?= base_url('assets_home/'); ?>js/popper.min.js"></script>
-    <script src="<?= base_url('assets_home/'); ?>js/bootstrap.min.js"></script>
+    <script src="{{asset('assets_home/js/jquery.min.js')}}"></script>
+    <script src="{{asset('assets_home/js/popper.min.js')}}"></script>
+    <script src="{{asset('assets_home/js/bootstrap.min.js')}}"></script>
     <!--EASING JS-->
-    <script src="<?= base_url('assets_home/'); ?>js/jquery.easing.min.js"></script>
-    <script src="<?= base_url('assets_home/'); ?>js/scrollspy.min.js"></script>
+    <script src="{{asset('assets_home/js/jquery.easing.min.js')}}"></script>
+    <script src="{{asset('assets_home/js/scrollspy.min.js')}}"></script>
     <!-- TYPED -->
-    <script src="<?= base_url('assets_home/'); ?>js/typed.js"></script>
+    <script src="{{asset('assets_home/js/typed.js')}}"></script>
     <!-- MFP JS -->
-    <script src="<?= base_url('assets_home/'); ?>js/jquery.magnific-popup.min.js"></script>
+    <script src="{{asset('assets_home/js/jquery.magnific-popup.min.js')}}"></script>
     <!--PORTFOLIO FILTER JS-->
-    <script src="<?= base_url('assets_home/'); ?>js/isotope.js"></script>
+    <script src="{{asset('assets_home/js/isotope.js')}}"></script>
     <!-- CONTACT JS -->
-    <script src="<?= base_url('assets_home/'); ?>js/contact.js"></script>
+    <script src="{{asset('assets_home/js/contact.js')}}"></script>
     <!--PARTICLES ANIMATE JS-->
-    <script src="<?= base_url('assets_home/'); ?>js/particles.js"></script>
-    <script src="<?= base_url('assets_home/'); ?>js/particles.app.js"></script>
+    <script src="{{asset('assets_home/js/particles.js')}}"></script>
+    <script src="{{asset('assets_home/js/particles.app.js')}}"></script>
     <!-- PARALLAX JS -->
-    <script src="<?= base_url('assets_home/'); ?>js/parallax.js"></script>
+    <script src="{{asset('assets_home/js/parallax.js')}}"></script>
     <!-- OWL CAROUSEL -->
-    <script src="<?= base_url('assets_home/'); ?>js/owl.carousel.min.js"></script>
+    <script src="{{asset('assets_home/js/owl.carousel.min.js')}}"></script>
     <!--CUSTOM JS-->
-    <script src="<?= base_url('assets_home/'); ?>js/custom.js"></script>
+    <script src="{{asset('assets_home/js/custom.js')}}"></script>
     <script>
         $(".element").each(function () {
             var $this = $(this);
