@@ -17,7 +17,7 @@
             <div class="col-sm-12 col-lg-5">
                 <div class="card bg-transparent" >
                     <div class="card-body">
-                      <b> <h5 class="card-title" style="color: #ffbc34;font-weight: bold;">Selamat Datang Rian</h5></b> <br>
+                      <b> <h5 class="card-title" style="color: #ffbc34;font-weight: bold;">Selamat Datang !</h5></b> <br>
                         <h3 style="color:white"><strong>Monitor Data Harian</strong></h3>
                         <h5 class="card-subtitle text-white">{{ tanggal_indo(date('Y-m-d'),true) }}</h5>
                     </div>
