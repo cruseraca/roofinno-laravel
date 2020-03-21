@@ -824,10 +824,10 @@
 
                     <div class="col-md-3 text-center">
                       <div class="founder-info">
-                        <img src="{{asset('assets_home')}}/images/kotak2.jpg" class="rounded-circle" width="200">
+                        <img src="{{asset('assets_home')}}/images/kotak2_1.jpeg" class="rounded-circle" width="200" height="200">
                           <h4 class="text-blue">Mohammad Syahrian Adil</h4>
                           <p class="text-blue" style="margin-top: -10px;">Co-Founder / CEO</p>
-                          <p class="mt-2">Computer Engineer<br>
+                          <p class="mt-2">Electronic Engineer<br>
                               ITS Surabaya</p>
                           <a href="#" class="text-blue">Linkedln Profile</a>
                       </div>
@@ -835,10 +835,10 @@
 
                     <div class="col-md-3 text-center">
                       <div class="founder-info">
-                        <img src="{{asset('assets_home')}}/images/kotak1.jpg" class="rounded-circle" width="200">
+                        <img src="{{asset('assets_home')}}/images/kotak3_1.jpeg" class="rounded-circle" width="200" height="200">
                           <h4 class="text-blue">Reza Rizky Pahlevi</h4>
                           <p class="text-blue" style="margin-top: -10px;">Co-Founder / CTO</p>
-                          <p class="mt-2">System Information Engineer<br>
+                          <p class="mt-2">Electronic Engineer<br>
                               ITS Surabaya</p>
                           <a href="#" class="text-blue">Linkedln Profile</a>
                       </div>
@@ -846,7 +846,7 @@
 
                     <div class="col-md-3 text-center">
                       <div class="founder-info">
-                        <img src="{{asset('assets_home')}}/images/kotak3.jpg" class="rounded-circle" width="200">
+                        <img src="{{asset('assets_home')}}/images/kotak4_1.jpeg" class="rounded-circle" width="200" height="200">
                           <h4 class="text-blue">Wildan Adition</h4>
                           <p class="text-blue" style="margin-top: -10px;">Co-Founder / CPO</p>
                           <p class="mt-2">Electronic Engineer<br>
@@ -857,7 +857,7 @@
 
                     <div class="col-md-3 text-center">
                       <div class="founder-info">
-                        <img src="{{asset('assets_home')}}/images/kotak3.jpg" class="rounded-circle" width="200">
+                        <img src="{{asset('assets_home')}}/images/kotak5_1.png" class="rounded-circle" width="200">
                           <h4 class="text-blue">Satrya Bagus</h4>
                           <p class="text-blue" style="margin-top: -10px;">Co-Founder / CMO</p>
                           <p class="mt-2">System Information Engineer<br>
