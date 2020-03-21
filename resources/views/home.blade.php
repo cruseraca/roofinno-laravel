@@ -809,64 +809,71 @@
                             Developers,
                             Scientist, Power System Analyst, Computer Engineers, & Designer. </p>
                     </div>
-                  </div>
-                  <br><br><br>
-                    <div class="col-md-3 text-center">
-                      <div class="founder-info">
-                        <img src="{{asset('assets_home')}}/images/kotak5.jpg" class="rounded-circle" width="200">
-                          <h4 class="text-blue">Miftah Ahmad Choiri S.T</h4>
-                          <p class="text-blue" style="margin-top: -10px;">Co-Founder / CBDO</p>
-                          <p class="mt-2">Power System Engineer<br>
-                              ITS Surabaya</p>
-                          <a href="#" class="text-blue">Linkedln Profile</a>
-                      </div>
-                    </div>
-
-                    <div class="col-md-3 text-center">
-                      <div class="founder-info">
-                        <img src="{{asset('assets_home')}}/images/kotak2_1.jpeg" class="rounded-circle" width="200" height="200">
-                          <h4 class="text-blue">Mohammad Syahrian Adil</h4>
-                          <p class="text-blue" style="margin-top: -10px;">Co-Founder / CEO</p>
-                          <p class="mt-2">Electronic Engineer<br>
-                              ITS Surabaya</p>
-                          <a href="#" class="text-blue">Linkedln Profile</a>
-                      </div>
-                    </div>
-
-                    <div class="col-md-3 text-center">
-                      <div class="founder-info">
-                        <img src="{{asset('assets_home')}}/images/kotak3_1.jpeg" class="rounded-circle" width="200" height="200">
-                          <h4 class="text-blue">Reza Rizky Pahlevi</h4>
-                          <p class="text-blue" style="margin-top: -10px;">Co-Founder / CTO</p>
-                          <p class="mt-2">Electronic Engineer<br>
-                              ITS Surabaya</p>
-                          <a href="#" class="text-blue">Linkedln Profile</a>
-                      </div>
-                    </div>
-
-                    <div class="col-md-3 text-center">
-                      <div class="founder-info">
-                        <img src="{{asset('assets_home')}}/images/kotak4_1.jpeg" class="rounded-circle" width="200" height="200">
-                          <h4 class="text-blue">Wildan Adition</h4>
-                          <p class="text-blue" style="margin-top: -10px;">Co-Founder / CPO</p>
-                          <p class="mt-2">Electronic Engineer<br>
-                              ITS Surabaya</p>
-                          <a href="#" class="text-blue">Linkedln Profile</a>
-                      </div>
-                    </div>
-
-                    <div class="col-md-3 text-center">
-                      <div class="founder-info">
-                        <img src="{{asset('assets_home')}}/images/kotak5_1.png" class="rounded-circle" width="200">
-                          <h4 class="text-blue">Satrya Bagus</h4>
-                          <p class="text-blue" style="margin-top: -10px;">Co-Founder / CMO</p>
-                          <p class="mt-2">System Information Engineer<br>
-                              ITS Surabaya</p>
-                          <a href="#" class="text-blue">Linkedln Profile</a>
-                      </div>
-                    </div>
-
                 </div>
+            </div>
+
+            <br><br><br>
+            <div class="row">
+                <div class="col-md-4 text-center">
+                <div class="founder-info">
+                    <img src="{{asset('assets_home')}}/images/kotak5.jpg" class="rounded-circle" width="200">
+                    <h4 class="text-blue">Miftah Ahmad Choiri S.T</h4>
+                    <p class="text-blue" style="margin-top: -10px;">Co-Founder / CBDO</p>
+                    <p class="mt-2">Power System Engineer<br>
+                        ITS Surabaya</p>
+                    <a href="#" class="text-blue">Linkedln Profile</a>
+                </div>
+                </div>
+
+                <div class="col-md-4 text-center">
+                <div class="founder-info">
+                    <img src="{{asset('assets_home')}}/images/kotak2_1.jpeg" class="rounded-circle" width="200" height="200">
+                    <h4 class="text-blue">Mohammad Syahrian Adil</h4>
+                    <p class="text-blue" style="margin-top: -10px;">Co-Founder / CEO</p>
+                    <p class="mt-2">Electronic Engineer<br>
+                        ITS Surabaya</p>
+                    <a href="#" class="text-blue">Linkedln Profile</a>
+                </div>
+                </div>
+
+                <div class="col-md-4 text-center">
+                <div class="founder-info">
+                    <img src="{{asset('assets_home')}}/images/kotak3_1.jpeg" class="rounded-circle" width="200" height="200">
+                    <h4 class="text-blue">Reza Rizky Pahlevi</h4>
+                    <p class="text-blue" style="margin-top: -10px;">Co-Founder / CTO</p>
+                    <p class="mt-2">Electronic Engineer<br>
+                        ITS Surabaya</p>
+                    <a href="#" class="text-blue">Linkedln Profile</a>
+                </div>
+                </div>
+            </div>
+            <br><br><br>
+            <div class="row">
+                <div class="col"></div>
+                <div class="col-md-4 text-center">
+                    <div class="founder-info">
+                        <img src="{{asset('assets_home')}}/images/kotak4_1.jpeg" class="rounded-circle" width="200" height="200">
+                        <h4 class="text-blue">Wildan Adition</h4>
+                        <p class="text-blue" style="margin-top: -10px;">Co-Founder / CPO</p>
+                        <p class="mt-2">Electronic Engineer<br>
+                            ITS Surabaya</p>
+                            <a href="#" class="text-blue">Linkedln Profile</a>
+                        </div>
+                </div>
+                
+                <div class="col-md-4 text-center">
+                    <div class="founder-info" >
+                    <img src="{{asset('assets_home')}}/images/kotak5_1.png" class="rounded-circle" width="200">
+                    <h4 class="text-blue">Satrya Bagus</h4>
+                    <p class="text-blue" style="margin-top: -10px;">Co-Founder / CMO</p>
+                    <p class="mt-2">System Information Engineer<br>
+                        ITS Surabaya</p>
+                        <a href="#" class="text-blue">Linkedln Profile</a>
+                    </div>
+                </div>
+                <div class="col"></div>
+            </div>
+
             </div>
         </div>
     </section>
