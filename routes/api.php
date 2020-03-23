@@ -46,3 +46,7 @@ Route::get('/esp8266/post_kons',function (Request $request){
     $data->save();
     return "OK";
 });
+
+Route::get('/android/production','DashboardController@indexandroid');
+Route::get('/android/penjadwalan','DashboardController@penjadwalanandroid');
+Route::get('/android/production/getrealtime','FirebaseController@index');
