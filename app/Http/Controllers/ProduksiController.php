@@ -8,6 +8,9 @@ use App\Data;
 use DateTime;
 use Illuminate\Support\Facades\Log;
 use App\KonsumsiData;
+use Kreait\Firebase;
+use Kreait\Firebase\Factory;
+use Kreait\Firebase\ServiceAccount;
 
 class ProduksiController extends Controller
 {
@@ -124,7 +127,48 @@ class ProduksiController extends Controller
         $waktu->subMonth()->startOfYear();
         $jumlah = Data::where('ONINSERT', '>=', $waktu->format('Y-m-d H:i:s'))->where('ONINSERT', '<=', $waktu->endOfYear()->format('Y-m-d H:i:s'))->sum('POWER_PS');
         array_push($power_data['prod'], round($jumlah / 1000, 2));
+        
+        //sum average
+       $avg_ps = Data::selectRaw("DATE(ONINSERT) date, HOUR(ONINSERT) hour, AVG(POWER_PS) average")
+        ->groupBy('date', 'hour')
+        ->get();
+        $avg_load = Data::selectRaw("DATE(ONINSERT) date, HOUR(ONINSERT) hour, AVG(POWER_LOAD) average")
+        ->groupBy('date', 'hour')
+        ->get();
+        
+       $sum_avg_ps = 0;
+       $sum_avg_load = 0;
 
+        foreach($avg_ps as $num => $values) {
+            $sum_avg_ps += $values['average'];
+        }
+        foreach($avg_load as $num => $values) {
+            $sum_avg_load += $values['average'];
+        }
+        //end of sum average
+               
+       
+        $jumlah_all_ps = round($sum_avg_ps / 1000, 2);
+        $jumlah_all_load = round($sum_avg_load / 1000, 2);
+        
+        $serviceAccount = ServiceAccount::fromJsonFile(__DIR__.'/FirebaseKey.json');
+        $firebase = (new Factory)
+        ->withServiceAccount($serviceAccount)
+        ->withDatabaseUri('https://savtrik-cc04d.firebaseio.com/')
+        ->create();
+
+        $database = $firebase->getDatabase();
+        $ref = $database->getReference('productionRealtime');
+        $ref->set([
+            //'now' => $power_data['prod'][0],
+            'today' => $power_data['prod'][1],
+            'week' => $power_data['prod'][2],
+            'month' => $power_data['prod'][3],
+            'year' => $power_data['prod'][4],
+            'all_ps' => $jumlah_all_ps,
+            'all_load' => $jumlah_all_load,
+            'home'=> $home
+        ]);
         return $power_data;
     }
 }

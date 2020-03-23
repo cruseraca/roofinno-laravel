@@ -6,6 +6,9 @@ use Illuminate\Support\Facades\DB;
 use App\Data;
 use App\Sensor;
 use Carbon\Carbon;
+use Kreait\Firebase;
+use Kreait\Firebase\Factory;
+use Kreait\Firebase\ServiceAccount;
 
 class DashboardController extends Controller
 {
@@ -37,6 +40,20 @@ class DashboardController extends Controller
                 }
             }
         }
+
+        $serviceAccount = ServiceAccount::fromJsonFile(__DIR__.'/FirebaseKey.json');
+        $firebase = (new Factory)
+        ->withServiceAccount($serviceAccount)
+        ->withDatabaseUri('https://savtrik-cc04d.firebaseio.com/')
+        ->create();
+
+        $database = $firebase->getDatabase();
+        $ref = $database->getReference('index');
+        $ref->set([
+            'prod' => round(($prod_total/12)/1000,2),
+            'cons' => round(($kons_total/12)/1000,2)
+        ]);
+        
         return view('dashboard',['prod_total' => round(($prod_total/12)/1000,2), 'kons_total' => round(($kons_total/12)/1000,2)]);
     }
     
@@ -103,6 +120,19 @@ class DashboardController extends Controller
             'max' => $max,
             'kons' => $kons,
         );
+
+        $serviceAccount = ServiceAccount::fromJsonFile(__DIR__.'/FirebaseKey.json');
+        $firebase = (new Factory)
+        ->withServiceAccount($serviceAccount)
+        ->withDatabaseUri('https://savtrik-cc04d.firebaseio.com/')
+        ->create();
+
+        $database = $firebase->getDatabase();
+        $ref = $database->getReference('prodconsIndex');
+        $ref->set([
+            'prod' => round($prod_data,2),
+            'cons' => round($kons_data,2)
+        ]);
         return $data_all;
     }
     public function penghematan()
@@ -234,5 +264,24 @@ class DashboardController extends Controller
         $realNow2 = $value2[$keyNow[0]]['y'];
 
     echo json_encode(array($value1,$value2,$realNow1,$realNow2,$sum1,$sum2,$value3,$value4));
+    }
+
+    //android
+    public function indexandroid()
+    {
+        $time = Carbon::now('Asia/Jakarta'); 
+        $daya_total1 = Data::where('ONINSERT','>=',$time->startOfDay()->format('Y-m-d H:i:s'))->where('ONINSERT','<=',$time->addDay()->format('Y-m-d H:i:s'))->sum('POWER_LOAD');
+        
+        return response()->json([
+            'power' => round(($daya_total1/720)*288/1000,2)
+        ]);
+    }
+    public function penjadwalanandroid()
+    {
+        
+        $data = Sensor::all();
+        return response()->json([
+            'data' => $data
+        ]);
     }
 }
