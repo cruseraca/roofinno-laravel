@@ -126,7 +126,9 @@ class ProduksiController extends Controller
         array_push($power_data['prod'], round($jumlah / 1000, 2));
         $waktu->subMonth()->startOfYear();
         $jumlah = Data::where('ONINSERT', '>=', $waktu->format('Y-m-d H:i:s'))->where('ONINSERT', '<=', $waktu->endOfYear()->format('Y-m-d H:i:s'))->sum('POWER_PS');
-        array_push($power_data['prod'], round($jumlah / 1000, 2));
+        array_push($power_data['prod'], round($jumlah / 1000, 2)); 
+        $jumlahHome = Data::where('ONINSERT', '>=', $waktu->subHour()->format('Y-m-d H:i:s'))->where('ONINSERT', '<=', $waktu->addHour()->format('Y-m-d H:i:s'))->sum('POWER_LOAD');
+        $home = round($jumlahHome / 1000, 2);
         
         //sum average
        $avg_ps = Data::selectRaw("DATE(ONINSERT) date, HOUR(ONINSERT) hour, AVG(POWER_PS) average")
