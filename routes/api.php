@@ -20,7 +20,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/esp8266/post','HardwareController@postData');
+// Route::get('/esp8266/post','HardwareController@postData');
 Route::get('/esp8266/post',function(Request $request){
     $timestamp = Carbon::now('Asia/Jakarta')->format('Y-m-d H:i:s');
     $data = new Data;

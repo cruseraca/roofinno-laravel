@@ -67,26 +67,45 @@ class DashboardController extends Controller
             
         }
 
-        $datetime->subDay()->subMinutes(5);
-        for($i=0;$i <= 288;$i++){
-            $data = Data::where('ONINSERT','>=',$datetime->format('Y-m-d H:i:s'))->where('ONINSERT','<=',$datetime->addMinutes(5)->format('Y-m-d H:i:s'))->sum('POWER_LOAD');
-            $datetime->subMinutes(5);
-            if($data == 0)
-            {
-                // array_push($data_x,$datetime->format('H:i'));
-                array_push($data_y2,0);
-                $datetime->addMinutes(5);
-            } else 
-            {
-                // array_push($data_x,$datetime->format('H:i'));
-                $count = Data::where('ONINSERT','>=',$datetime->format('Y-m-d H:i:s'))->where('ONINSERT','<=',$datetime->addMinutes(5)->format('Y-m-d H:i:s'))->where('POWER_LOAD','<>',0)->count();
-                array_push($data_y2,$data/$count);
-            }
+        // $datetime->subDay()->subMinutes(5);
+        // for($i=0;$i <= 288;$i++){
+        //     $data = Data::where('ONINSERT','>=',$datetime->format('Y-m-d H:i:s'))->where('ONINSERT','<=',$datetime->addMinutes(5)->format('Y-m-d H:i:s'))->sum('POWER_LOAD');
+        //     $datetime->subMinutes(5);
+        //     if($data == 0)
+        //     {
+        //         // array_push($data_x,$datetime->format('H:i'));
+        //         array_push($data_y2,0);
+        //         $datetime->addMinutes(5);
+        //     } else 
+        //     {
+        //         // array_push($data_x,$datetime->format('H:i'));
+        //         $count = Data::where('ONINSERT','>=',$datetime->format('Y-m-d H:i:s'))->where('ONINSERT','<=',$datetime->addMinutes(5)->format('Y-m-d H:i:s'))->where('POWER_LOAD','<>',0)->count();
+        //         array_push($data_y2,$data/$count);
+        //     }
             
+        // // }
+        $data_y1 = array();
+        $count_y1 = Data::all()->count();
+        if ($count_y1 < 288) {
+            $data_y1 = Data::select('POWER_PS')->orderBy('ONINSERT', 'desc')->take(288)->pluck('POWER_PS')->toArray();
+            if(sizeof($data_y1)==0) array_push($data_y1,0);
+            for($i=0; $i < (288-$count_y1); $i++){
+                array_push($data_y1,0);
+            }
+            // dd($data_y1);
+        }
+        $count_y2 = Data::all()->count();
+        if ($count_y2 < 288) {
+            $data_y2 = Data::select('POWER_LOAD')->orderBy('ONINSERT', 'desc')->take(288)->pluck('POWER_LOAD')->toArray();
+            if(sizeof($data_y2)==0) array_push($data_y2,0);
+            for($i=0; $i <= (288-$count_y2); $i++){
+                array_push($data_y2,0);
+            }
         }
         $max_data = max($data_y1);
         if(max($data_y1)<max($data_y2)) $max_data = max($data_y2);
-        $max = round(($max_data + 50/2)/50)*50;
+        $max = round($max_data);
+        // $max = round(($max_data + 50/2)/50)*50;
         
         //konsumsi & produksi
        
@@ -95,11 +114,12 @@ class DashboardController extends Controller
         array_push($kons,round($kons_data,2));
         array_push($kons,round($prod_data,2));
         array_push($kons,Carbon::now('Asia/Jakarta')->format('H:i'));
+        // dd(array_reverse($data_y1));
 
         $data_all = array(
             'time' => $data_x,
-            'kwh1' => $data_y1, 
-            'kwh2' => $data_y2, 
+            'kwh1' => array_reverse($data_y1), 
+            'kwh2' => array_reverse($data_y2), 
             'max' => $max,
             'kons' => $kons,
         );
